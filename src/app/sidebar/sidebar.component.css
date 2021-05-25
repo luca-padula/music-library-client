@@ -1,16 +1,39 @@
-.sidebar {
+.navbar {
    width: 100vw;
    background-color: black;
    color: white;
    position: fixed;
    bottom: 0;
    height: 5rem;
+   margin: 0;
+   padding: 0;
+}
+.navbar-nav {
+   margin: 0;
+   padding: 0;
+   height: 100%;
+   list-style: none;
+   justify-content: space-around;
+   align-items: center;
+}
+.navbar-nav-item {
+   width: 20%;
+   text-align: center;
+   flex-direction: column;
+   justify-content: space-around;
+}
+.navbar-nav-item i {
+   font-size: 1.5rem;
+   margin-bottom: 0.5rem;
 }
 
 @media (min-width: 768px) {
-   .sidebar {
+   .navbar {
       height: 100vh;
       width: 20%;
       bottom: auto;
+   }
+   .navbar-nav {
+      flex-direction: column;
    }
 }

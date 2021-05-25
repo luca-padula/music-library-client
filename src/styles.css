@@ -4,12 +4,9 @@
 }
 html,
 body {
-   background-color: yellow;
    padding: 0;
    margin: 0;
-   overflow-y: auto;
 }
-app-sidebar {
-   margin: 0;
-   padding: 0;
+.flex-container {
+   display: flex;
 }
