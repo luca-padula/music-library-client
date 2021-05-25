@@ -1,4 +1,5 @@
 .navbar {
+   font-family: var(--font-nav);
    width: 100vw;
    background-color: black;
    color: white;
