@@ -36,4 +36,14 @@
    .navbar-nav {
       flex-direction: column;
    }
+   .navbar-nav-item {
+      flex-direction: row;
+   }
+   .navbar-nav-item i {
+      font-size: 2rem;
+      margin-right: 1rem;
+   }
+   .navbar-nav-item span {
+      font-size: 1.5rem;
+   }
 }
