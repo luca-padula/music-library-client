@@ -1,7 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
    font-size: 16px;
-   --font-nav: "KoHo", sans-serif;
+   --font-primary: "KoHo", sans-serif;
+   --bg-primary: rgb(36, 36, 36);
+   --heading-primary: white;
+   --text-primary: rgb(211, 211, 211);
+   --color-primary: rgb(172, 0, 172);
+   --transitions-speed: 0.2ms;
 }
 html,
 body {
