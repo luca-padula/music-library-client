@@ -1,0 +1,9 @@
+h1 {
+   margin: 1rem auto;
+   font-weight: bold;
+   color: var(--color-primary);
+}
+.input-group button {
+   background-color: var(--color-primary);
+   color: var(--heading-primary);
+}
