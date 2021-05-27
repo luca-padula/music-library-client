@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core"
 import { Observable } from "rxjs"
 import { Artist } from "../shared/models/artist"
 import { ArtistService } from "../shared/services/artist.service"
-import { map, tap } from "rxjs/operators"
 
 @Component({
    selector: "app-artists",

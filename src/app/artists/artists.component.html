@@ -1,9 +1,20 @@
-<input
-   type="text"
-   id="artist-search-input"
-   [(ngModel)]="searchInput"
-   placeholder="search for an artist..."
-/>
-<ng-container *ngFor="let artist of artists$ | async">
-   <div *ngIf="artistMatchesFilter(artist)">{{ artist.name }}</div>
-</ng-container>
+<div class="container">
+   <h2>Artists</h2>
+   <p>
+      Here you can browse artists and use the search box to search for your
+      favourite artist. <span>If you're logged in,</span>you can add an artist
+   </p>
+   <div class="form-group">
+      <input
+         type="text"
+         id="artist-search-input"
+         class="form-control"
+         [(ngModel)]="searchInput"
+         placeholder="search for an artist..."
+      />
+      <button class="btn">Add Artist</button>
+   </div>
+   <ng-container *ngFor="let artist of artists$ | async">
+      <div *ngIf="artistMatchesFilter(artist)">{{ artist.name }}</div>
+   </ng-container>
+</div>
