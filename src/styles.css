@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
    font-size: 16px;
+   font-family: var(--font-primary);
    --font-primary: "KoHo", sans-serif;
    --bg-primary: rgb(36, 36, 36);
    --heading-primary: white;
