@@ -1,0 +1,9 @@
+<input
+   type="text"
+   id="artist-search-input"
+   [(ngModel)]="searchInput"
+   placeholder="search for an artist..."
+/>
+<ng-container *ngFor="let artist of artists$ | async">
+   <div *ngIf="artistMatchesFilter(artist)">{{ artist.name }}</div>
+</ng-container>
