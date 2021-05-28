@@ -1,18 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
    font-size: 16px;
-   --font-primary: "KoHo", sans-serif;
+   font-family: var(--font-primary);
+   --font-primary: "Roboto", sans-serif;
    --bg-primary: rgb(36, 36, 36);
    --heading-primary: white;
    --text-primary: rgb(211, 211, 211);
    --color-primary: rgb(172, 0, 172);
    --transitions-speed: 0.2ms;
 }
+
 html,
 body {
    padding: 0;
    margin: 0;
 }
+
+p {
+   max-width: 70ch;
+}
+
 .flex-container {
    display: flex;
 }
