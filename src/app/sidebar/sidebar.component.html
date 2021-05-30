@@ -4,7 +4,9 @@
          <i class="fa fa-home"></i><span>Home</span>
       </li>
       <li class="navbar-flex-item flex-container">
-         <i class="fa fa-music"></i><span>Artists</span>
+         <a routerLink="artists">
+            <i class="fa fa-music"></i><span>Artists</span>
+         </a>
       </li>
       <li class="navbar-flex-item flex-container">
          <i class="fa fa-compact-disc"></i><span>Albums</span>
@@ -13,9 +15,11 @@
          <i class="fa fa-play"></i>
          <span>Playlists</span>
       </li>
-      <li class="navbar-flex-item flex-container" routerLink="login">
-         <i class="fas fa-sign-in-alt"></i>
-         <span>Login</span>
+      <li class="navbar-flex-item flex-container">
+         <a routerLink="login">
+            <i class="fas fa-sign-in-alt"></i>
+            <span>Login</span>
+         </a>
       </li>
    </ul>
 </nav>
