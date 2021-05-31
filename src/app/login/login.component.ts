@@ -11,19 +11,13 @@ import { take } from "rxjs/operators"
    styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
-   public user: User
+   public user: any
    errorMessage: string = ""
 
    constructor(private authService: AuthService, private router: Router) {
       this.user = {
-         _id: "",
          userName: "",
-         firstName: "",
-         lastName: "",
          password: "",
-         createdAt: "",
-         updatedAt: "",
-         __v: 0,
       }
    }
 
@@ -37,7 +31,7 @@ export class LoginComponent implements OnInit {
          .subscribe(
             (success) => {
                this.authService.setToken(success.token)
-               this.router.navigate(["/artists"])
+               this.router.navigate(["/home"])
             },
             (err) => {
                this.errorMessage = err.message

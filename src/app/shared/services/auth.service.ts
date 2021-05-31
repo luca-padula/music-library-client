@@ -40,7 +40,7 @@ export class AuthService {
       return false
    }
 
-   login(user: User): Observable<any> {
+   login(user: any): Observable<any> {
       return this.http.post<any>(`${environment.apiUrl}/users/login`, user)
    }
 }
