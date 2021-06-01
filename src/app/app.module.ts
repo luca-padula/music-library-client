@@ -10,7 +10,7 @@ import { ArtistsComponent } from "./artists/artists.component"
 import { LoginComponent } from "./login/login.component"
 import { HomeComponent } from "./home/home.component"
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component"
-import { InterceptTokenService } from "src/app/shared/services/intercept-token.service"
+import { AuthTokenInterceptor } from "src/app/shared/interceptors/auth-token.interceptor"
 
 @NgModule({
    declarations: [
@@ -25,7 +25,7 @@ import { InterceptTokenService } from "src/app/shared/services/intercept-token.s
    providers: [
       {
          provide: HTTP_INTERCEPTORS,
-         useClass: InterceptTokenService,
+         useClass: AuthTokenInterceptor,
          multi: true,
       },
    ],

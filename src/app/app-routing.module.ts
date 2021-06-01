@@ -8,7 +8,7 @@ import { AuthGuard } from "./shared/guards/auth.guard"
 
 const routes: Routes = [
    { path: "home", component: HomeComponent },
-   { path: "artists", component: ArtistsComponent, canActivate: [AuthGuard] },
+   { path: "artists", component: ArtistsComponent },
    { path: "login", component: LoginComponent },
    { path: "", redirectTo: "/home", pathMatch: "full" },
    { path: "**", component: PageNotFoundComponent },
