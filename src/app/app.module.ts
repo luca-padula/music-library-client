@@ -11,6 +11,7 @@ import { LoginComponent } from "./login/login.component"
 import { HomeComponent } from "./home/home.component"
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component"
 import { AuthTokenInterceptor } from "src/app/shared/interceptors/auth-token.interceptor"
+import { ErrorInterceptor } from "./shared/interceptors/error.interceptor"
 
 @NgModule({
    declarations: [
@@ -26,6 +27,11 @@ import { AuthTokenInterceptor } from "src/app/shared/interceptors/auth-token.int
       {
          provide: HTTP_INTERCEPTORS,
          useClass: AuthTokenInterceptor,
+         multi: true,
+      },
+      {
+         provide: HTTP_INTERCEPTORS,
+         useClass: ErrorInterceptor,
          multi: true,
       },
    ],
