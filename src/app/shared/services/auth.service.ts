@@ -2,13 +2,12 @@ import { Injectable } from "@angular/core"
 import { HttpClient } from "@angular/common/http"
 import { Observable } from "rxjs"
 import { JwtHelperService } from "@auth0/angular-jwt"
-import { User } from "../models/user"
 import { environment } from "src/environments/environment"
 
 /*
-   Web 422 guide creates new jwt helper service here instead of
-   injecting it in constructor. Injecting does not work without
-   setting up JwtModule in app module imports. See canpolls app
+   Docs say you can create an instance of JwtHelperService and use it directly
+   if you are not using extra injectable features. Injecting does not work
+   without setting up JwtModule in app module imports. See canpolls app
    module for that method
 */
 const jwtHelper = new JwtHelperService()
@@ -27,20 +26,21 @@ export class AuthService {
       localStorage.setItem("access_token", token)
    }
 
-   public readToken(): any {
+   public getDecodedToken(): any {
       const token = this.getToken()
       return jwtHelper.decodeToken(token)
    }
 
    public userIsAuthenticated(): boolean {
       const token = this.getToken()
-      if (token != null) {
-         return true
-      }
-      return false
+      return !jwtHelper.isTokenExpired(token)
    }
 
    login(user: any): Observable<any> {
       return this.http.post<any>(`${environment.apiUrl}/users/login`, user)
+   }
+
+   logout(): void {
+      localStorage.removeItem("access_token")
    }
 }
