@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core"
 import { Router } from "@angular/router"
 import { NgForm } from "@angular/forms"
 import { AuthService } from "../shared/services/auth.service"
-import { User } from "../shared/models/user"
+import { UserLogin } from "../shared/models/user-login"
 import { take } from "rxjs/operators"
 
 @Component({
@@ -11,7 +11,7 @@ import { take } from "rxjs/operators"
    styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
-   public user: any
+   public user: UserLogin
    errorMessage: string = ""
 
    constructor(private authService: AuthService, private router: Router) {
