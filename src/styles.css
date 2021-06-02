@@ -3,11 +3,12 @@
    font-size: 12px;
    font-family: var(--font-primary);
    --font-primary: "Roboto", sans-serif;
-   --bg-primary: rgb(36, 36, 36);
-   --heading-primary: white;
-   --text-primary: rgb(211, 211, 211);
-   --color-primary: rgb(172, 0, 172);
-   --transitions-speed: 0.2ms;
+   --bg-dark-primary: hsl(0, 0%, 14%);
+   --bg-dark-primary-highlighted: hsl(0, 0%, 9%);
+   --heading-primary: hsl(0, 0%, 100%);
+   --text-primary: hsl(0, 0%, 83%);
+   --color-primary: hsl(300, 100%, 34%);
+   --transition-speed: 300ms;
 }
 
 html,
