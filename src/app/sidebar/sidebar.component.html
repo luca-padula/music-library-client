@@ -1,28 +1,34 @@
 <nav class="my-sidebar">
    <ul class="navbar-flex flex-container">
-      <li class="navbar-flex-item flex-container">
-         <a routerLink="home"> <i class="fa fa-home"></i><span>Home</span> </a>
+      <li class="navbar-flex-item">
+         <a class="my-nav-link" routerLink="home">
+            <i class="fa fa-home"></i><span>Home</span>
+         </a>
       </li>
-      <li class="navbar-flex-item flex-container">
-         <a routerLink="artists">
+      <li class="navbar-flex-item">
+         <a class="my-nav-link" routerLink="artists">
             <i class="fa fa-music"></i><span>Artists</span>
          </a>
       </li>
-      <li class="navbar-flex-item flex-container">
-         <i class="fa fa-compact-disc"></i><span>Albums</span>
+      <li class="navbar-flex-item">
+         <a class="my-nav-link" routerLink="home">
+            <i class="fa fa-compact-disc"></i><span>Albums</span>
+         </a>
       </li>
-      <li class="navbar-flex-item flex-container">
-         <i class="fa fa-play"></i>
-         <span>Playlists</span>
+      <li class="navbar-flex-item">
+         <a class="my-nav-link" routerLink="home">
+            <i class="fa fa-play"></i>
+            <span>Playlists</span>
+         </a>
       </li>
-      <li *ngIf="!token" class="navbar-flex-item flex-container">
-         <a routerLink="login">
+      <li *ngIf="!token" class="navbar-flex-item">
+         <a class="my-nav-link" routerLink="login">
             <i class="fas fa-sign-in-alt"></i>
             <span>Login</span>
          </a>
       </li>
-      <li *ngIf="token" class="navbar-flex-item flex-container">
-         <a (click)="logout()">
+      <li *ngIf="token" class="navbar-flex-item">
+         <a class="my-nav-link" (click)="logout()">
             <i class="fas fa-sign-out-alt"></i>
             <span>Logout</span>
          </a>
