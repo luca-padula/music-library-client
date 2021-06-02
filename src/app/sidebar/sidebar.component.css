@@ -1,4 +1,4 @@
-.my-sidebar {
+.sidebar {
    font-family: var(--font-primary);
    width: 100vw;
    background-color: var(--bg-primary);
@@ -10,73 +10,74 @@
    padding: 0;
 }
 
-.navbar-flex {
+.sidebar-nav {
    margin: 0;
    padding: 0;
    height: 100%;
    list-style: none;
+   display: flex;
    justify-content: space-around;
    align-items: center;
 }
 
-.navbar-flex-item {
+.sidebar-nav-item {
    width: 100%;
    text-align: center;
 }
 
-.navbar-flex-item:hover {
+.sidebar-nav-item:hover {
    color: var(--color-primary);
 }
 
-.my-nav-link {
+.sidebar-nav-link {
    display: flex;
    flex-direction: column;
    justify-content: space-around;
 }
 
-.navbar-flex-item i {
+.sidebar-nav-item i {
    font-size: 1.5rem;
    margin-bottom: 0.5rem;
 }
-.navbar-flex-item span {
+.sidebar-nav-item span {
    font-weight: bold;
    letter-spacing: 0.2rem;
 }
 
 @media (min-width: 768px) {
-   .my-sidebar {
+   .sidebar {
       height: 100vh;
       width: 18rem;
       max-width: 25%;
       bottom: auto;
    }
 
-   .navbar-flex {
+   .sidebar-nav {
       flex-direction: column;
       justify-content: flex-start;
    }
 
-   .navbar-flex-item {
+   .sidebar-nav-item {
       text-align: left;
       margin: 1rem auto;
       padding-left: 4rem;
    }
 
-   .navbar-flex-item:last-child {
+   .sidebar-nav-item:last-child {
       margin-top: auto;
    }
 
-   .my-nav-link {
+   .sidebar-nav-link {
       flex-direction: row;
       justify-content: flex-start;
    }
 
-   .navbar-flex-item i {
+   .sidebar-nav-item i {
       font-size: 1.7rem;
       margin-right: 1rem;
    }
 
-   .navbar-flex-item span {
+   .sidebar-nav-item span {
       font-size: 1.3rem;
    }
 }
