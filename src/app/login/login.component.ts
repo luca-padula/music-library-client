@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
          .subscribe(
             (success) => {
                this.authService.setToken(success.token)
-               this.router.navigate(["/home"])
+               this.router.navigate(["home"])
             },
             (err) => {
                this.errorMessage = err.message
