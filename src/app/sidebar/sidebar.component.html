@@ -1,34 +1,50 @@
 <nav class="sidebar">
    <ul class="sidebar-nav">
       <li class="sidebar-nav-item">
-         <a class="sidebar-nav-link" routerLink="home">
+         <a
+            class="sidebar-nav-link"
+            routerLink="home"
+            routerLinkActive="active"
+         >
             <i class="fa fa-home"></i><span>Home</span>
          </a>
       </li>
       <li class="sidebar-nav-item">
-         <a class="sidebar-nav-link" routerLink="artists">
+         <a
+            class="sidebar-nav-link"
+            routerLink="artists"
+            routerLinkActive="active"
+         >
             <i class="fa fa-music"></i><span>Artists</span>
          </a>
       </li>
       <li class="sidebar-nav-item">
-         <a class="sidebar-nav-link" routerLink="home">
+         <a class="sidebar-nav-link" routerLinkActive="active">
             <i class="fa fa-compact-disc"></i><span>Albums</span>
          </a>
       </li>
       <li class="sidebar-nav-item">
-         <a class="sidebar-nav-link" routerLink="home">
+         <a class="sidebar-nav-link" routerLinkActive="active">
             <i class="fa fa-play"></i>
             <span>Playlists</span>
          </a>
       </li>
       <li *ngIf="!token" class="sidebar-nav-item">
-         <a class="sidebar-nav-link" routerLink="login">
+         <a
+            class="sidebar-nav-link"
+            routerLink="login"
+            routerLinkActive="active"
+         >
             <i class="fas fa-sign-in-alt"></i>
             <span>Login</span>
          </a>
       </li>
       <li *ngIf="token" class="sidebar-nav-item">
-         <a class="sidebar-nav-link" (click)="logout()">
+         <a
+            class="sidebar-nav-link"
+            routerLinkActive="active"
+            (click)="logout()"
+         >
             <i class="fas fa-sign-out-alt"></i>
             <span>Logout</span>
          </a>
