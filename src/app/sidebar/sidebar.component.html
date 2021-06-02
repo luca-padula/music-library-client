@@ -15,10 +15,16 @@
          <i class="fa fa-play"></i>
          <span>Playlists</span>
       </li>
-      <li class="navbar-flex-item flex-container">
+      <li *ngIf="!token" class="navbar-flex-item flex-container">
          <a routerLink="login">
             <i class="fas fa-sign-in-alt"></i>
             <span>Login</span>
+         </a>
+      </li>
+      <li *ngIf="token" class="navbar-flex-item flex-container">
+         <a (click)="logout()">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
          </a>
       </li>
    </ul>
