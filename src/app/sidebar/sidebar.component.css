@@ -1,27 +1,26 @@
 .sidebar {
-   font-family: var(--font-primary);
-   width: 100vw;
-   background-color: var(--bg-primary);
-   color: var(--text-primary);
-   position: fixed;
-   bottom: 0;
-   height: 5rem;
    margin: 0;
    padding: 0;
+   width: 100vw;
+   height: 5rem;
+   position: fixed;
+   bottom: 0;
+   font-family: var(--font-primary);
+   background-color: var(--bg-primary);
+   color: var(--text-primary);
 }
 
 .sidebar-nav {
    margin: 0;
    padding: 0;
    height: 100%;
-   list-style: none;
    display: flex;
-   justify-content: space-around;
-   align-items: center;
+   list-style: none;
 }
 
 .sidebar-nav-item {
    width: 100%;
+   height: 100%;
    text-align: center;
 }
 
@@ -30,9 +29,10 @@
 }
 
 .sidebar-nav-link {
+   height: 100%;
    display: flex;
    flex-direction: column;
-   justify-content: space-around;
+   justify-content: center;
 }
 
 .sidebar-nav-item i {
@@ -41,7 +41,6 @@
 }
 .sidebar-nav-item span {
    font-weight: bold;
-   letter-spacing: 0.2rem;
 }
 
 @media (min-width: 768px) {
