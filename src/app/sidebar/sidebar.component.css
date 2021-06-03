@@ -10,6 +10,18 @@
    color: var(--text-primary);
 }
 
+.sidebar-brand {
+   display: none;
+   margin-bottom: 1rem;
+   text-transform: uppercase;
+}
+
+.sidebar-brand-link {
+}
+
+.sidebar-brand-text {
+}
+
 .sidebar-nav {
    margin: 0;
    padding: 0;
@@ -42,10 +54,7 @@
 
 .sidebar-nav-item i {
    font-size: 1.5rem;
-   margin-bottom: 0.5rem;
-}
-.sidebar-nav-item span {
-   font-weight: bold;
+   margin-bottom: 0.4rem;
 }
 
 @media (min-width: 768px) {
@@ -54,6 +63,10 @@
       width: 18rem;
       max-width: 25%;
       bottom: auto;
+   }
+
+   .sidebar-brand {
+      display: block;
    }
 
    .sidebar-nav {

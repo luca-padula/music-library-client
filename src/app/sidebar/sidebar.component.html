@@ -1,20 +1,17 @@
 <nav class="sidebar">
    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+         <a routerLink="home" class="sidebar-brand-link">
+            <h2 class="sidebar-brand-text">Luca's Music Library</h2>
+         </a>
+      </li>
       <li class="sidebar-nav-item">
-         <a
-            class="sidebar-nav-link"
-            routerLink="home"
-            routerLinkActive="active"
-         >
+         <a class="sidebar-nav-link" routerLink="home" routerLinkActive="active">
             <i class="fa fa-home"></i><span>Home</span>
          </a>
       </li>
       <li class="sidebar-nav-item">
-         <a
-            class="sidebar-nav-link"
-            routerLink="artists"
-            routerLinkActive="active"
-         >
+         <a class="sidebar-nav-link" routerLink="artists" routerLinkActive="active">
             <i class="fa fa-music"></i><span>Artists</span>
          </a>
       </li>
@@ -30,21 +27,13 @@
          </a>
       </li>
       <li *ngIf="!token" class="sidebar-nav-item">
-         <a
-            class="sidebar-nav-link"
-            routerLink="login"
-            routerLinkActive="active"
-         >
+         <a class="sidebar-nav-link" routerLink="login" routerLinkActive="active">
             <i class="fas fa-sign-in-alt"></i>
             <span>Login</span>
          </a>
       </li>
       <li *ngIf="token" class="sidebar-nav-item">
-         <a
-            class="sidebar-nav-link"
-            routerLinkActive="active"
-            (click)="logout()"
-         >
+         <a class="sidebar-nav-link" routerLinkActive="active" (click)="logout()">
             <i class="fas fa-sign-out-alt"></i>
             <span>Logout</span>
          </a>
