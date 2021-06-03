@@ -10,6 +10,10 @@
    color: var(--text-primary);
 }
 
+.sidebar a {
+   text-decoration: none;
+}
+
 .sidebar-brand {
    display: none;
    margin: 1rem 0;
@@ -17,7 +21,6 @@
 }
 
 .sidebar-brand-link {
-   text-decoration: none;
    color: var(--color-primary);
 }
 
@@ -48,7 +51,6 @@
    flex-direction: column;
    justify-content: center;
    color: var(--text-primary);
-   text-decoration: none;
    transition: var(--transition-speed);
 }
 
