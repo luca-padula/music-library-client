@@ -3,6 +3,7 @@ import { Observable } from "rxjs"
 import { take } from "rxjs/operators"
 import { Artist } from "../shared/models/artist"
 import { ArtistService } from "../shared/services/artist.service"
+import { AuthService } from "../shared/services/auth.service"
 
 @Component({
    selector: "app-artists",
@@ -10,11 +11,17 @@ import { ArtistService } from "../shared/services/artist.service"
    styleUrls: ["./artists.component.css"],
 })
 export class ArtistsComponent implements OnInit {
+   userIsAuthenticated: boolean
    artists$: Observable<Artist[]>
-   searchInput: string = ""
+   searchInput: string
 
-   constructor(private artistService: ArtistService) {
+   constructor(
+      private artistService: ArtistService,
+      private authService: AuthService
+   ) {
+      this.userIsAuthenticated = authService.userIsAuthenticated()
       this.artists$ = this.artistService.getAllArtists()
+      this.searchInput = ""
    }
 
    ngOnInit(): void {}

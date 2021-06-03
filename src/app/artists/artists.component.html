@@ -12,7 +12,7 @@
          [(ngModel)]="searchInput"
          placeholder="search for an artist..."
       />
-      <div class="input-group-append">
+      <div *ngIf="userIsAuthenticated" class="input-group-append">
          <button class="btn" [disabled]="!searchInput.trim()" (click)="addArtist()">Add Artist</button>
       </div>
    </div>
