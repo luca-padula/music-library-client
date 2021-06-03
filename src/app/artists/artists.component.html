@@ -4,6 +4,7 @@
       Here you can browse artists and use the search box to search for your favourite artist.
       <span>If you're logged in,</span> you can add a new artist.
    </p>
+   <div *ngIf="addArtistSuccessMessage" class="alert alert-success">{{ addArtistSuccessMessage }}</div>
    <div class="input-group">
       <input
          type="text"

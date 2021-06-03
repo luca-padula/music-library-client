@@ -14,6 +14,7 @@ export class ArtistsComponent implements OnInit {
    userIsAuthenticated: boolean
    artists$: Observable<Artist[]>
    searchInput: string
+   addArtistSuccessMessage: string
 
    constructor(
       private artistService: ArtistService,
@@ -22,6 +23,7 @@ export class ArtistsComponent implements OnInit {
       this.userIsAuthenticated = authService.userIsAuthenticated()
       this.artists$ = this.artistService.getAllArtists()
       this.searchInput = ""
+      this.addArtistSuccessMessage = ""
    }
 
    ngOnInit(): void {}
@@ -38,7 +40,8 @@ export class ArtistsComponent implements OnInit {
          .addArtist(newArtist)
          .pipe(take(1))
          .subscribe((success) => {
-            console.log("succesfully created: ", success.createdArtist)
+            const createdArtist: Artist = success.createdArtist
+            this.addArtistSuccessMessage = `succesfully added "${createdArtist.name}"`
          })
    }
 }
