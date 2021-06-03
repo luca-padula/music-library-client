@@ -3,6 +3,16 @@ h1 {
    font-weight: bold;
    color: var(--color-primary);
 }
+
+p {
+   margin: 2rem 0;
+}
+
+p span {
+   color: var(--color-primary);
+   font-weight: bold;
+}
+
 .input-group button {
    background-color: var(--color-primary);
    color: var(--heading-primary);

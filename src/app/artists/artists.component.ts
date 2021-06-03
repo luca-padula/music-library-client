@@ -16,7 +16,7 @@ export class ArtistsComponent implements OnInit {
       this.artists$ = this.artistService.getAllArtists()
    }
 
-   artistMatchesFilter(artist: Artist) {
+   artistMatchesFilter(artist: Artist): boolean {
       return artist.name.toLowerCase().includes(this.searchInput.toLowerCase())
    }
 
