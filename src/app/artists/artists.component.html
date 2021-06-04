@@ -19,20 +19,22 @@
          <button class="btn" [disabled]="!searchInput.trim()" (click)="addArtist()">Add Artist</button>
       </div>
    </div>
-   <table class="table">
-      <thead>
-         <tr>
-            <th>#</th>
-            <th>Artist name</th>
-            <th>Added on</th>
-         </tr>
-      </thead>
-      <tbody>
-         <tr *ngFor="let artist of filteredArtists; index as idx">
-            <th>{{ idx + 1 }}</th>
-            <td>{{ artist.name }}</td>
-            <td>{{ artist.createdAt | date }}</td>
-         </tr>
-      </tbody>
-   </table>
+   <div class="table-responsive">
+      <table class="table">
+         <thead>
+            <tr>
+               <th>#</th>
+               <th>Artist name</th>
+               <th>Added on</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr *ngFor="let artist of filteredArtists; index as idx">
+               <th>{{ idx + 1 }}</th>
+               <td>{{ artist.name }}</td>
+               <td>{{ artist.createdAt | date }}</td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
 </div>
