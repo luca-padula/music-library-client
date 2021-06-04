@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core"
-import { Observable } from "rxjs"
-import { take } from "rxjs/operators"
+import { Observable, Subject } from "rxjs"
+import { take, takeUntil } from "rxjs/operators"
 import { Artist } from "../shared/models/artist"
 import { ArtistService } from "../shared/services/artist.service"
 import { AuthService } from "../shared/services/auth.service"
@@ -12,7 +12,9 @@ import { AuthService } from "../shared/services/auth.service"
 })
 export class ArtistsComponent implements OnInit {
    userIsAuthenticated: boolean
-   artists$: Observable<Artist[]>
+   artists: Artist[]
+   filteredArtists: Artist[]
+   ngUnsubscribe: Subject<any>
    searchInput: string
    addArtistSuccessMessage: string
 
@@ -21,15 +23,28 @@ export class ArtistsComponent implements OnInit {
       private authService: AuthService
    ) {
       this.userIsAuthenticated = authService.userIsAuthenticated()
-      this.artists$ = this.artistService.getAllArtists()
+      this.artists = []
+      this.filteredArtists = []
+      this.ngUnsubscribe = new Subject<any>()
       this.searchInput = ""
       this.addArtistSuccessMessage = ""
    }
 
-   ngOnInit(): void {}
+   ngOnInit(): void {
+      this.artistService
+         .getAllArtists()
+         .pipe(takeUntil(this.ngUnsubscribe))
+         .subscribe((artists) => {
+            this.artists = artists
+            this.filteredArtists = artists
+         })
+   }
 
-   artistMatchesFilter(artist: Artist): boolean {
-      return artist.name.toLowerCase().includes(this.searchInput.toLowerCase())
+   onArtistSearchKeyup(event: any): void {
+      const searchTerm = event.target.value.toLowerCase()
+      this.filteredArtists = this.artists.filter((artist) => {
+         return artist.name.toLowerCase().includes(searchTerm)
+      })
    }
 
    addArtist(): void {
@@ -42,6 +57,13 @@ export class ArtistsComponent implements OnInit {
          .subscribe((success) => {
             const createdArtist: Artist = success.createdArtist
             this.addArtistSuccessMessage = `succesfully added "${createdArtist.name}"`
+            this.artists = [...this.artists, createdArtist]
+            this.filteredArtists = [...this.filteredArtists, createdArtist]
          })
+   }
+
+   ngOnDestroy(): void {
+      this.ngUnsubscribe.next()
+      this.ngUnsubscribe.complete()
    }
 }

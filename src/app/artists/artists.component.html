@@ -12,6 +12,7 @@
          class="form-control"
          [(ngModel)]="searchInput"
          placeholder="search for an artist..."
+         (keyup)="onArtistSearchKeyup($event)"
       />
       <div *ngIf="userIsAuthenticated" class="input-group-append">
          <button class="btn" [disabled]="!searchInput.trim()" (click)="addArtist()">Add Artist</button>
@@ -26,13 +27,11 @@
          </tr>
       </thead>
       <tbody>
-         <ng-container *ngFor="let artist of artists$ | async; index as idx">
-            <tr *ngIf="artistMatchesFilter(artist)">
-               <th>{{ idx + 1 }}</th>
-               <td>{{ artist.name }}</td>
-               <td>{{ artist.createdAt | date }}</td>
-            </tr>
-         </ng-container>
+         <tr *ngFor="let artist of filteredArtists; index as idx">
+            <th>{{ idx + 1 }}</th>
+            <td>{{ artist.name }}</td>
+            <td>{{ artist.createdAt | date }}</td>
+         </tr>
       </tbody>
    </table>
 </div>
