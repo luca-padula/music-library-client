@@ -17,6 +17,7 @@ export class ArtistsComponent implements OnInit {
    ngUnsubscribe: Subject<any>
    searchInput: string
    addArtistSuccessMessage: string
+   addArtistFailMessage: string
 
    constructor(
       private artistService: ArtistService,
@@ -28,6 +29,7 @@ export class ArtistsComponent implements OnInit {
       this.ngUnsubscribe = new Subject<any>()
       this.searchInput = ""
       this.addArtistSuccessMessage = ""
+      this.addArtistFailMessage = ""
    }
 
    ngOnInit(): void {
@@ -48,18 +50,23 @@ export class ArtistsComponent implements OnInit {
    }
 
    addArtist(): void {
+      this.addArtistSuccessMessage = ""
+      this.addArtistFailMessage = ""
       const newArtist: any = {
          name: this.searchInput,
       }
       this.artistService
          .addArtist(newArtist)
          .pipe(take(1))
-         .subscribe((success) => {
-            const createdArtist: Artist = success.createdArtist
-            this.addArtistSuccessMessage = `succesfully added "${createdArtist.name}"`
-            this.artists = [...this.artists, createdArtist]
-            this.filteredArtists = [...this.filteredArtists, createdArtist]
-         })
+         .subscribe(
+            (success) => {
+               const createdArtist: Artist = success.createdArtist
+               this.addArtistSuccessMessage = `succesfully added "${createdArtist.name}"`
+               this.artists = [...this.artists, createdArtist]
+               this.filteredArtists = [...this.filteredArtists, createdArtist]
+            },
+            (err) => (this.addArtistFailMessage = err.message)
+         )
    }
 
    ngOnDestroy(): void {
