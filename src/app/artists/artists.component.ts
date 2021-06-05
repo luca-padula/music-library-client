@@ -52,7 +52,7 @@ export class ArtistsComponent implements OnInit {
    addArtist(): void {
       this.addArtistSuccessMessage = ""
       this.addArtistFailMessage = ""
-      const newArtist: any = {
+      const newArtist: Partial<Artist> = {
          name: this.searchInput,
       }
       this.artistService
