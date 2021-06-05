@@ -35,29 +35,27 @@ export class AlbumsComponent implements OnInit {
          this.sortPredicate$,
       ]).pipe(
          map(([albums, predicate]) => {
-            const sortField = predicate.field as keyof Album
-            return albums.sort((album, nextAlbum) => {
-               if (album[sortField] < nextAlbum[sortField]) {
-                  return -1
-               }
-               if (album[sortField] > nextAlbum[sortField]) {
-                  return 1
-               }
-               return 0
-            })
-            /* return albums.sort((album, nextAlbum) =>
-               album["artistName"].localeCompare(nextAlbum["artistName"])
-            ) */
+            const albumCompareFunction =
+               this.generateAlbumCompareFunction(predicate)
+            return albums.sort(albumCompareFunction)
          })
       )
    }
 
-   /* generateCompareFunction(predicate: SortPredicate): () => number {
-    const sortField = predicate.field as keyof Album
-    return (album1: Album, album2: Album) => {
-
-    }
-   } */
+   generateAlbumCompareFunction(
+      predicate: SortPredicate
+   ): (album1: Album, album2: Album) => number {
+      const sortField = predicate.field as keyof Album
+      return (album1: Album, album2: Album) => {
+         if (album1[sortField] < album2[sortField]) {
+            return -1
+         }
+         if (album1[sortField] > album2[sortField]) {
+            return 1
+         }
+         return 0
+      }
+   }
 
    ngOnInit(): void {}
 }
