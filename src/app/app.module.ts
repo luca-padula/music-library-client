@@ -11,7 +11,8 @@ import { LoginComponent } from "./login/login.component"
 import { HomeComponent } from "./home/home.component"
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component"
 import { AuthTokenInterceptor } from "src/app/shared/interceptors/auth-token.interceptor"
-import { ErrorInterceptor } from "./shared/interceptors/error.interceptor"
+import { ErrorInterceptor } from "./shared/interceptors/error.interceptor";
+import { AlbumsComponent } from './albums/albums.component'
 
 @NgModule({
    declarations: [
@@ -21,6 +22,7 @@ import { ErrorInterceptor } from "./shared/interceptors/error.interceptor"
       LoginComponent,
       HomeComponent,
       PageNotFoundComponent,
+      AlbumsComponent,
    ],
    imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
    providers: [
