@@ -42,21 +42,6 @@ export class AlbumsComponent implements OnInit {
 
    constructor(private albumService: AlbumService) {}
 
-   buildAlbumCompareFunction(
-      predicate: SortPredicate
-   ): (album1: Album, album2: Album) => number {
-      const sortField = predicate.field as keyof Album
-      return (album1: Album, album2: Album) => {
-         if (album1[sortField] < album2[sortField]) {
-            return -1
-         }
-         if (album1[sortField] > album2[sortField]) {
-            return 1
-         }
-         return 0
-      }
-   }
-
    ngOnInit(): void {
       this.searchInput$ = fromEvent(
          this.searchInputEl.nativeElement,
@@ -74,9 +59,9 @@ export class AlbumsComponent implements OnInit {
          this.searchInput$,
          this.sortPredicate$,
       ]).pipe(
-         map(([albums, filter, predicate]) => {
+         map(([allAlbums, filter, predicate]) => {
             const compareFunction = this.buildAlbumCompareFunction(predicate)
-            return albums
+            return allAlbums
                .filter(
                   (album) =>
                      album.name.toLowerCase().includes(filter.toLowerCase()) ||
@@ -87,5 +72,20 @@ export class AlbumsComponent implements OnInit {
                .sort(compareFunction)
          })
       )
+   }
+
+   buildAlbumCompareFunction(
+      predicate: SortPredicate
+   ): (album1: Album, album2: Album) => number {
+      const sortField = predicate.field as keyof Album
+      return (album1: Album, album2: Album) => {
+         if (album1[sortField] < album2[sortField]) {
+            return -1
+         }
+         if (album1[sortField] > album2[sortField]) {
+            return 1
+         }
+         return 0
+      }
    }
 }
