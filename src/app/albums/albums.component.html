@@ -1,6 +1,6 @@
 <p>albums works!</p>
 
-<input type="text" class="form-control" id="searchInput" #searchInput placeholder="search by album or artist..." />
+<input type="search" class="form-control" id="searchInput" #searchInput placeholder="search by album or artist..." />
 
 <div class="albums-wrapper">
    <div class="album-item" *ngFor="let album of albums$ | async">
