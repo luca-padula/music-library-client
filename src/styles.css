@@ -25,6 +25,13 @@ p {
    display: flex;
 }
 
+.form-control:focus {
+   outline: none;
+   box-shadow: 0 0 0.15rem 0.15rem var(--color-primary);
+   -webkit-box-shadow: 0 0 0.15rem 0.15rem var(--color-primary);
+   border-color: var(--color-primary);
+}
+
 @media (min-width: 768px) {
    :root {
       font-size: 16px;
