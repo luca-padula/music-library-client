@@ -1,13 +1,11 @@
-import { AfterViewInit, Component, OnInit } from "@angular/core"
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core"
 import { BehaviorSubject, combineLatest, fromEvent, Observable } from "rxjs"
-import { FromEventTarget } from "rxjs/internal/observable/fromEvent"
 import {
    debounceTime,
    distinctUntilChanged,
    map,
    pluck,
    startWith,
-   tap,
 } from "rxjs/operators"
 import { Album } from "../shared/models/album"
 import { AlbumService } from "../shared/services/album.service"
@@ -30,8 +28,11 @@ const sortPredicates = new Map<string, SortPredicate>([
    templateUrl: "./albums.component.html",
    styleUrls: ["./albums.component.css"],
 })
-export class AlbumsComponent implements OnInit, AfterViewInit {
-   allAlbums$ = this.albumService.getAllAlbums()
+export class AlbumsComponent implements OnInit {
+   @ViewChild("searchInput", { static: true })
+   searchInputEl!: ElementRef<HTMLInputElement>
+
+   getAllAlbums$ = this.albumService.getAllAlbums()
    searchInput$ = new Observable<string>()
    sortPredicate$ = new BehaviorSubject<SortPredicate>({
       field: "",
@@ -56,14 +57,11 @@ export class AlbumsComponent implements OnInit, AfterViewInit {
       }
    }
 
-   ngOnInit(): void {}
-
-   ngAfterViewInit(): void {
-      const searchInput = document.querySelector(
-         "#searchInput"
-      ) as FromEventTarget<Event>
-
-      this.searchInput$ = fromEvent(searchInput, "keyup").pipe(
+   ngOnInit(): void {
+      this.searchInput$ = fromEvent(
+         this.searchInputEl.nativeElement,
+         "keyup"
+      ).pipe(
          map((event) => event.target as HTMLInputElement),
          pluck("value"),
          debounceTime(400),
@@ -72,7 +70,7 @@ export class AlbumsComponent implements OnInit, AfterViewInit {
       )
 
       this.albums$ = combineLatest([
-         this.allAlbums$,
+         this.getAllAlbums$,
          this.searchInput$,
          this.sortPredicate$,
       ]).pipe(
