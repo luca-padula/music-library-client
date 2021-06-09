@@ -29,6 +29,11 @@ const sortPredicates = new Map<string, SortPredicate>([
    styleUrls: ["./albums.component.css"],
 })
 export class AlbumsComponent implements OnInit {
+   /*
+   Had to bypass undefined safety checker for searchInputEl as i
+   cannot manually assign it and it is only automatically assigned
+   after view is initialized
+   */
    @ViewChild("searchInput", { static: true })
    searchInputEl!: ElementRef<HTMLInputElement>
 
