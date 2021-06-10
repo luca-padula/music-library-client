@@ -7,7 +7,7 @@ import { SortOption } from "../shared/models/sort-option"
    styleUrls: ["./sort-option-select.component.css"],
 })
 export class SortOptionSelectComponent implements OnInit {
-   @Input() sortOptions!: SortOption[]
+   @Input() sortOptions: SortOption[] = []
    @Output() sortChangeEvent = new EventEmitter<SortOption>()
 
    constructor() {}
@@ -16,10 +16,11 @@ export class SortOptionSelectComponent implements OnInit {
 
    changeSort(event: Event) {
       const target = event.target as HTMLInputElement
-      const newSortOption = this.sortOptions.find(
-         (option) => option.label === target.value
-      )
-      console.log(newSortOption, target.value)
+      const newSortOption = this.getSortOptionWithLabel(target.value)
       this.sortChangeEvent.emit(newSortOption)
+   }
+
+   getSortOptionWithLabel(label: string): SortOption | undefined {
+      return this.sortOptions.find((option) => option.label === label)
    }
 }

@@ -106,11 +106,7 @@ export class AlbumsComponent implements OnInit {
       }
    }
 
-   /* handleSortOptionChange(event: Event): void {
-      const target = event.target as HTMLInputElement
-      const newSortOption = this.sortPredicates.get(target.value)
-      if (newSortOption) {
-         this.sortPredicate$.next(newSortOption)
-      }
-   } */
+   handleSortOptionChange(newSortOption: SortOption): void {
+      this.sortPredicate$.next(newSortOption)
+   }
 }

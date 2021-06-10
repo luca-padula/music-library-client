@@ -4,7 +4,7 @@
 
 <app-sort-option-select
    [sortOptions]="sortPredicates"
-   (sortChangeEvent)="sortPredicate$.next($event)"
+   (sortChangeEvent)="handleSortOptionChange($event)"
 ></app-sort-option-select>
 
 <div class="albums-wrapper">
