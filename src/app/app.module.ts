@@ -12,7 +12,8 @@ import { HomeComponent } from "./home/home.component"
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component"
 import { AuthTokenInterceptor } from "src/app/shared/interceptors/auth-token.interceptor"
 import { ErrorInterceptor } from "./shared/interceptors/error.interceptor";
-import { AlbumsComponent } from './albums/albums.component'
+import { AlbumsComponent } from './albums/albums.component';
+import { SortOptionSelectComponent } from './sort-option-select/sort-option-select.component'
 
 @NgModule({
    declarations: [
@@ -23,6 +24,7 @@ import { AlbumsComponent } from './albums/albums.component'
       HomeComponent,
       PageNotFoundComponent,
       AlbumsComponent,
+      SortOptionSelectComponent,
    ],
    imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
    providers: [

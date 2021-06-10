@@ -2,10 +2,10 @@
 
 <input type="search" class="form-control" id="searchInput" #searchInput placeholder="search by album or artist..." />
 
-<label for="sortOptions">Sort by</label>
-<select id="sortOptions" class="form-control" (change)="handleSortOptionChange($event)">
-   <option *ngFor="let option of sortPredicates.keys()" value="option">{{ option }}</option>
-</select>
+<app-sort-option-select
+   [sortOptions]="sortPredicates"
+   (sortChangeEvent)="sortPredicate$.next($event)"
+></app-sort-option-select>
 
 <div class="albums-wrapper">
    <div class="album-item" *ngFor="let album of albums$ | async">

@@ -25,20 +25,25 @@ export class AlbumsComponent implements OnInit {
    @ViewChild("searchInput", { static: true })
    searchInputEl!: ElementRef<HTMLInputElement>
 
-   sortPredicates = new Map<string, SortOption>([
-      ["none", { field: "", descending: false }],
-      ["albumNameAsc", { field: "name", descending: false }],
-      ["albumNameDesc", { field: "name", descending: true }],
-      ["artistNameAsc", { field: "artistName", descending: false }],
-      ["artistNameDesc", { field: "artistName", descending: true }],
-   ])
+   sortPredicates: SortOption[] = [
+      { label: "", field: "", descending: false },
+      { label: "Album Name Ascending", field: "name", descending: false },
+      { label: "Album Name Descending", field: "name", descending: true },
+      {
+         label: "Artist Name Ascending",
+         field: "artistName",
+         descending: false,
+      },
+      {
+         label: "Artist Name Descending",
+         field: "artistName",
+         descending: true,
+      },
+   ]
 
    getAllAlbums$ = this.albumService.getAllAlbums()
    searchInput$ = new Observable<string>()
-   sortPredicate$ = new BehaviorSubject<SortOption>({
-      field: "",
-      descending: false,
-   })
+   sortPredicate$ = new BehaviorSubject<SortOption>(this.sortPredicates[0])
    albums$ = new Observable<Album[]>()
 
    constructor(private albumService: AlbumService) {}
@@ -91,11 +96,11 @@ export class AlbumsComponent implements OnInit {
       }
    }
 
-   handleSortOptionChange(event: Event): void {
+   /* handleSortOptionChange(event: Event): void {
       const target = event.target as HTMLInputElement
       const newSortOption = this.sortPredicates.get(target.value)
       if (newSortOption) {
          this.sortPredicate$.next(newSortOption)
       }
-   }
+   } */
 }
