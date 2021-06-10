@@ -27,16 +27,26 @@ export class AlbumsComponent implements OnInit {
 
    sortPredicates: SortOption[] = [
       { label: "", field: "", descending: false },
-      { label: "Album Name Ascending", field: "name", descending: false },
-      { label: "Album Name Descending", field: "name", descending: true },
+      { label: "Album name ascending", field: "name", descending: false },
+      { label: "Album name descending", field: "name", descending: true },
       {
-         label: "Artist Name Ascending",
+         label: "Artist name ascending",
          field: "artistName",
          descending: false,
       },
       {
-         label: "Artist Name Descending",
+         label: "Artist name descending",
          field: "artistName",
+         descending: true,
+      },
+      {
+         label: "Release date earliest to latest",
+         field: "releaseDate",
+         descending: false,
+      },
+      {
+         label: "Release date latest to earliest",
+         field: "releaseDate",
          descending: true,
       },
    ]
