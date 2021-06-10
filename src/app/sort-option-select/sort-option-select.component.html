@@ -1,0 +1,4 @@
+<label for="sortOptions">Sort by</label>
+<select id="sortOptions" class="form-control" (change)="changeSort($event)">
+   <option *ngFor="let option of sortOptions" [value]="option.label">{{ option.label }}</option>
+</select>

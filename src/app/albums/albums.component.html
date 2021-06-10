@@ -1,0 +1,12 @@
+<input type="search" class="form-control" id="searchInput" #searchInput placeholder="search by album or artist..." />
+
+<app-sort-option-select
+   [sortOptions]="sortPredicates"
+   (sortChangeEvent)="handleSortChange($event)"
+></app-sort-option-select>
+
+<div class="albums-wrapper">
+   <div class="album-item" *ngFor="let album of albums$ | async">
+      {{ album.name }} by {{ album.artistName }}, released {{ album.releaseDate | date }}
+   </div>
+</div>
