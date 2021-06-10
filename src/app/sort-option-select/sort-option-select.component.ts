@@ -20,7 +20,7 @@ export class SortOptionSelectComponent implements OnInit {
       this.sortChangeEvent.emit(newSortOption)
    }
 
-   getSortOptionWithLabel(label: string): SortOption | undefined {
+   private getSortOptionWithLabel(label: string): SortOption | undefined {
       return this.sortOptions.find((option) => option.label === label)
    }
 }
