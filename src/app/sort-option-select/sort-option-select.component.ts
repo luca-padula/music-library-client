@@ -15,7 +15,7 @@ export class SortOptionSelectComponent implements OnInit {
    ngOnInit(): void {}
 
    changeSort(event: Event) {
-      const target = event.target as HTMLInputElement
+      const target = event.target as HTMLSelectElement
       const newSortOption = this.getSortOptionWithLabel(target.value)
       this.sortChangeEvent.emit(newSortOption)
    }

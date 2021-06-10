@@ -53,7 +53,7 @@ export class AlbumsComponent implements OnInit {
 
    getAllAlbums$ = this.albumService.getAllAlbums()
    searchInput$ = new Observable<string>()
-   sortPredicate$ = new BehaviorSubject<SortOption>(this.sortPredicates[0])
+   sortOption$ = new BehaviorSubject<SortOption>(this.sortPredicates[0])
    albums$ = new Observable<Album[]>()
 
    constructor(private albumService: AlbumService) {}
@@ -73,28 +73,27 @@ export class AlbumsComponent implements OnInit {
       this.albums$ = combineLatest([
          this.getAllAlbums$,
          this.searchInput$,
-         this.sortPredicate$,
+         this.sortOption$,
       ]).pipe(
-         map(([allAlbums, filter, predicate]) => {
-            const compareFunction = this.buildAlbumCompareFunction(predicate)
-            return allAlbums
-               .filter(
-                  (album) =>
-                     album.name.toLowerCase().includes(filter.toLowerCase()) ||
-                     album.artistName
-                        .toLowerCase()
-                        .includes(filter.toLowerCase())
-               )
-               .sort(compareFunction)
+         map(([allAlbums, filter, sortOption]) => {
+            const filterFunction = this.buildAlbumFilterFunction(filter)
+            const compareFunction = this.buildAlbumCompareFunction(sortOption)
+            return allAlbums.filter(filterFunction).sort(compareFunction)
          })
       )
    }
 
-   buildAlbumCompareFunction(
-      predicate: SortOption
+   private buildAlbumFilterFunction(filter: string): (album: Album) => boolean {
+      return (album: Album) =>
+         album.name.toLowerCase().includes(filter.toLowerCase()) ||
+         album.artistName.toLowerCase().includes(filter.toLowerCase())
+   }
+
+   private buildAlbumCompareFunction(
+      sortOption: SortOption
    ): (album1: Album, album2: Album) => number {
-      const sortField = predicate.field as keyof Album
-      const descending = predicate.descending
+      const sortField = sortOption.field as keyof Album
+      const descending = sortOption.descending
       return (album1: Album, album2: Album) => {
          if (album1[sortField] < album2[sortField]) {
             return descending ? 1 : -1
@@ -106,7 +105,7 @@ export class AlbumsComponent implements OnInit {
       }
    }
 
-   handleSortOptionChange(newSortOption: SortOption): void {
-      this.sortPredicate$.next(newSortOption)
+   handleSortChange(newSortOption: SortOption): void {
+      this.sortOption$.next(newSortOption)
    }
 }

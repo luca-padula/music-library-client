@@ -1,10 +1,8 @@
-<p>albums works!</p>
-
 <input type="search" class="form-control" id="searchInput" #searchInput placeholder="search by album or artist..." />
 
 <app-sort-option-select
    [sortOptions]="sortPredicates"
-   (sortChangeEvent)="handleSortOptionChange($event)"
+   (sortChangeEvent)="handleSortChange($event)"
 ></app-sort-option-select>
 
 <div class="albums-wrapper">
