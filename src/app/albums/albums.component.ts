@@ -8,12 +8,8 @@ import {
    startWith,
 } from "rxjs/operators"
 import { Album } from "../shared/models/album"
+import { SortOption } from "../shared/models/sort-option"
 import { AlbumService } from "../shared/services/album.service"
-
-interface SortPredicate {
-   field: string
-   descending: boolean
-}
 
 @Component({
    selector: "app-albums",
@@ -29,7 +25,7 @@ export class AlbumsComponent implements OnInit {
    @ViewChild("searchInput", { static: true })
    searchInputEl!: ElementRef<HTMLInputElement>
 
-   sortPredicates = new Map<string, SortPredicate>([
+   sortPredicates = new Map<string, SortOption>([
       ["none", { field: "", descending: false }],
       ["albumNameAsc", { field: "name", descending: false }],
       ["albumNameDesc", { field: "name", descending: true }],
@@ -39,7 +35,7 @@ export class AlbumsComponent implements OnInit {
 
    getAllAlbums$ = this.albumService.getAllAlbums()
    searchInput$ = new Observable<string>()
-   sortPredicate$ = new BehaviorSubject<SortPredicate>({
+   sortPredicate$ = new BehaviorSubject<SortOption>({
       field: "",
       descending: false,
    })
@@ -80,7 +76,7 @@ export class AlbumsComponent implements OnInit {
    }
 
    buildAlbumCompareFunction(
-      predicate: SortPredicate
+      predicate: SortOption
    ): (album1: Album, album2: Album) => number {
       const sortField = predicate.field as keyof Album
       const descending = predicate.descending
