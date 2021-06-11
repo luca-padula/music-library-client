@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core"
 import { Router } from "@angular/router"
 import { NgForm } from "@angular/forms"
-import { AuthService } from "../shared/services/auth.service"
-import { UserLogin } from "../shared/models/user-login"
+import { AuthService } from "../auth.service"
+import { UserLogin } from "../user-login"
 import { take } from "rxjs/operators"
 
 @Component({

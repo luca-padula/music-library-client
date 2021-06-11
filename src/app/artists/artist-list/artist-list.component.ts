@@ -1,16 +1,16 @@
 import { Component, OnInit } from "@angular/core"
 import { Observable, Subject } from "rxjs"
 import { take, takeUntil } from "rxjs/operators"
-import { Artist } from "../shared/models/artist"
-import { ArtistService } from "../shared/services/artist.service"
-import { AuthService } from "../shared/services/auth.service"
+import { Artist } from "../artist"
+import { ArtistService } from "../artist.service"
+import { AuthService } from "../../auth/auth.service"
 
 @Component({
    selector: "app-artists",
-   templateUrl: "./artists.component.html",
-   styleUrls: ["./artists.component.css"],
+   templateUrl: "./artist-list.component.html",
+   styleUrls: ["./artist-list.component.css"],
 })
-export class ArtistsComponent implements OnInit {
+export class ArtistListComponent implements OnInit {
    userIsAuthenticated: boolean
    artists: Artist[]
    filteredArtists: Artist[]
