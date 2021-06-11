@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http"
 import { Observable } from "rxjs"
 import { JwtHelperService } from "@auth0/angular-jwt"
 import { environment } from "src/environments/environment"
-import { UserLogin } from "../models/user-login"
+import { UserLogin } from "./user-login"
 
 /*
    Docs say you can create an instance of JwtHelperService and use it directly

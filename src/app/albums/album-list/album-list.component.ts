@@ -7,9 +7,9 @@ import {
    pluck,
    startWith,
 } from "rxjs/operators"
-import { Album } from "./album"
-import { SortOption } from "../shared/models/sort-option"
-import { AlbumService } from "../shared/services/album.service"
+import { Album } from "../album"
+import { SortOption } from "../../sort-option-select/sort-option"
+import { AlbumService } from "../album.service"
 
 @Component({
    selector: "app-albums",

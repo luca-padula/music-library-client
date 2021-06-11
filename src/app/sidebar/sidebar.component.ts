@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core"
 import { Router, Event, NavigationStart } from "@angular/router"
 import { Subject } from "rxjs"
 import { takeUntil } from "rxjs/operators"
-import { AuthService } from "../shared/services/auth.service"
+import { AuthService } from "../auth/auth.service"
 
 @Component({
    selector: "app-sidebar",
