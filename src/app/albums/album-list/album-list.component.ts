@@ -7,16 +7,16 @@ import {
    pluck,
    startWith,
 } from "rxjs/operators"
-import { Album } from "../shared/models/album"
+import { Album } from "./album"
 import { SortOption } from "../shared/models/sort-option"
 import { AlbumService } from "../shared/services/album.service"
 
 @Component({
    selector: "app-albums",
-   templateUrl: "./albums.component.html",
-   styleUrls: ["./albums.component.css"],
+   templateUrl: "./album-list.component.html",
+   styleUrls: ["./album-list.component.css"],
 })
-export class AlbumsComponent implements OnInit {
+export class AlbumListComponent implements OnInit {
    /*
    Had to bypass undefined safety checker for searchInputEl as i
    cannot manually assign it and it is only automatically assigned
