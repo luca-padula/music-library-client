@@ -2,8 +2,8 @@ import { Component, OnInit } from "@angular/core"
 import { Router } from "@angular/router"
 import { NgForm } from "@angular/forms"
 import { AuthService } from "../auth.service"
-import { UserLogin } from "../user-login"
 import { take } from "rxjs/operators"
+import { User } from "../user"
 
 @Component({
    selector: "app-login",
@@ -11,7 +11,7 @@ import { take } from "rxjs/operators"
    styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
-   public user: UserLogin
+   public user: Partial<User>
    errorMessage: string = ""
 
    constructor(private authService: AuthService, private router: Router) {

@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http"
 import { Observable } from "rxjs"
 import { JwtHelperService } from "@auth0/angular-jwt"
 import { environment } from "src/environments/environment"
-import { UserLogin } from "./user-login"
+import { User } from "./user"
 
 /*
    Docs say you can create an instance of JwtHelperService and use it directly
@@ -37,8 +37,8 @@ export class AuthService {
       return !jwtHelper.isTokenExpired(token)
    }
 
-   login(user: UserLogin): Observable<any> {
-      return this.http.post<UserLogin>(
+   login(user: Partial<User>): Observable<any> {
+      return this.http.post<Partial<User>>(
          `${environment.apiUrl}/users/login`,
          user
       )
