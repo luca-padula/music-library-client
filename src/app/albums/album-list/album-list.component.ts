@@ -25,7 +25,7 @@ export class AlbumListComponent implements OnInit {
    @ViewChild("searchInput", { static: true })
    searchInputEl!: ElementRef<HTMLInputElement>
 
-   sortPredicates: SortOption[] = [
+   sortOptions: SortOption[] = [
       { label: "", field: "", descending: false },
       { label: "Album name ascending", field: "name", descending: false },
       { label: "Album name descending", field: "name", descending: true },
@@ -53,7 +53,7 @@ export class AlbumListComponent implements OnInit {
 
    getAllAlbums$ = this.albumService.getAllAlbums()
    searchInput$ = new Observable<string>()
-   sortOption$ = new BehaviorSubject<SortOption>(this.sortPredicates[0])
+   sortOption$ = new BehaviorSubject<SortOption>(this.sortOptions[0])
    albums$ = new Observable<Album[]>()
 
    constructor(private albumService: AlbumService) {}
