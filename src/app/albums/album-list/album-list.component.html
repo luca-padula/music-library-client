@@ -5,6 +5,8 @@
    (sortChangeEvent)="handleSortChange($event)"
 ></app-sort-option-select>
 
-<div class="albums-wrapper">
-   <app-album-display *ngFor="let album of albums$ | async" [album]="album"></app-album-display>
+<div class="albums-wrapper container">
+   <div class="row">
+      <app-album-display class="col-md-4" *ngFor="let album of albums$ | async" [album]="album"></app-album-display>
+   </div>
 </div>

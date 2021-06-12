@@ -1,1 +1,7 @@
-<div>{{ album.name }} by {{ album.artistName }}, released {{ album.releaseDate | date }}</div>
+<div class="card">
+   <div class="card-body">
+      <h4 class="card-title">{{ album.name }}</h4>
+      <h6 class="card-subtitle mb2 text-muted">by {{ album.artistName }}</h6>
+      <span class="text-muted">released on {{ album.releaseDate | date }}</span>
+   </div>
+</div>

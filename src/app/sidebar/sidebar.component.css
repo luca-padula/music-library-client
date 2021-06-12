@@ -8,6 +8,7 @@
    font-family: var(--font-primary);
    background-color: var(--bg-dark-primary);
    color: var(--text-primary);
+   z-index: 1;
 }
 
 .sidebar a {
