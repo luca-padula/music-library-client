@@ -1,16 +1,26 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core"
-import { BehaviorSubject, combineLatest, fromEvent, Observable } from "rxjs"
+import {
+   BehaviorSubject,
+   combineLatest,
+   fromEvent,
+   Observable,
+   Subject,
+} from "rxjs"
 import {
    debounceTime,
    distinctUntilChanged,
    map,
    pluck,
    startWith,
+   takeUntil,
 } from "rxjs/operators"
 import { Album } from "../album"
 import { SortOption } from "../../sort-option-select/sort-option"
 import { AlbumService } from "../album.service"
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap"
+import { AuthService } from "src/app/auth/auth.service"
+import { PlaylistService } from "src/app/playlists/playlist.service"
+import { Playlist } from "src/app/playlists/playlist"
 
 @Component({
    selector: "app-albums",
@@ -26,6 +36,7 @@ export class AlbumListComponent implements OnInit {
    @ViewChild("searchInput", { static: true })
    searchInputEl!: ElementRef<HTMLInputElement>
 
+   // TODO: extract sortoptions to separate file
    sortOptions: SortOption[] = [
       { label: "", field: "", descending: false },
       { label: "Album name ascending", field: "name", descending: false },
@@ -56,10 +67,17 @@ export class AlbumListComponent implements OnInit {
    searchInput$ = new Observable<string>()
    sortOption$ = new BehaviorSubject<SortOption>(this.sortOptions[0])
    albums$ = new Observable<Album[]>()
+   ngUnsubscribe = new Subject<any>()
+
+   userIsAuthenticated: boolean = this.authService.userIsAuthenticated()
+   userToken: any
+   playlists: Playlist[] = []
 
    constructor(
       private albumService: AlbumService,
-      private modalService: NgbModal
+      private modalService: NgbModal,
+      private authService: AuthService,
+      private playlistService: PlaylistService
    ) {}
 
    ngOnInit(): void {
@@ -85,6 +103,17 @@ export class AlbumListComponent implements OnInit {
             return allAlbums.filter(filterFunction).sort(compareFunction)
          })
       )
+
+      if (this.userIsAuthenticated) {
+         this.userToken = this.authService.getDecodedToken()
+         this.playlistService
+            .getPlaylistsForUser(this.userToken._id)
+            .pipe(takeUntil(this.ngUnsubscribe))
+            .subscribe((playlists) => {
+               this.playlists = playlists
+               console.log(this.playlists)
+            })
+      }
    }
 
    private buildAlbumFilterFunction(filter: string): (album: Album) => boolean {
@@ -115,5 +144,10 @@ export class AlbumListComponent implements OnInit {
 
    open(content: any): void {
       this.modalService.open(content)
+   }
+
+   ngOnDestroy() {
+      this.ngUnsubscribe.next()
+      this.ngUnsubscribe.complete()
    }
 }
