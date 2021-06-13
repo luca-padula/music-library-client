@@ -1,4 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core"
+import {
+   Component,
+   ElementRef,
+   OnInit,
+   TemplateRef,
+   ViewChild,
+} from "@angular/core"
 import { BehaviorSubject, combineLatest, fromEvent, Observable } from "rxjs"
 import {
    debounceTime,
@@ -10,6 +16,7 @@ import {
 import { Album } from "../album"
 import { SortOption } from "../../sort-option-select/sort-option"
 import { AlbumService } from "../album.service"
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap"
 
 @Component({
    selector: "app-albums",
@@ -56,7 +63,10 @@ export class AlbumListComponent implements OnInit {
    sortOption$ = new BehaviorSubject<SortOption>(this.sortOptions[0])
    albums$ = new Observable<Album[]>()
 
-   constructor(private albumService: AlbumService) {}
+   constructor(
+      private albumService: AlbumService,
+      private modalService: NgbModal
+   ) {}
 
    ngOnInit(): void {
       this.searchInput$ = fromEvent(
@@ -107,5 +117,9 @@ export class AlbumListComponent implements OnInit {
 
    handleSortChange(newSortOption: SortOption): void {
       this.sortOption$.next(newSortOption)
+   }
+
+   open(content: any): void {
+      this.modalService.open(content)
    }
 }
