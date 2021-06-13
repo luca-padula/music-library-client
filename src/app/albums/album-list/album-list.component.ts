@@ -1,10 +1,4 @@
-import {
-   Component,
-   ElementRef,
-   OnInit,
-   TemplateRef,
-   ViewChild,
-} from "@angular/core"
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core"
 import { BehaviorSubject, combineLatest, fromEvent, Observable } from "rxjs"
 import {
    debounceTime,
