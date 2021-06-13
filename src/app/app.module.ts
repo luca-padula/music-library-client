@@ -14,7 +14,8 @@ import { AuthTokenInterceptor } from "./auth/auth-token.interceptor"
 import { ErrorInterceptor } from "./shared/interceptors/error.interceptor"
 import { AlbumListComponent } from "./albums/album-list/album-list.component"
 import { SortOptionSelectComponent } from "./sort-option-select/sort-option-select.component";
-import { AlbumDisplayComponent } from './albums/album-display/album-display.component'
+import { AlbumDisplayComponent } from './albums/album-display/album-display.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
    declarations: [
@@ -28,7 +29,7 @@ import { AlbumDisplayComponent } from './albums/album-display/album-display.comp
       SortOptionSelectComponent,
       AlbumDisplayComponent,
    ],
-   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, NgbModule],
    providers: [
       {
          provide: HTTP_INTERCEPTORS,

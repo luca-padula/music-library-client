@@ -1,4 +1,18 @@
+<ng-template #myModal let-modal>
+   <div class="modal-header">
+      <h4 class="modal-title">Add</h4>
+   </div>
+   <div class="modal-body">
+      <p>hi</p>
+   </div>
+   <div class="modal-footer">
+      <button class="btn btn-primary" (click)="modal.close()">close</button>
+   </div>
+</ng-template>
+
 <div class="container">
+   <button class="btn btn-primary" (click)="open(myModal)">open modal</button>
+
    <div class="form-row">
       <div class="form-group col-md-6">
          <label for="searchInput">Search for</label>
