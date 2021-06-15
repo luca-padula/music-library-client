@@ -117,6 +117,10 @@ export class AlbumListComponent implements OnInit {
       this.sortOption$.next(newSortOption)
    }
 
+   handleAddAlbumToPlaylistEvent(albumToAdd: Album): void {
+      console.log(albumToAdd)
+   }
+
    open(content: any): void {
       this.modalService.open(content)
    }

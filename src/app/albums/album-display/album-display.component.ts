@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core"
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core"
 import { Album } from "../album"
 
 @Component({
@@ -8,8 +8,13 @@ import { Album } from "../album"
 })
 export class AlbumDisplayComponent implements OnInit {
    @Input() album!: Album
+   @Output() AddAlbumToPlaylist = new EventEmitter<Album>()
 
    constructor() {}
 
    ngOnInit(): void {}
+
+   emitAddAlbumToPlaylistEvent(): void {
+      this.AddAlbumToPlaylist.emit(this.album)
+   }
 }
