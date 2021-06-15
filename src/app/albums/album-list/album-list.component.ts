@@ -40,7 +40,7 @@ export class AlbumListComponent implements OnInit {
    sortOptions = albumSortOptions
    getAllAlbums$ = this.albumService.getAllAlbums()
    searchInput$ = new Observable<string>()
-   sortOption$ = new BehaviorSubject<SortOption>(this.sortOptions[0])
+   sortOptionSubject = new BehaviorSubject<SortOption>(this.sortOptions[0])
    albums$ = new Observable<Album[]>()
    ngUnsubscribe = new Subject<any>()
 
@@ -70,7 +70,7 @@ export class AlbumListComponent implements OnInit {
       this.albums$ = combineLatest([
          this.getAllAlbums$,
          this.searchInput$,
-         this.sortOption$,
+         this.sortOptionSubject,
       ]).pipe(
          map(([allAlbums, filter, sortOption]) => {
             const filterFunction = this.buildAlbumFilterFunction(filter)
@@ -114,7 +114,7 @@ export class AlbumListComponent implements OnInit {
    }
 
    handleSortChange(newSortOption: SortOption): void {
-      this.sortOption$.next(newSortOption)
+      this.sortOptionSubject.next(newSortOption)
    }
 
    handleAddAlbumToPlaylistEvent(albumToAdd: Album): void {
