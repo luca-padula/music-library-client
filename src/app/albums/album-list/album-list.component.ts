@@ -21,6 +21,7 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap"
 import { AuthService } from "src/app/auth/auth.service"
 import { PlaylistService } from "src/app/playlists/playlist.service"
 import { Playlist } from "src/app/playlists/playlist"
+import { albumSortOptions } from "../album-sort-options"
 
 @Component({
    selector: "app-albums",
@@ -36,33 +37,7 @@ export class AlbumListComponent implements OnInit {
    @ViewChild("searchInput", { static: true })
    searchInputEl!: ElementRef<HTMLInputElement>
 
-   // TODO: extract sortoptions to separate file
-   sortOptions: SortOption[] = [
-      { label: "", field: "", descending: false },
-      { label: "Album name ascending", field: "name", descending: false },
-      { label: "Album name descending", field: "name", descending: true },
-      {
-         label: "Artist name ascending",
-         field: "artistName",
-         descending: false,
-      },
-      {
-         label: "Artist name descending",
-         field: "artistName",
-         descending: true,
-      },
-      {
-         label: "Release date earliest to latest",
-         field: "releaseDate",
-         descending: false,
-      },
-      {
-         label: "Release date latest to earliest",
-         field: "releaseDate",
-         descending: true,
-      },
-   ]
-
+   sortOptions = albumSortOptions
    getAllAlbums$ = this.albumService.getAllAlbums()
    searchInput$ = new Observable<string>()
    sortOption$ = new BehaviorSubject<SortOption>(this.sortOptions[0])
