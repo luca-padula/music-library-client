@@ -15,7 +15,8 @@ import { ErrorInterceptor } from "./shared/interceptors/error.interceptor"
 import { AlbumListComponent } from "./albums/album-list/album-list.component"
 import { SortOptionSelectComponent } from "./sort-option-select/sort-option-select.component";
 import { AlbumDisplayComponent } from './albums/album-display/album-display.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddAlbumToPlaylistMenuComponent } from './playlists/add-album-to-playlist-menu/add-album-to-playlist-menu.component'
 
 @NgModule({
    declarations: [
@@ -28,6 +29,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
       AlbumListComponent,
       SortOptionSelectComponent,
       AlbumDisplayComponent,
+      AddAlbumToPlaylistMenuComponent,
    ],
    imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, NgbModule],
    providers: [

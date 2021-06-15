@@ -37,7 +37,10 @@ export class AlbumListComponent implements OnInit {
    @ViewChild("searchInput", { static: true })
    searchInputEl!: ElementRef<HTMLInputElement>
 
+   private addAlbumToPlaylistSubject = new Subject<Album>()
+   playlistMenuNotifier$ = this.addAlbumToPlaylistSubject.asObservable()
    sortOptions = albumSortOptions
+
    getAllAlbums$ = this.albumService.getAllAlbums()
    searchInput$ = new Observable<string>()
    sortOptionSubject = new BehaviorSubject<SortOption>(this.sortOptions[0])
@@ -118,7 +121,7 @@ export class AlbumListComponent implements OnInit {
    }
 
    handleAddAlbumToPlaylistEvent(albumToAdd: Album): void {
-      console.log(albumToAdd)
+      this.addAlbumToPlaylistSubject.next(albumToAdd)
    }
 
    open(content: any): void {
