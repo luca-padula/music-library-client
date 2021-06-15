@@ -1,1 +1,13 @@
-<p>add-album-to-playlist-menu works!</p>
+<ng-template #myModal let-modal>
+   <div class="modal-header">
+      <h4 class="modal-title">
+         {{ albumToAdd.name }} <span class="text-muted">- {{ albumToAdd.artistName }}</span>
+      </h4>
+   </div>
+   <div class="modal-body">
+      <p>hi</p>
+   </div>
+   <div class="modal-footer">
+      <button class="btn btn-primary" (click)="modal.close()">close</button>
+   </div>
+</ng-template>

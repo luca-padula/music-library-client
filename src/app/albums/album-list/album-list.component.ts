@@ -17,7 +17,6 @@ import {
 import { Album } from "../album"
 import { SortOption } from "../../sort-option-select/sort-option"
 import { AlbumService } from "../album.service"
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap"
 import { AuthService } from "src/app/auth/auth.service"
 import { PlaylistService } from "src/app/playlists/playlist.service"
 import { Playlist } from "src/app/playlists/playlist"
@@ -53,7 +52,6 @@ export class AlbumListComponent implements OnInit {
 
    constructor(
       private albumService: AlbumService,
-      private modalService: NgbModal,
       private authService: AuthService,
       private playlistService: PlaylistService
    ) {}
@@ -122,10 +120,6 @@ export class AlbumListComponent implements OnInit {
 
    handleAddAlbumToPlaylistEvent(albumToAdd: Album): void {
       this.addAlbumToPlaylistSubject.next(albumToAdd)
-   }
-
-   open(content: any): void {
-      this.modalService.open(content)
    }
 
    ngOnDestroy() {
