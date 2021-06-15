@@ -4,7 +4,7 @@ export interface User {
    firstName: string
    lastName: string
    password: string
-   createdAt: string
-   updatedAt: string
+   createdAt: Date
+   updatedAt: Date
    __v: number
 }

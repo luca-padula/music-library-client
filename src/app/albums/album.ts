@@ -5,7 +5,7 @@ export interface Album {
    albumLength: string
    artist: string
    artistName: string
-   createdAt: string
-   updatedAt: string
+   createdAt: Date
+   updatedAt: Date
    __v: number
 }
