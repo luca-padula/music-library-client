@@ -1,3 +1,29 @@
 li.selected {
-   background-color: azure;
+   background-color: var(--color-primary);
+   color: var(--heading-primary);
+}
+
+.btn-primary {
+   background-color: var(--color-primary);
+   border-color: var(--color-primary);
+}
+
+.playlists-heading {
+   margin: 1.5rem auto;
+}
+
+.create-playlist-toggle {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.create-playlist-heading {
+   margin: 1.3rem 0;
+}
+
+.create-playlist-toggle i {
+   margin-left: 1rem;
+   font-size: 1.7rem;
+   color: var(--color-primary);
 }

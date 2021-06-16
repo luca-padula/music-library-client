@@ -5,6 +5,11 @@
       </h4>
    </div>
    <div class="modal-body">
+      <div class="create-playlist-toggle">
+         <h5 class="create-playlist-heading">Create a new playlist</h5>
+         <i class="fa fa-plus-circle"></i>
+      </div>
+      <h5 class="playlists-heading">Choose an existing playlist</h5>
       <ul class="list-group">
          <li
             class="list-group-item"
@@ -18,6 +23,6 @@
    </div>
    <div class="modal-footer">
       <button *ngIf="selectedPlaylist" class="btn btn-primary">Add to {{ selectedPlaylist.name }}</button>
-      <button class="btn btn-primary" (click)="modal.close()">close</button>
+      <button class="btn btn-secondary" (click)="modal.close()">close</button>
    </div>
 </ng-template>
