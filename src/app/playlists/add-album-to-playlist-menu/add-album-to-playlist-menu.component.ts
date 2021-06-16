@@ -3,6 +3,9 @@ import { Observable, Subject } from "rxjs"
 import { takeUntil } from "rxjs/operators"
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap"
 import { Album } from "src/app/albums/album"
+import { Playlist } from "../playlist"
+import { AuthService } from "src/app/auth/auth.service"
+import { PlaylistService } from "../playlist.service"
 
 @Component({
    selector: "app-add-album-to-playlist-menu",
@@ -23,18 +26,33 @@ export class AddAlbumToPlaylistMenuComponent implements OnInit {
       updatedAt: new Date(),
    }
    @ViewChild("myModal", { static: true }) addAlbumModal: any
+   userToken: any
+   playlists: Playlist[] = []
    ngUnsubscribe = new Subject<any>()
 
-   constructor(private modalService: NgbModal) {}
+   constructor(
+      private authService: AuthService,
+      private playlistService: PlaylistService,
+      private modalService: NgbModal
+   ) {}
 
    ngOnInit(): void {
       this.notifier.pipe(takeUntil(this.ngUnsubscribe)).subscribe((album) => {
          this.albumToAdd = album
-         this.open(this.addAlbumModal)
+         this.openModal(this.addAlbumModal)
       })
+
+      this.userToken = this.authService.getDecodedToken()
+      this.playlistService
+         .getPlaylistsForUser(this.userToken._id)
+         .pipe(takeUntil(this.ngUnsubscribe))
+         .subscribe((playlists) => {
+            this.playlists = playlists
+            console.log(this.playlists)
+         })
    }
 
-   open(content: any): void {
+   openModal(content: any): void {
       this.modalService.open(content)
    }
 

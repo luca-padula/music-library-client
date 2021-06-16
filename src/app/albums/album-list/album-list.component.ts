@@ -12,18 +12,15 @@ import {
    map,
    pluck,
    startWith,
-   takeUntil,
 } from "rxjs/operators"
 import { Album } from "../album"
 import { SortOption } from "../../sort-option-select/sort-option"
 import { AlbumService } from "../album.service"
 import { AuthService } from "src/app/auth/auth.service"
-import { PlaylistService } from "src/app/playlists/playlist.service"
-import { Playlist } from "src/app/playlists/playlist"
 import { albumSortOptions } from "../album-sort-options"
 
 @Component({
-   selector: "app-albums",
+   selector: "app-album-list",
    templateUrl: "./album-list.component.html",
    styleUrls: ["./album-list.component.css"],
 })
@@ -44,16 +41,12 @@ export class AlbumListComponent implements OnInit {
    searchInput$ = new Observable<string>()
    sortOptionSubject = new BehaviorSubject<SortOption>(this.sortOptions[0])
    albums$ = new Observable<Album[]>()
-   ngUnsubscribe = new Subject<any>()
 
    userIsAuthenticated: boolean = this.authService.userIsAuthenticated()
-   userToken: any
-   playlists: Playlist[] = []
 
    constructor(
       private albumService: AlbumService,
-      private authService: AuthService,
-      private playlistService: PlaylistService
+      private authService: AuthService
    ) {}
 
    ngOnInit(): void {
@@ -79,17 +72,6 @@ export class AlbumListComponent implements OnInit {
             return allAlbums.filter(filterFunction).sort(compareFunction)
          })
       )
-
-      if (this.userIsAuthenticated) {
-         this.userToken = this.authService.getDecodedToken()
-         this.playlistService
-            .getPlaylistsForUser(this.userToken._id)
-            .pipe(takeUntil(this.ngUnsubscribe))
-            .subscribe((playlists) => {
-               this.playlists = playlists
-               console.log(this.playlists)
-            })
-      }
    }
 
    private buildAlbumFilterFunction(filter: string): (album: Album) => boolean {
@@ -120,10 +102,5 @@ export class AlbumListComponent implements OnInit {
 
    handleAddAlbumToPlaylistEvent(albumToAdd: Album): void {
       this.addAlbumToPlaylistSubject.next(albumToAdd)
-   }
-
-   ngOnDestroy() {
-      this.ngUnsubscribe.next()
-      this.ngUnsubscribe.complete()
    }
 }

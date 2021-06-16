@@ -1,4 +1,7 @@
-<app-add-album-to-playlist-menu [notifier]="playlistMenuNotifier$"></app-add-album-to-playlist-menu>
+<app-add-album-to-playlist-menu
+   *ngIf="userIsAuthenticated"
+   [notifier]="playlistMenuNotifier$"
+></app-add-album-to-playlist-menu>
 
 <div class="container">
    <div class="form-row">
