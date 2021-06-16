@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core"
+import { AuthService } from "src/app/auth/auth.service"
 import { Album } from "../album"
 
 @Component({
@@ -9,8 +10,9 @@ import { Album } from "../album"
 export class AlbumDisplayComponent implements OnInit {
    @Input() album!: Album
    @Output() AddAlbumToPlaylist = new EventEmitter<Album>()
+   userIsAuthenticated: boolean = this.authService.userIsAuthenticated()
 
-   constructor() {}
+   constructor(private authService: AuthService) {}
 
    ngOnInit(): void {}
 
