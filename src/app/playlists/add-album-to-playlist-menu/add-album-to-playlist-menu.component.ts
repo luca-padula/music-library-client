@@ -28,6 +28,18 @@ export class AddAlbumToPlaylistMenuComponent implements OnInit {
    @ViewChild("myModal", { static: true }) addAlbumModal: any
    userToken: any
    playlists: Playlist[] = []
+   /* selectedPlaylist: Playlist = {
+      _id: "",
+      name: "",
+      isPrivate: false,
+      creator: "",
+      creatorUserName: "",
+      albums: [],
+      __v: 0,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+   } */
+   selectedPlaylist: Playlist | null = null
    ngUnsubscribe = new Subject<any>()
 
    constructor(
@@ -39,7 +51,7 @@ export class AddAlbumToPlaylistMenuComponent implements OnInit {
    ngOnInit(): void {
       this.notifier.pipe(takeUntil(this.ngUnsubscribe)).subscribe((album) => {
          this.albumToAdd = album
-         this.openModal(this.addAlbumModal)
+         this.openModal()
       })
 
       this.userToken = this.authService.getDecodedToken()
@@ -48,12 +60,17 @@ export class AddAlbumToPlaylistMenuComponent implements OnInit {
          .pipe(takeUntil(this.ngUnsubscribe))
          .subscribe((playlists) => {
             this.playlists = playlists
-            console.log(this.playlists)
          })
    }
 
-   openModal(content: any): void {
-      this.modalService.open(content)
+   openModal(): void {
+      this.modalService
+         .open(this.addAlbumModal)
+         .result.then((result) => (this.selectedPlaylist = null))
+   }
+
+   selectPlaylist(playlist: Playlist): void {
+      this.selectedPlaylist = playlist
    }
 
    ngOnDestroy(): void {
