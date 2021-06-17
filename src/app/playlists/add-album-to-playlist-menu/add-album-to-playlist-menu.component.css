@@ -19,11 +19,20 @@ li.selected {
 }
 
 .create-playlist-heading {
-   margin: 1.3rem 0;
+   margin: 1rem 0 2rem 0;
 }
 
 .create-playlist-toggle i {
    margin-left: 1rem;
-   font-size: 1.7rem;
+   font-size: 1.5rem;
    color: var(--color-primary);
+}
+
+.divider {
+   height: 2px;
+   background-color: hsl(0, 0%, 85%);
+}
+
+.form-inline * {
+   margin-right: 0.5rem;
 }
