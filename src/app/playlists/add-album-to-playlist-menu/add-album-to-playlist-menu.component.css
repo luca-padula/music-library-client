@@ -16,14 +16,10 @@ li.selected {
    display: flex;
    justify-content: space-between;
    align-items: center;
-}
-
-.create-playlist-heading {
-   margin: 1rem 0 2rem 0;
+   margin: 1.3rem 0;
 }
 
 .create-playlist-toggle i {
-   margin-left: 1rem;
    font-size: 1.5rem;
    color: var(--color-primary);
 }
@@ -33,6 +29,25 @@ li.selected {
    background-color: hsl(0, 0%, 85%);
 }
 
-.form-inline * {
-   margin-right: 0.5rem;
+.create-playlist-form {
+   margin-bottom: 2rem;
+}
+
+.create-playlist-form button {
+   margin-top: 1.2rem;
+}
+
+/* TODO: move button styles into global styles */
+.btn-outline-primary {
+   color: var(--color-primary);
+   border-color: var(--color-primary);
+}
+
+.btn-outline-primary:hover {
+   background-color: var(--color-primary);
+   color: var(--heading-primary);
+}
+
+.form-check-label {
+   margin-left: 0.5rem;
 }
