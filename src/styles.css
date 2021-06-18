@@ -44,6 +44,14 @@ p {
    border-color: var(--color-primary-darker);
 }
 
+.btn-primary:focus,
+.btn-primary:active {
+   background-color: var(--color-primary-darker);
+   border-color: var(--color-primary-darker);
+   box-shadow: 0 0 0.15rem 0.15rem var(--color-primary-lighter);
+   -webkit-box-shadow: 0 0 0.15rem 0.15rem var(--color-primary-lighter);
+}
+
 .btn-primary:disabled {
    background-color: var(--color-primary-lighter);
    border-color: var(--color-primary-lighter);
