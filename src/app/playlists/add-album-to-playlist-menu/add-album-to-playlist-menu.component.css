@@ -3,11 +3,6 @@ li.selected {
    color: var(--heading-primary);
 }
 
-.btn-primary {
-   background-color: var(--color-primary);
-   border-color: var(--color-primary);
-}
-
 .playlists-heading {
    margin: 1.5rem auto;
 }
@@ -35,17 +30,6 @@ li.selected {
 
 .create-playlist-form button {
    margin-top: 1.2rem;
-}
-
-/* TODO: move button styles into global styles */
-.btn-outline-primary {
-   color: var(--color-primary);
-   border-color: var(--color-primary);
-}
-
-.btn-outline-primary:hover {
-   background-color: var(--color-primary);
-   color: var(--heading-primary);
 }
 
 .form-check-label {
