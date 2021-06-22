@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from "@angular/core"
 import { Observable, Subject } from "rxjs"
-import { takeUntil } from "rxjs/operators"
+import { take, takeUntil } from "rxjs/operators"
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap"
 import { Album } from "src/app/albums/album"
 import { Playlist } from "../playlist"
@@ -65,6 +65,15 @@ export class AddAlbumToPlaylistMenuComponent implements OnInit {
    handlePlaylistCreated(createdPlaylist: Playlist): void {
       this.playlists = [...this.playlists, createdPlaylist]
       this.selectPlaylist(createdPlaylist)
+   }
+
+   addAlbumToPlaylist(): void {
+      if (this.selectedPlaylist) {
+         this.playlistService
+            .addAlbumToPlaylist(this.albumToAdd._id, this.selectedPlaylist._id)
+            .pipe(take(1))
+            .subscribe((success) => console.log(success))
+      }
    }
 
    ngOnDestroy(): void {

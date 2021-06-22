@@ -20,7 +20,9 @@
       </ul>
    </div>
    <div class="modal-footer">
-      <button *ngIf="selectedPlaylist" class="btn my-btn-primary">Add to {{ selectedPlaylist.name }}</button>
+      <button *ngIf="selectedPlaylist" class="btn my-btn-primary" (click)="addAlbumToPlaylist()">
+         Add to {{ selectedPlaylist.name }}
+      </button>
       <button class="btn btn-secondary" (click)="modal.close()">close</button>
    </div>
 </ng-template>
