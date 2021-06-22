@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core"
 import { NgForm } from "@angular/forms"
+import { NgbCollapse } from "@ng-bootstrap/ng-bootstrap"
 import { take } from "rxjs/operators"
 import { AuthService } from "src/app/auth/auth.service"
 import { Playlist } from "../playlist"
@@ -19,6 +20,7 @@ export class CreatePlaylistCollapseComponent implements OnInit {
       creatorUserName: this.token.userName,
    }
    @Output() playlistCreated = new EventEmitter<Playlist>()
+   isCollapsed: boolean = true
 
    constructor(
       private authService: AuthService,
