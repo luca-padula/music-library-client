@@ -64,16 +64,21 @@ p {
    border-color: var(--color-primary);
 }
 
-.my-btn-outline-primary:hover {
+.my-btn-outline-primary:not(:disabled):hover {
    background-color: var(--color-primary);
    color: var(--heading-primary);
    border-color: var(--color-primary);
 }
 
-.my-btn-outline-primary:active,
-.my-btn-outline-primary:focus {
+.my-btn-outline-primary:not(:disabled):active,
+.my-btn-outline-primary:not(:disabled):focus {
    box-shadow: 0 0 0.15rem 0.15rem var(--color-primary-lighter);
    -webkit-box-shadow: 0 0 0.15rem 0.15rem var(--color-primary-lighter);
+}
+
+.my-btn-outline-primary:disabled {
+   color: gray;
+   border-color: gray;
 }
 
 @media (min-width: 768px) {
