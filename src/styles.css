@@ -34,38 +34,46 @@ p {
    border-color: var(--color-primary);
 }
 
-.btn-primary {
+.my-btn-primary {
    background-color: var(--color-primary);
    border-color: var(--color-primary);
+   color: white;
 }
 
-.btn-primary:hover {
+.my-btn-primary:hover {
    background-color: var(--color-primary-darker);
    border-color: var(--color-primary-darker);
+   color: white;
 }
 
-.btn-primary:focus,
-.btn-primary:active {
+.my-btn-primary:focus,
+.my-btn-primary:active {
    background-color: var(--color-primary-darker);
    border-color: var(--color-primary-darker);
    box-shadow: 0 0 0.15rem 0.15rem var(--color-primary-lighter);
    -webkit-box-shadow: 0 0 0.15rem 0.15rem var(--color-primary-lighter);
 }
 
-.btn-primary:disabled {
+.my-btn-primary:disabled {
    background-color: var(--color-primary-lighter);
    border-color: var(--color-primary-lighter);
 }
 
-.btn-outline-primary {
+.my-btn-outline-primary {
    color: var(--color-primary);
    border-color: var(--color-primary);
 }
 
-.btn-outline-primary:hover {
+.my-btn-outline-primary:hover {
    background-color: var(--color-primary);
    color: var(--heading-primary);
    border-color: var(--color-primary);
+}
+
+.my-btn-outline-primary:active,
+.my-btn-outline-primary:focus {
+   box-shadow: 0 0 0.15rem 0.15rem var(--color-primary-lighter);
+   -webkit-box-shadow: 0 0 0.15rem 0.15rem var(--color-primary-lighter);
 }
 
 @media (min-width: 768px) {

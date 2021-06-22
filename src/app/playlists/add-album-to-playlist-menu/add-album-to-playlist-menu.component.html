@@ -20,7 +20,7 @@
             <input type="checkbox" name="isPrivate" class="form-check-input" id="isPrivate" />
             <label for="isPrivate" class="form-check-label">Make it private</label>
          </div>
-         <button type="submit" class="btn btn-outline-primary">Submit</button>
+         <button type="submit" class="btn my-btn-outline-primary">Submit</button>
       </form>
 
       <div class="divider"></div>
@@ -37,7 +37,7 @@
       </ul>
    </div>
    <div class="modal-footer">
-      <button *ngIf="selectedPlaylist" class="btn btn-primary">Add to {{ selectedPlaylist.name }}</button>
+      <button *ngIf="selectedPlaylist" class="btn my-btn-primary">Add to {{ selectedPlaylist.name }}</button>
       <button class="btn btn-secondary" (click)="modal.close()">close</button>
    </div>
 </ng-template>
