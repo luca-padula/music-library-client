@@ -28,17 +28,6 @@ export class AddAlbumToPlaylistMenuComponent implements OnInit {
    @ViewChild("myModal", { static: true }) addAlbumModal: any
    userToken: any
    playlists: Playlist[] = []
-   /* selectedPlaylist: Playlist = {
-      _id: "",
-      name: "",
-      isPrivate: false,
-      creator: "",
-      creatorUserName: "",
-      albums: [],
-      __v: 0,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-   } */
    selectedPlaylist: Playlist | null = null
    ngUnsubscribe = new Subject<any>()
 
