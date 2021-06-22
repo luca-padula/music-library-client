@@ -33,8 +33,10 @@ export class CreatePlaylistCollapseComponent implements OnInit {
       this.playlistService
          .createPlaylist(this.newPlaylist)
          .pipe(take(1))
-         .subscribe((success) =>
+         .subscribe((success) => {
             this.playlistCreated.emit(success.createdPlaylist)
-         )
+            this.newPlaylist.name = ""
+            this.newPlaylist.isPrivate = false
+         })
    }
 }

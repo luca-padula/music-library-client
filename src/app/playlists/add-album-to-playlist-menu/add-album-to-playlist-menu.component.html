@@ -5,7 +5,7 @@
       </h4>
    </div>
    <div class="modal-body">
-      <app-create-playlist-collapse></app-create-playlist-collapse>
+      <app-create-playlist-collapse (playlistCreated)="handlePlaylistCreated($event)"></app-create-playlist-collapse>
       <div class="divider"></div>
       <h5 class="playlists-heading">Choose an existing playlist</h5>
       <ul class="list-group">

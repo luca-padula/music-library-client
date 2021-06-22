@@ -62,6 +62,11 @@ export class AddAlbumToPlaylistMenuComponent implements OnInit {
       this.selectedPlaylist = playlist
    }
 
+   handlePlaylistCreated(createdPlaylist: Playlist): void {
+      this.playlists = [...this.playlists, createdPlaylist]
+      this.selectPlaylist(createdPlaylist)
+   }
+
    ngOnDestroy(): void {
       this.ngUnsubscribe.next()
       this.ngUnsubscribe.complete()
