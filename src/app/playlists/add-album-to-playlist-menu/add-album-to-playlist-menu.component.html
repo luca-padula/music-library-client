@@ -5,24 +5,7 @@
       </h4>
    </div>
    <div class="modal-body">
-      <div class="create-playlist-toggle">
-         <h5 class="create-playlist-heading">Create a new playlist</h5>
-         <i class="fa fa-plus"></i>
-      </div>
-      <form class="create-playlist-form">
-         <div class="form-group row">
-            <label for="playlistName" class="col-2 col-form-label">Name</label>
-            <div class="col-10">
-               <input type="text" name="name" class="form-control" id="playlistName" />
-            </div>
-         </div>
-         <div class="form-check">
-            <input type="checkbox" name="isPrivate" class="form-check-input" id="isPrivate" />
-            <label for="isPrivate" class="form-check-label">Make it private</label>
-         </div>
-         <button type="submit" class="btn my-btn-outline-primary">Submit</button>
-      </form>
-
+      <app-create-playlist-collapse></app-create-playlist-collapse>
       <div class="divider"></div>
       <h5 class="playlists-heading">Choose an existing playlist</h5>
       <ul class="list-group">
