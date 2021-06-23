@@ -13,9 +13,12 @@
                name="name"
                class="form-control"
                id="playlistName"
+               #name="ngModel"
                [(ngModel)]="newPlaylist.name"
                required
+               [class.has-error]="name.touched && name.errors"
             />
+            <small class="error-help-block" *ngIf="name.touched && name.errors">Playlist name is required</small>
          </div>
       </div>
       <div class="form-check">
@@ -30,4 +33,5 @@
       </div>
       <button type="submit" class="btn my-btn-outline-primary" [disabled]="form.invalid">Submit</button>
    </form>
+   <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
 </div>

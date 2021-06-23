@@ -25,3 +25,8 @@
 .form-check-label {
    margin-left: 0.5rem;
 }
+
+.form-control.has-error {
+   color: red;
+   border-color: red;
+}

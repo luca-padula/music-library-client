@@ -21,6 +21,7 @@ export class CreatePlaylistCollapseComponent implements OnInit {
    }
    @Output() playlistCreated = new EventEmitter<Playlist>()
    isCollapsed: boolean = true
+   successMessage: string = ""
 
    constructor(
       private authService: AuthService,
@@ -34,6 +35,7 @@ export class CreatePlaylistCollapseComponent implements OnInit {
          .createPlaylist(this.newPlaylist)
          .pipe(take(1))
          .subscribe((success) => {
+            this.successMessage = `Playlist ${this.newPlaylist.name} successfully created`
             this.playlistCreated.emit(success.createdPlaylist)
             this.newPlaylist.name = ""
             this.newPlaylist.isPrivate = false
