@@ -10,7 +10,7 @@
       <h5 class="playlists-heading">Choose an existing playlist</h5>
       <ul class="list-group">
          <li
-            class="list-group-item"
+            class="list-group-item playlist-item"
             *ngFor="let playlist of playlists"
             [class.selected]="playlist === selectedPlaylist"
             (click)="selectPlaylist(playlist)"

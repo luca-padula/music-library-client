@@ -1,6 +1,7 @@
 <div class="create-playlist-toggle" (click)="collapse.toggle()">
    <h5 class="create-playlist-heading">Create a new playlist</h5>
-   <i class="fa fa-plus"></i>
+   <i *ngIf="isCollapsed" class="fa fa-plus"></i>
+   <i *ngIf="!isCollapsed" class="fa fa-minus"></i>
 </div>
 <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
    <form class="create-playlist-form" #form="ngForm" (ngSubmit)="onSubmit(form)">

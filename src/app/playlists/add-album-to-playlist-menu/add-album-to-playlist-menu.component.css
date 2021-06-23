@@ -1,4 +1,8 @@
-li.selected {
+.playlist-item {
+   cursor: pointer;
+}
+
+.playlist-item.selected {
    background-color: var(--color-primary);
    color: var(--heading-primary);
 }
