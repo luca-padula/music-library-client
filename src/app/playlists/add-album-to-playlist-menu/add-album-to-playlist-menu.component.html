@@ -18,6 +18,9 @@
             {{ playlist.name }}
          </li>
       </ul>
+      <h6 *ngIf="selectedPlaylist && playlistIncludesAlbum(selectedPlaylist)" class="playlist-includes-album">
+         Album is already in that playlist
+      </h6>
    </div>
    <div class="modal-footer">
       <button *ngIf="selectedPlaylist" class="btn my-btn-primary" (click)="addAlbumToPlaylist()">

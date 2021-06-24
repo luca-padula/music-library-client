@@ -76,6 +76,11 @@ export class AddAlbumToPlaylistMenuComponent implements OnInit {
       }
    }
 
+   playlistIncludesAlbum(playlist: Playlist): boolean {
+      const albums = playlist.albums as string[]
+      return albums.includes(this.albumToAdd._id)
+   }
+
    ngOnDestroy(): void {
       this.ngUnsubscribe.next()
       this.ngUnsubscribe.complete()

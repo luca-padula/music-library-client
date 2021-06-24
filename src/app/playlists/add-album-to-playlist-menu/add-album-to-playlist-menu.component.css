@@ -15,3 +15,12 @@
    height: 2px;
    background-color: hsl(0, 0%, 85%);
 }
+
+.playlist-includes-album {
+   margin-top: 1.2rem;
+}
+
+.playlist-includes-album::before {
+   content: "*";
+   color: var(--color-primary);
+}
