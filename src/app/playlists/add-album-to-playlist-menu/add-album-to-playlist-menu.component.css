@@ -3,8 +3,8 @@
 }
 
 .playlist-item.selected {
-   background-color: var(--color-primary);
-   color: var(--heading-primary);
+   background-color: hsl(0, 0%, 90%);
+   color: var(--color-primary);
 }
 
 .playlists-heading {
