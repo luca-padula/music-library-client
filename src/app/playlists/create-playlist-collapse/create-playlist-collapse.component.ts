@@ -41,6 +41,7 @@ export class CreatePlaylistCollapseComponent implements OnInit {
             (success) => {
                this.successMessage = `Playlist ${this.newPlaylist.name} successfully created`
                this.playlistCreated.emit(success.createdPlaylist)
+               form.resetForm()
                this.newPlaylist.name = ""
                this.newPlaylist.isPrivate = false
             },
