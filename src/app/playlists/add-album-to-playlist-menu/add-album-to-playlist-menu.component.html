@@ -18,7 +18,7 @@
             {{ playlist.name }}
          </li>
       </ul>
-      <h6 *ngIf="selectedPlaylist && playlistIncludesAlbum(selectedPlaylist)" class="playlist-includes-album">
+      <h6 *ngIf="selectedPlaylist && selectedPlaylistIncludesAlbum()" class="playlist-includes-album">
          Album is already in that playlist
       </h6>
    </div>

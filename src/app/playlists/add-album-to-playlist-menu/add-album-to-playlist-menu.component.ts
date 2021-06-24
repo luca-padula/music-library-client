@@ -76,8 +76,11 @@ export class AddAlbumToPlaylistMenuComponent implements OnInit {
       }
    }
 
-   playlistIncludesAlbum(playlist: Playlist): boolean {
-      const albums = playlist.albums as string[]
+   selectedPlaylistIncludesAlbum(): boolean {
+      if (!this.selectedPlaylist) {
+         return false
+      }
+      const albums = this.selectedPlaylist.albums as string[]
       return albums.includes(this.albumToAdd._id)
    }
 
