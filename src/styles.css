@@ -34,6 +34,14 @@ p {
    border-color: var(--color-primary);
 }
 
+.form-group.has-error {
+   color: red;
+}
+
+.form-group.has-error .form-control {
+   border-color: red;
+}
+
 .my-btn-primary {
    background-color: var(--color-primary);
    border-color: var(--color-primary);

@@ -1,11 +1,11 @@
-<div class="create-playlist-toggle" (click)="collapse.toggle()">
+<div class="create-playlist-toggle" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed">
    <h5 class="create-playlist-heading">Create a new playlist</h5>
    <i *ngIf="isCollapsed" class="fa fa-plus"></i>
    <i *ngIf="!isCollapsed" class="fa fa-minus"></i>
 </div>
 <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
    <form class="create-playlist-form" #form="ngForm" (ngSubmit)="onSubmit(form)">
-      <div class="form-group row">
+      <div class="form-group row" [class.has-error]="name.touched && name.errors">
          <label for="playlistName" class="col-2 col-form-label">Name</label>
          <div class="col-10">
             <input
@@ -16,9 +16,8 @@
                #name="ngModel"
                [(ngModel)]="newPlaylist.name"
                required
-               [class.has-error]="name.touched && name.errors"
             />
-            <small class="error-help-block" *ngIf="name.touched && name.errors">Playlist name is required</small>
+            <span class="error-help-block" *ngIf="name.touched && name.errors">Playlist name is required</span>
          </div>
       </div>
       <div class="form-check">
