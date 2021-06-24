@@ -2,7 +2,7 @@ import { Component, Input, OnInit, ViewChild } from "@angular/core"
 import { Observable, Subject } from "rxjs"
 import { take, takeUntil } from "rxjs/operators"
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap"
-import { Album } from "src/app/albums/album"
+import { Album, emptyAlbum } from "src/app/albums/album"
 import { Playlist } from "../playlist"
 import { AuthService } from "src/app/auth/auth.service"
 import { PlaylistService } from "../playlist.service"
@@ -14,17 +14,7 @@ import { PlaylistService } from "../playlist.service"
 })
 export class AddAlbumToPlaylistMenuComponent implements OnInit {
    @Input() notifier = new Observable<Album>()
-   albumToAdd: Album = {
-      _id: "",
-      name: "",
-      albumLength: "",
-      artist: "",
-      artistName: "",
-      __v: 0,
-      releaseDate: new Date(),
-      createdAt: new Date(),
-      updatedAt: new Date(),
-   }
+   albumToAdd: Album = emptyAlbum
    @ViewChild("myModal", { static: true }) addAlbumModal: any
    userToken: any
    playlists: Playlist[] = []

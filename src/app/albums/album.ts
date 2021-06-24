@@ -1,4 +1,4 @@
-export interface Album {
+interface Album {
    _id: string
    name: string
    releaseDate: Date
@@ -9,3 +9,18 @@ export interface Album {
    updatedAt: Date
    __v: number
 }
+
+const emptyDate = new Date()
+const emptyAlbum: Album = {
+   _id: "",
+   name: "",
+   albumLength: "",
+   artist: "",
+   artistName: "",
+   __v: 0,
+   releaseDate: emptyDate,
+   createdAt: emptyDate,
+   updatedAt: emptyDate,
+}
+
+export { Album, emptyAlbum }
