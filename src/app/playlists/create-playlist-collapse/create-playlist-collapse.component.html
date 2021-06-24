@@ -32,5 +32,9 @@
       </div>
       <button type="submit" class="btn my-btn-outline-primary" [disabled]="form.invalid">Submit</button>
    </form>
+
+   <!-- TODO: Extract success and error feedback to separate component -->
    <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+   <div *ngIf="error.message" class="alert alert-danger">{{ error.message }}</div>
+   <div *ngFor="let validationErr of error.validationErrors" class="alert alert-danger">{{ validationErr }}</div>
 </div>
