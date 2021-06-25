@@ -2,11 +2,29 @@
    margin-bottom: 1.5rem;
 }
 
-i {
+.album-item:hover {
+   border-color: var(--color-primary);
+}
+
+.add-to-playlist {
    margin-left: auto;
    font-size: 1.4rem;
+   transition: var(--transition-speed);
+}
+
+.add-to-playlist:hover {
+   cursor: pointer;
+   color: var(--color-primary);
 }
 
 .album-item {
    padding: 0.5rem;
+}
+
+.artist-link {
+   color: var(--color-primary);
+}
+
+.artist-link:hover {
+   color: var(--color-primary-darker);
 }
