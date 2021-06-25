@@ -17,7 +17,8 @@ import { SortOptionSelectComponent } from "./sort-option-select/sort-option-sele
 import { AlbumDisplayComponent } from "./albums/album-display/album-display.component"
 import { NgbModalModule, NgbCollapseModule } from "@ng-bootstrap/ng-bootstrap"
 import { AddAlbumToPlaylistMenuComponent } from "./playlists/add-album-to-playlist-menu/add-album-to-playlist-menu.component"
-import { CreatePlaylistCollapseComponent } from "./playlists/create-playlist-collapse/create-playlist-collapse.component"
+import { CreatePlaylistCollapseComponent } from "./playlists/create-playlist-collapse/create-playlist-collapse.component";
+import { ActionFeedbackComponent } from './action-feedback/action-feedback.component'
 
 @NgModule({
    declarations: [
@@ -32,6 +33,7 @@ import { CreatePlaylistCollapseComponent } from "./playlists/create-playlist-col
       AlbumDisplayComponent,
       AddAlbumToPlaylistMenuComponent,
       CreatePlaylistCollapseComponent,
+      ActionFeedbackComponent,
    ],
    imports: [
       BrowserModule,

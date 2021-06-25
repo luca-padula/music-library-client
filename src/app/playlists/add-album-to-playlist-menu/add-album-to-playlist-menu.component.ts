@@ -63,6 +63,7 @@ export class AddAlbumToPlaylistMenuComponent implements OnInit {
             .addAlbumToPlaylist(this.albumToAdd._id, this.selectedPlaylist._id)
             .pipe(take(1))
             .subscribe((success) => console.log(success))
+         // TODO: Add album to playlist locally after success
       }
    }
 

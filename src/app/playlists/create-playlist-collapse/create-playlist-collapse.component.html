@@ -30,11 +30,8 @@
          />
          <label for="isPrivate" class="form-check-label">Make it private</label>
       </div>
-      <button type="submit" class="btn my-btn-outline-primary" [disabled]="form.invalid">Submit</button>
+      <button type="submit" class="btn my-btn-outline-primary">Submit</button>
    </form>
 
-   <!-- TODO: Extract success and error feedback to separate component -->
-   <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
-   <div *ngIf="error.message" class="alert alert-danger">{{ error.message }}</div>
-   <div *ngFor="let validationErr of error.validationErrors" class="alert alert-danger">{{ validationErr }}</div>
+   <app-action-feedback [successMessage]="successMessage" [error]="error"></app-action-feedback>
 </div>
