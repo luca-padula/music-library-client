@@ -62,9 +62,18 @@ export class AddAlbumToPlaylistMenuComponent implements OnInit {
          this.playlistService
             .addAlbumToPlaylist(this.albumToAdd._id, this.selectedPlaylist._id)
             .pipe(take(1))
-            .subscribe((success) => console.log(success))
-         // TODO: Add album to playlist locally after success
+            .subscribe((success) => {
+               this.updateLocalPlaylist(success.updatedPlaylist)
+               this.selectedPlaylist = null
+            })
       }
+   }
+
+   updateLocalPlaylist(updatedPlaylist: Playlist): void {
+      const playlistIndex = this.playlists.findIndex(
+         (playlist) => playlist._id === updatedPlaylist._id
+      )
+      this.playlists.splice(playlistIndex, 1, updatedPlaylist)
    }
 
    selectedPlaylistIncludesAlbum(): boolean {
