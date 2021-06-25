@@ -6,6 +6,7 @@ import { Album, emptyAlbum } from "src/app/albums/album"
 import { Playlist } from "../playlist"
 import { AuthService } from "src/app/auth/auth.service"
 import { PlaylistService } from "../playlist.service"
+import { ApiError, emptyApiError } from "src/app/shared/models/api-error"
 
 @Component({
    selector: "app-add-album-to-playlist-menu",
@@ -20,6 +21,8 @@ export class AddAlbumToPlaylistMenuComponent implements OnInit {
    playlists: Playlist[] = []
    selectedPlaylist: Playlist | null = null
    ngUnsubscribe = new Subject<any>()
+   successMessage: string = ""
+   error: ApiError = emptyApiError
 
    constructor(
       private authService: AuthService,
@@ -62,10 +65,14 @@ export class AddAlbumToPlaylistMenuComponent implements OnInit {
          this.playlistService
             .addAlbumToPlaylist(this.albumToAdd._id, this.selectedPlaylist._id)
             .pipe(take(1))
-            .subscribe((success) => {
-               this.updateLocalPlaylist(success.updatedPlaylist)
-               this.selectedPlaylist = null
-            })
+            .subscribe(
+               (success) => {
+                  this.successMessage = `${this.albumToAdd.name} successfully added to ${this.selectedPlaylist?.name}`
+                  this.updateLocalPlaylist(success.updatedPlaylist)
+                  this.selectedPlaylist = null
+               },
+               (err: ApiError) => (this.error = err)
+            )
       }
    }
 

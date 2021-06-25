@@ -16,8 +16,12 @@
    background-color: hsl(0, 0%, 85%);
 }
 
+.list-group {
+   margin: 1.5rem 0;
+}
+
 .playlist-includes-album {
-   margin-top: 1.2rem;
+   margin: 1.2rem 0;
 }
 
 .playlist-includes-album::before {
