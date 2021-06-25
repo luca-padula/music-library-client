@@ -37,6 +37,8 @@ export class CreatePlaylistCollapseComponent implements OnInit {
    ngOnInit(): void {}
 
    onSubmit(form: NgForm) {
+      this.successNotifier.next("")
+      this.errorNotifier.next(emptyApiError)
       this.playlistService
          .createPlaylist(this.newPlaylist)
          .pipe(take(1))

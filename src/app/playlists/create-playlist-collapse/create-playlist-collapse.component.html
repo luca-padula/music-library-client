@@ -30,7 +30,7 @@
          />
          <label for="isPrivate" class="form-check-label">Make it private</label>
       </div>
-      <button type="submit" class="btn my-btn-outline-primary">Submit</button>
+      <button type="submit" class="btn my-btn-outline-primary" [disabled]="form.invalid">Submit</button>
    </form>
 
    <app-action-feedback [successNotifier]="success$" [errorNotifier]="error$"></app-action-feedback>

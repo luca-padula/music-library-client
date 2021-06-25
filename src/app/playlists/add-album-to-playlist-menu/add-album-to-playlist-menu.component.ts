@@ -64,6 +64,8 @@ export class AddAlbumToPlaylistMenuComponent implements OnInit {
    }
 
    addAlbumToPlaylist(): void {
+      this.successNotifier.next("")
+      this.errorNotifier.next(emptyApiError)
       if (this.selectedPlaylist) {
          this.playlistService
             .addAlbumToPlaylist(this.albumToAdd._id, this.selectedPlaylist._id)
