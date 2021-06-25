@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core"
+import { Observable, Subject } from "rxjs"
+import { takeUntil } from "rxjs/operators"
 import { ApiError, emptyApiError } from "../shared/models/api-error"
 
 @Component({
@@ -7,10 +9,26 @@ import { ApiError, emptyApiError } from "../shared/models/api-error"
    styleUrls: ["./action-feedback.component.css"],
 })
 export class ActionFeedbackComponent implements OnInit {
-   @Input() successMessage: string = ""
-   @Input() error: ApiError = emptyApiError
+   successMessage: string = ""
+   error: ApiError = emptyApiError
+   @Input() successNotifier = new Observable<string>()
+   @Input() errorNotifier = new Observable<ApiError>()
+   ngUnsubscribe = new Subject<any>()
 
    constructor() {}
 
-   ngOnInit(): void {}
+   ngOnInit(): void {
+      this.successNotifier
+         .pipe(takeUntil(this.ngUnsubscribe))
+         .subscribe((message) => (this.successMessage = message))
+
+      this.errorNotifier
+         .pipe(takeUntil(this.ngUnsubscribe))
+         .subscribe((err) => (this.error = err))
+   }
+
+   ngOnDestroy(): void {
+      this.ngUnsubscribe.next()
+      this.ngUnsubscribe.complete()
+   }
 }

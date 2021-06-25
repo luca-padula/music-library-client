@@ -21,8 +21,11 @@ export class AddAlbumToPlaylistMenuComponent implements OnInit {
    playlists: Playlist[] = []
    selectedPlaylist: Playlist | null = null
    ngUnsubscribe = new Subject<any>()
-   successMessage: string = ""
-   error: ApiError = emptyApiError
+
+   successNotifier = new Subject<string>()
+   errorNotifier = new Subject<ApiError>()
+   success$ = this.successNotifier.asObservable()
+   error$ = this.errorNotifier.asObservable()
 
    constructor(
       private authService: AuthService,
@@ -67,11 +70,13 @@ export class AddAlbumToPlaylistMenuComponent implements OnInit {
             .pipe(take(1))
             .subscribe(
                (success) => {
-                  this.successMessage = `${this.albumToAdd.name} successfully added to ${this.selectedPlaylist?.name}`
+                  this.successNotifier.next(
+                     `${this.albumToAdd.name} successfully added to ${this.selectedPlaylist?.name}`
+                  )
                   this.updateLocalPlaylist(success.updatedPlaylist)
                   this.selectedPlaylist = null
                },
-               (err: ApiError) => (this.error = err)
+               (err: ApiError) => this.errorNotifier.next(err)
             )
       }
    }

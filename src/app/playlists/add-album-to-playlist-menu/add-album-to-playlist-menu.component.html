@@ -21,7 +21,7 @@
       <h6 *ngIf="selectedPlaylist && selectedPlaylistIncludesAlbum()" class="playlist-includes-album">
          Album is already in that playlist
       </h6>
-      <app-action-feedback [successMessage]="successMessage" [error]="error"></app-action-feedback>
+      <app-action-feedback [successNotifier]="success$" [errorNotifier]="error$"></app-action-feedback>
    </div>
    <div class="modal-footer">
       <button *ngIf="selectedPlaylist" class="btn my-btn-primary" (click)="addAlbumToPlaylist()">
