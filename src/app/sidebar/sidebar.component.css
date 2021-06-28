@@ -59,6 +59,7 @@
 .sidebar-nav-link:hover {
    color: var(--color-primary);
    background-color: var(--bg-dark-primary-highlighted);
+   cursor: pointer;
 }
 
 .sidebar-nav-item i {
