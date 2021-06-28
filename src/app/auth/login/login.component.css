@@ -1,0 +1,41 @@
+.welcome {
+   margin: 2.5rem auto;
+   text-align: center;
+   font-weight: bold;
+}
+
+.highlighted {
+   color: var(--color-primary);
+}
+
+.login-form {
+   width: 60%;
+   max-width: 400px;
+   margin: 0 auto;
+}
+
+.form-control {
+   margin: 1.25rem 0;
+}
+
+.my-btn-primary {
+   width: 100%;
+   border-radius: 2rem;
+   height: 3rem;
+   font-size: 1.2rem;
+   margin: 1rem auto;
+}
+
+.create-account {
+   text-align: center;
+   margin: 0.75rem auto;
+   font-size: 1.2rem;
+}
+
+.create-account-link {
+   color: var(--color-primary);
+}
+
+.create-account-link:hover {
+   color: var(--color-primary-darker);
+}
