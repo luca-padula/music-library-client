@@ -25,12 +25,12 @@
 
    <div class="albums-wrapper">
       <div class="row">
-         <app-album-display
-            class="col-md-4"
-            *ngFor="let album of albums$ | async"
-            [album]="album"
-            (AddAlbumToPlaylist)="handleAddAlbumToPlaylistEvent($event)"
-         ></app-album-display>
+         <div *ngFor="let album of albums$ | async" class="col-md-4 d-flex justify-content-center">
+            <app-album-display
+               [album]="album"
+               (AddAlbumToPlaylist)="handleAddAlbumToPlaylistEvent($event)"
+            ></app-album-display>
+         </div>
       </div>
    </div>
 </div>

@@ -1,15 +1,13 @@
-<div class="album-item card">
+<div class="album-item">
    <i
       *ngIf="userIsAuthenticated"
       class="fa fa-plus-circle add-to-playlist"
       (click)="emitAddAlbumToPlaylistEvent()"
       aria-label="Add to playlist"
    ></i>
-   <div class="card-body">
-      <h3 class="card-title">{{ album.name }}</h3>
-      <h6 class="card-subtitle mb2 text-muted">
-         <a class="artist-link" href="#">{{ album.artistName }}</a>
-      </h6>
-      <span class="text-muted">{{ album.releaseDate | date }}, {{ album.albumLength }}</span>
+   <div class="album-info">
+      <h3 class="album-title">{{ album.name }}</h3>
+      <a class="artist-link" href="#">{{ album.artistName }}</a>
+      <h6 class="text-muted other-info">{{ album.releaseDate | date }}, {{ album.albumLength }}</h6>
    </div>
 </div>
