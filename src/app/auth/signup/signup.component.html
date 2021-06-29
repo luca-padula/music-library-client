@@ -17,28 +17,80 @@
             <small class="input-length-indicator">{{ userName.value.length }}/30</small>
          </div>
       </div>
-      <div class="form-group row">
+      <div class="form-group row" [class.has-error]="firstName.errors && firstName.touched">
          <label for="firstName" class="col-form-label col-sm-3">First name</label>
          <div class="col-sm-9">
-            <input type="text" class="form-control" id="firstName" name="firstName" />
+            <input
+               type="text"
+               class="form-control"
+               id="firstName"
+               name="firstName"
+               #firstName="ngModel"
+               [(ngModel)]="user.firstName"
+               required
+               maxlength="30"
+            />
+            <small class="input-length-indicator">{{ firstName.value.length }}/30</small>
          </div>
       </div>
-      <div class="form-group row">
+      <div class="form-group row" [class.has-error]="lastName.errors && lastName.touched">
          <label for="lastName" class="col-form-label col-sm-3">Last name</label>
          <div class="col-sm-9">
-            <input type="text" class="form-control" id="lastName" name="lastName" />
+            <input
+               type="text"
+               class="form-control"
+               id="lastName"
+               name="lastName"
+               #lastName="ngModel"
+               [(ngModel)]="user.lastName"
+               required
+               maxlength="30"
+            />
+            <small class="input-length-indicator">{{ lastName.value.length }}/30</small>
          </div>
       </div>
-      <div class="form-group row">
+      <div class="form-group row" [class.has-error]="password.errors && password.touched">
          <label for="password" class="col-form-label col-sm-3">Password</label>
          <div class="col-sm-9">
-            <input type="text" class="form-control" id="password" name="password" />
+            <input
+               type="password"
+               class="form-control"
+               id="password"
+               name="password"
+               #password="ngModel"
+               [(ngModel)]="user.password"
+               required
+               pattern="[\w\s]{6}.*"
+               title="At least 6 characters"
+            />
+            <!-- pattern="^.{6}.*$" -->
          </div>
       </div>
-      <div class="form-group row">
+      <div
+         class="form-group row"
+         [class.has-error]="
+            (confirmPassword.dirty || confirmPassword.touched) &&
+            (confirmPassword.errors || confirmPassword.value !== password.value)
+         "
+      >
          <label for="confirmPassword" class="col-form-label col-sm-3">Confirm password</label>
          <div class="col-sm-9">
-            <input type="text" class="form-control" id="confirmPassword" name="confirmPassword" />
+            <input
+               type="password"
+               class="form-control"
+               id="confirmPassword"
+               name="confirmPassword"
+               #confirmPassword="ngModel"
+               [(ngModel)]="user.confirmPassword"
+               required
+               title="Must match password"
+            />
+            <small
+               *ngIf="(confirmPassword.dirty || confirmPassword.touched) && confirmPassword.value !== password.value"
+               class="help-block"
+            >
+               Passwords do not match
+            </small>
          </div>
       </div>
 
