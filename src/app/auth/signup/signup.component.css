@@ -3,6 +3,14 @@ h2 {
    font-weight: bold;
 }
 
+form {
+   margin-top: 2rem;
+}
+
+label {
+   font-size: 1rem;
+}
+
 .input-length-indicator {
    font-size: 0.9rem;
    display: none;
@@ -10,4 +18,26 @@ h2 {
 
 .form-control:focus + .input-length-indicator {
    display: inline-block;
+}
+
+button {
+   margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+   .container {
+      width: 50%;
+   }
+
+   .form-group {
+      margin-top: 1.25rem;
+   }
+
+   form {
+      margin-top: 2rem;
+   }
+
+   label {
+      font-size: 1.1rem;
+   }
 }
