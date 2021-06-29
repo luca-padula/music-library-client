@@ -1,0 +1,36 @@
+<ng-template #myModal let-modal>
+   <div class="modal-header">
+      <h4 class="modal-title">
+         {{ albumToAdd.name }} <span class="text-muted">- {{ albumToAdd.artistName }}</span>
+      </h4>
+   </div>
+   <div class="modal-body">
+      <app-create-playlist-collapse (playlistCreated)="handlePlaylistCreated($event)"></app-create-playlist-collapse>
+      <div class="divider"></div>
+      <h5 class="playlists-heading">Choose an existing playlist</h5>
+      <ul class="list-group">
+         <li
+            class="list-group-item playlist-item"
+            *ngFor="let playlist of playlists"
+            [class.selected]="playlist === selectedPlaylist"
+            (click)="selectPlaylist(playlist)"
+         >
+            {{ playlist.name }}
+         </li>
+      </ul>
+      <h6 *ngIf="selectedPlaylist && selectedPlaylistIncludesAlbum()" class="playlist-includes-album">
+         Album is already in that playlist
+      </h6>
+      <app-action-feedback [successNotifier]="success$" [errorNotifier]="error$"></app-action-feedback>
+   </div>
+   <div class="modal-footer">
+      <button
+         *ngIf="selectedPlaylist && !selectedPlaylistIncludesAlbum()"
+         class="btn my-btn-primary"
+         (click)="addAlbumToPlaylist()"
+      >
+         Add to {{ selectedPlaylist.name }}
+      </button>
+      <button class="btn btn-secondary" (click)="modal.close()">close</button>
+   </div>
+</ng-template>

@@ -13,9 +13,12 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 import { AuthTokenInterceptor } from "./auth/auth-token.interceptor"
 import { ErrorInterceptor } from "./shared/interceptors/error.interceptor"
 import { AlbumListComponent } from "./albums/album-list/album-list.component"
-import { SortOptionSelectComponent } from "./sort-option-select/sort-option-select.component";
-import { AlbumDisplayComponent } from './albums/album-display/album-display.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { SortOptionSelectComponent } from "./sort-option-select/sort-option-select.component"
+import { AlbumDisplayComponent } from "./albums/album-display/album-display.component"
+import { NgbModalModule, NgbCollapseModule } from "@ng-bootstrap/ng-bootstrap"
+import { AddAlbumToPlaylistMenuComponent } from "./playlists/add-album-to-playlist-menu/add-album-to-playlist-menu.component"
+import { CreatePlaylistCollapseComponent } from "./playlists/create-playlist-collapse/create-playlist-collapse.component";
+import { ActionFeedbackComponent } from './action-feedback/action-feedback.component'
 
 @NgModule({
    declarations: [
@@ -28,8 +31,18 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
       AlbumListComponent,
       SortOptionSelectComponent,
       AlbumDisplayComponent,
+      AddAlbumToPlaylistMenuComponent,
+      CreatePlaylistCollapseComponent,
+      ActionFeedbackComponent,
    ],
-   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, NgbModule],
+   imports: [
+      BrowserModule,
+      AppRoutingModule,
+      HttpClientModule,
+      FormsModule,
+      NgbModalModule,
+      NgbCollapseModule,
+   ],
    providers: [
       {
          provide: HTTP_INTERCEPTORS,

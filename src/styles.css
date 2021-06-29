@@ -8,6 +8,8 @@
    --heading-primary: hsl(0, 0%, 100%);
    --text-primary: hsl(0, 0%, 83%);
    --color-primary: hsl(300, 93%, 34%);
+   --color-primary-lighter: hsl(300, 93%, 45%);
+   --color-primary-darker: hsl(300, 92%, 29%);
    --transition-speed: 300ms;
 }
 
@@ -30,6 +32,61 @@ p {
    box-shadow: 0 0 0.15rem 0.15rem var(--color-primary);
    -webkit-box-shadow: 0 0 0.15rem 0.15rem var(--color-primary);
    border-color: var(--color-primary);
+}
+
+.form-group.has-error {
+   color: red;
+}
+
+.form-group.has-error .form-control {
+   border-color: red;
+}
+
+.my-btn-primary {
+   background-color: var(--color-primary);
+   border-color: var(--color-primary);
+   color: white;
+}
+
+.my-btn-primary:hover {
+   background-color: var(--color-primary-darker);
+   border-color: var(--color-primary-darker);
+   color: white;
+}
+
+.my-btn-primary:focus,
+.my-btn-primary:active {
+   background-color: var(--color-primary-darker);
+   border-color: var(--color-primary-darker);
+   box-shadow: 0 0 0.15rem 0.15rem var(--color-primary-lighter);
+   -webkit-box-shadow: 0 0 0.15rem 0.15rem var(--color-primary-lighter);
+}
+
+.my-btn-primary:disabled {
+   background-color: var(--color-primary-lighter);
+   border-color: var(--color-primary-lighter);
+}
+
+.my-btn-outline-primary {
+   color: var(--color-primary);
+   border-color: var(--color-primary);
+}
+
+.my-btn-outline-primary:not(:disabled):hover {
+   background-color: var(--color-primary);
+   color: var(--heading-primary);
+   border-color: var(--color-primary);
+}
+
+.my-btn-outline-primary:not(:disabled):active,
+.my-btn-outline-primary:not(:disabled):focus {
+   box-shadow: 0 0 0.15rem 0.15rem var(--color-primary-lighter);
+   -webkit-box-shadow: 0 0 0.15rem 0.15rem var(--color-primary-lighter);
+}
+
+.my-btn-outline-primary:disabled {
+   color: gray;
+   border-color: gray;
 }
 
 @media (min-width: 768px) {

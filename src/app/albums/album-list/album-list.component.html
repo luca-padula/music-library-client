@@ -1,18 +1,9 @@
-<ng-template #myModal let-modal>
-   <div class="modal-header">
-      <h4 class="modal-title">Add</h4>
-   </div>
-   <div class="modal-body">
-      <p>hi</p>
-   </div>
-   <div class="modal-footer">
-      <button class="btn btn-primary" (click)="modal.close()">close</button>
-   </div>
-</ng-template>
+<app-add-album-to-playlist-menu
+   *ngIf="userIsAuthenticated"
+   [notifier]="playlistMenuNotifier$"
+></app-add-album-to-playlist-menu>
 
 <div class="container">
-   <button class="btn btn-primary" (click)="open(myModal)">open modal</button>
-
    <div class="form-row">
       <div class="form-group col-md-6">
          <label for="searchInput">Search for</label>
@@ -34,7 +25,12 @@
 
    <div class="albums-wrapper">
       <div class="row">
-         <app-album-display class="col-md-4" *ngFor="let album of albums$ | async" [album]="album"></app-album-display>
+         <div *ngFor="let album of albums$ | async" class="col-md-4 d-flex justify-content-center">
+            <app-album-display
+               [album]="album"
+               (AddAlbumToPlaylist)="handleAddAlbumToPlaylistEvent($event)"
+            ></app-album-display>
+         </div>
       </div>
    </div>
 </div>

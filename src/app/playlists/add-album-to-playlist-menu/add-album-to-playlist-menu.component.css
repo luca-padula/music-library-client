@@ -1,0 +1,30 @@
+.playlist-item {
+   cursor: pointer;
+}
+
+.playlist-item.selected {
+   background-color: hsl(0, 0%, 90%);
+   color: var(--color-primary);
+}
+
+.playlists-heading {
+   margin: 1.5rem auto;
+}
+
+.divider {
+   height: 2px;
+   background-color: hsl(0, 0%, 85%);
+}
+
+.list-group {
+   margin: 1.5rem 0;
+}
+
+.playlist-includes-album {
+   margin: 1.2rem 0;
+}
+
+.playlist-includes-album::before {
+   content: "*";
+   color: var(--color-primary);
+}

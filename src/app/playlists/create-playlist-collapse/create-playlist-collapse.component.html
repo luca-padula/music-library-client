@@ -1,0 +1,37 @@
+<div class="create-playlist-toggle" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed">
+   <h5 class="create-playlist-heading">Create a new playlist</h5>
+   <i *ngIf="isCollapsed" class="fa fa-plus"></i>
+   <i *ngIf="!isCollapsed" class="fa fa-minus"></i>
+</div>
+<div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+   <form class="create-playlist-form" #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <div class="form-group row" [class.has-error]="name.touched && name.errors">
+         <label for="playlistName" class="col-2 col-form-label">Name</label>
+         <div class="col-10">
+            <input
+               type="text"
+               name="name"
+               class="form-control"
+               id="playlistName"
+               #name="ngModel"
+               [(ngModel)]="newPlaylist.name"
+               required
+            />
+            <span class="error-help-block" *ngIf="name.touched && name.errors">Playlist name is required</span>
+         </div>
+      </div>
+      <div class="form-check">
+         <input
+            type="checkbox"
+            name="isPrivate"
+            class="form-check-input"
+            id="isPrivate"
+            [(ngModel)]="newPlaylist.isPrivate"
+         />
+         <label for="isPrivate" class="form-check-label">Make it private</label>
+      </div>
+      <button type="submit" class="btn my-btn-outline-primary" [disabled]="form.invalid">Submit</button>
+   </form>
+
+   <app-action-feedback [successNotifier]="success$" [errorNotifier]="error$"></app-action-feedback>
+</div>

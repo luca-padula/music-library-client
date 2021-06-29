@@ -1,11 +1,11 @@
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core"
 import {
-   Component,
-   ElementRef,
-   OnInit,
-   TemplateRef,
-   ViewChild,
-} from "@angular/core"
-import { BehaviorSubject, combineLatest, fromEvent, Observable } from "rxjs"
+   BehaviorSubject,
+   combineLatest,
+   fromEvent,
+   Observable,
+   Subject,
+} from "rxjs"
 import {
    debounceTime,
    distinctUntilChanged,
@@ -16,10 +16,11 @@ import {
 import { Album } from "../album"
 import { SortOption } from "../../sort-option-select/sort-option"
 import { AlbumService } from "../album.service"
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap"
+import { AuthService } from "src/app/auth/auth.service"
+import { albumSortOptions } from "../album-sort-options"
 
 @Component({
-   selector: "app-albums",
+   selector: "app-album-list",
    templateUrl: "./album-list.component.html",
    styleUrls: ["./album-list.component.css"],
 })
@@ -32,40 +33,20 @@ export class AlbumListComponent implements OnInit {
    @ViewChild("searchInput", { static: true })
    searchInputEl!: ElementRef<HTMLInputElement>
 
-   sortOptions: SortOption[] = [
-      { label: "", field: "", descending: false },
-      { label: "Album name ascending", field: "name", descending: false },
-      { label: "Album name descending", field: "name", descending: true },
-      {
-         label: "Artist name ascending",
-         field: "artistName",
-         descending: false,
-      },
-      {
-         label: "Artist name descending",
-         field: "artistName",
-         descending: true,
-      },
-      {
-         label: "Release date earliest to latest",
-         field: "releaseDate",
-         descending: false,
-      },
-      {
-         label: "Release date latest to earliest",
-         field: "releaseDate",
-         descending: true,
-      },
-   ]
+   private addAlbumToPlaylistSubject = new Subject<Album>()
+   playlistMenuNotifier$ = this.addAlbumToPlaylistSubject.asObservable()
+   sortOptions = albumSortOptions
 
    getAllAlbums$ = this.albumService.getAllAlbums()
    searchInput$ = new Observable<string>()
-   sortOption$ = new BehaviorSubject<SortOption>(this.sortOptions[0])
+   sortOptionSubject = new BehaviorSubject<SortOption>(this.sortOptions[0])
    albums$ = new Observable<Album[]>()
+
+   userIsAuthenticated: boolean = this.authService.userIsAuthenticated()
 
    constructor(
       private albumService: AlbumService,
-      private modalService: NgbModal
+      private authService: AuthService
    ) {}
 
    ngOnInit(): void {
@@ -83,7 +64,7 @@ export class AlbumListComponent implements OnInit {
       this.albums$ = combineLatest([
          this.getAllAlbums$,
          this.searchInput$,
-         this.sortOption$,
+         this.sortOptionSubject,
       ]).pipe(
          map(([allAlbums, filter, sortOption]) => {
             const filterFunction = this.buildAlbumFilterFunction(filter)
@@ -116,10 +97,10 @@ export class AlbumListComponent implements OnInit {
    }
 
    handleSortChange(newSortOption: SortOption): void {
-      this.sortOption$.next(newSortOption)
+      this.sortOptionSubject.next(newSortOption)
    }
 
-   open(content: any): void {
-      this.modalService.open(content)
+   handleAddAlbumToPlaylistEvent(albumToAdd: Album): void {
+      this.addAlbumToPlaylistSubject.next(albumToAdd)
    }
 }
