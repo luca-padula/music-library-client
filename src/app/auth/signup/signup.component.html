@@ -1,1 +1,37 @@
-<p>signup works!</p>
+<div class="container">
+   <h2>Create your account</h2>
+   <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+      <div class="form-group" [class.has-error]="userName.errors && userName.touched">
+         <label for="userName" class="control-label">Username</label>
+         <input
+            type="text"
+            class="form-control"
+            id="userName"
+            name="userName"
+            #userName="ngModel"
+            [(ngModel)]="user.userName"
+            required
+            maxlength="30"
+         />
+         <small class="input-length-indicator">{{ userName.value.length }}/30</small>
+      </div>
+      <div class="form-group">
+         <label for="firstName" class="control-label">First name</label>
+         <input type="text" class="form-control" id="firstName" name="firstName" />
+      </div>
+      <div class="form-group">
+         <label for="lastName" class="control-label">Last name</label>
+         <input type="text" class="form-control" id="lastName" name="lastName" />
+      </div>
+      <div class="form-group">
+         <label for="password" class="control-label">Password</label>
+         <input type="text" class="form-control" id="password" name="password" />
+      </div>
+      <div class="form-group">
+         <label for="confirmPassword" class="control-label">Confirm password</label>
+         <input type="text" class="form-control" id="confirmPassword" name="confirmPassword" />
+      </div>
+
+      <button type="submit" class="btn my-btn-primary" [disabled]="form.invalid">Submit</button>
+   </form>
+</div>

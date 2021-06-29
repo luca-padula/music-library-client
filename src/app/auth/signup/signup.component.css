@@ -1,0 +1,13 @@
+h2 {
+   margin: 2rem 0;
+   font-weight: bold;
+}
+
+.input-length-indicator {
+   font-size: 0.9rem;
+   display: none;
+}
+
+.form-control:focus + .input-length-indicator {
+   display: inline-block;
+}
