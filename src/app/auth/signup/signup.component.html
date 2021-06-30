@@ -87,10 +87,15 @@
                #confirmPassword="ngModel"
                [(ngModel)]="user.confirmPassword"
                required
+               [pattern]="password.value"
                title="Must match password"
             />
             <small
-               *ngIf="(confirmPassword.dirty || confirmPassword.touched) && confirmPassword.value !== password.value"
+               *ngIf="
+                  confirmPassword.errors &&
+                  confirmPassword.errors.pattern &&
+                  (confirmPassword.dirty || confirmPassword.touched)
+               "
                class="help-block"
             >
                Passwords do not match
