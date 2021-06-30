@@ -1,9 +1,12 @@
 <div class="container">
    <h2>Create your account</h2>
    <form (ngSubmit)="onSubmit(form)" #form="ngForm">
-      <div class="form-group row" [class.has-error]="userName.errors && userName.touched">
+      <div class="form-group row" [class.has-error]="userName.errors && (userName.touched || userName.dirty)">
          <label for="userName" class="col-form-label col-sm-3">Username</label>
          <div class="col-sm-9">
+            <span class="sr-only" id="userNameHelpBlock">
+               Username must only contain letters, numbers, hyphen (-), or underscore(_)
+            </span>
             <input
                type="text"
                class="form-control"
@@ -13,6 +16,9 @@
                [(ngModel)]="user.userName"
                required
                maxlength="30"
+               pattern="^[\w-]+$"
+               placeholder="Only letters, numbers, hyphen (-), or underscore(_)"
+               aria-describedby="userNameHelpBlock"
             />
             <small class="input-length-indicator">{{ userName.value.length }}/30</small>
          </div>
