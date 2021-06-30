@@ -1,13 +1,13 @@
-h2 {
+.title {
    margin: 2rem 0;
    font-weight: bold;
 }
 
-form {
+.signup-form {
    margin-top: 2rem;
 }
 
-label {
+.col-form-label {
    font-size: 1rem;
 }
 
@@ -17,10 +17,10 @@ label {
 }
 
 .form-control:focus + .input-length-indicator {
-   display: inline-block;
+   display: block;
 }
 
-button {
+.my-btn-primary {
    margin-top: 1rem;
 }
 
@@ -33,11 +33,11 @@ button {
       margin-top: 2rem;
    }
 
-   form {
+   .signup-form {
       margin-top: 3rem;
    }
 
-   label {
+   .col-form-label {
       font-size: 1.1rem;
    }
 }
