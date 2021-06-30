@@ -6,7 +6,8 @@
       aria-label="Add to playlist"
    ></i>
    <div class="album-info">
-      <h3 class="album-title">{{ album.name }}</h3>
+      <!-- ngStyle to disable top margin if the add to playlist button is rendered and already taking up space -->
+      <h3 class="album-title" [ngStyle]="{ 'margin-top': userIsAuthenticated ? '0' : '1rem' }">{{ album.name }}</h3>
       <a class="artist-link" href="#">{{ album.artistName }}</a>
       <h6 class="text-muted other-info">{{ album.releaseDate | date }}, {{ album.albumLength }}</h6>
    </div>
