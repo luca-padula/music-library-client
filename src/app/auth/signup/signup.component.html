@@ -22,7 +22,7 @@
             </small>
          </div>
       </div>
-      <div class="form-group row" [class.has-error]="firstName.errors && firstName.touched">
+      <div class="form-group row" [class.has-error]="firstName.errors && (firstName.touched || firstName.dirty)">
          <label for="firstName" class="col-form-label col-sm-3">First name</label>
          <div class="col-sm-9">
             <input
@@ -34,11 +34,18 @@
                [(ngModel)]="user.firstName"
                required
                maxlength="30"
+               pattern="^\S+$"
             />
             <small class="input-length-indicator">{{ firstName.value.length }}/30</small>
+            <small
+               class="error-help-block"
+               *ngIf="firstName.errors && firstName.errors.pattern && (firstName.touched || firstName.dirty)"
+            >
+               First name cannot contain whitespace
+            </small>
          </div>
       </div>
-      <div class="form-group row" [class.has-error]="lastName.errors && lastName.touched">
+      <div class="form-group row" [class.has-error]="lastName.errors && (lastName.touched || lastName.dirty)">
          <label for="lastName" class="col-form-label col-sm-3">Last name</label>
          <div class="col-sm-9">
             <input
@@ -50,8 +57,15 @@
                [(ngModel)]="user.lastName"
                required
                maxlength="30"
+               pattern="^\S+$"
             />
             <small class="input-length-indicator">{{ lastName.value.length }}/30</small>
+            <small
+               class="error-help-block"
+               *ngIf="lastName.errors && lastName.errors.pattern && (lastName.touched || lastName.dirty)"
+            >
+               Last name cannot contain whitespace
+            </small>
          </div>
       </div>
       <div class="form-group row" [class.has-error]="password.errors && password.touched">
@@ -72,10 +86,7 @@
       </div>
       <div
          class="form-group row"
-         [class.has-error]="
-            (confirmPassword.dirty || confirmPassword.touched) &&
-            (confirmPassword.errors || confirmPassword.value !== password.value)
-         "
+         [class.has-error]="confirmPassword.errors && (confirmPassword.touched || confirmPassword.dirty)"
       >
          <label for="confirmPassword" class="col-form-label col-sm-3">Confirm password</label>
          <div class="col-sm-9">
@@ -94,9 +105,9 @@
                *ngIf="
                   confirmPassword.errors &&
                   confirmPassword.errors.pattern &&
-                  (confirmPassword.dirty || confirmPassword.touched)
+                  (confirmPassword.touched || confirmPassword.dirty)
                "
-               class="help-block"
+               class="error-help-block"
             >
                Passwords do not match
             </small>
