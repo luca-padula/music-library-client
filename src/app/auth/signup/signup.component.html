@@ -1,6 +1,11 @@
 <div class="container">
    <h2 class="title">Create your account</h2>
-   <form class="signup-form" (ngSubmit)="onSubmit(form)" #form="ngForm">
+
+   <div class="alert alert-success" *ngIf="accountCreated">Your account has been successfully created</div>
+   <div class="alert alert-danger" *ngIf="error.message">{{ error.message }}</div>
+   <div class="alert alert-danger" *ngFor="let validationError of error.validationErrors">{{ validationError }}</div>
+
+   <form class="signup-form" *ngIf="!accountCreated" (ngSubmit)="onSubmit(form)" #form="ngForm">
       <div class="form-group row" [class.has-error]="userName.invalid && (userName.touched || userName.dirty)">
          <label for="userName" class="col-form-label col-sm-3">Username</label>
          <div class="col-sm-9">
@@ -16,7 +21,7 @@
                pattern="^[\w-]+$"
                aria-describedby="userNameHelpBlock"
             />
-            <small class="input-length-indicator">{{ userName.value.length }}/30</small>
+            <small class="input-length-indicator">{{ userName.value?.length }}/30</small>
             <small class="error-help-block" *ngIf="userName.errors?.required && (userName.touched || userName.dirty)">
                Please enter a username
             </small>
@@ -42,7 +47,7 @@
                maxlength="30"
                pattern="^\S+$"
             />
-            <small class="input-length-indicator">{{ firstName.value.length }}/30</small>
+            <small class="input-length-indicator">{{ firstName.value?.length }}/30</small>
             <small
                class="error-help-block"
                *ngIf="firstName.errors?.required && (firstName.touched || firstName.dirty)"
@@ -68,7 +73,7 @@
                maxlength="30"
                pattern="^\S+$"
             />
-            <small class="input-length-indicator">{{ lastName.value.length }}/30</small>
+            <small class="input-length-indicator">{{ lastName.value?.length }}/30</small>
             <small class="error-help-block" *ngIf="lastName.errors?.required && (lastName.touched || lastName.dirty)">
                Please enter your last name
             </small>

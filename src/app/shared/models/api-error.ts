@@ -4,6 +4,10 @@ interface ApiError {
    validationErrors?: string[]
 }
 
-const emptyApiError = { message: "", status: 0, validationErrors: undefined }
+const emptyApiError: ApiError = {
+   message: "",
+   status: 0,
+   validationErrors: undefined,
+}
 
 export { ApiError, emptyApiError }
