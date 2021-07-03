@@ -21,11 +21,26 @@
 }
 
 .my-btn-primary {
-   margin: 2rem 0;
+   margin-top: 2rem;
+   margin-bottom: 1rem;
    width: 100%;
    font-size: 1.1rem;
    padding: 0.5rem;
    border-radius: 2rem;
+}
+
+.login-text {
+   text-align: center;
+   margin: 0.75rem auto;
+   font-size: 1rem;
+}
+
+.login-text-link {
+   color: var(--color-primary);
+}
+
+.login-text-link:hover {
+   color: var(--color-primary-darker);
 }
 
 @media (min-width: 768px) {

@@ -46,9 +46,11 @@ export class AuthService {
    }
 
    signup(user: UserSignup): Observable<any> {
+      // confirmPassword is unnecessary for back end so destructure it out of the object
+      const { confirmPassword, ...newUser } = user
       return this.http.post<UserSignup>(
          `${environment.apiUrl}/users/register`,
-         user
+         newUser
       )
    }
 
