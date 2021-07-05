@@ -1,0 +1,145 @@
+<div class="container">
+   <h2 class="title">Create your account</h2>
+
+   <div class="alert alert-success" *ngIf="accountCreated">Your account has been successfully created</div>
+   <div class="alert alert-danger" *ngIf="error.message">{{ error.message }}</div>
+   <div class="alert alert-danger" *ngFor="let validationError of error.validationErrors">{{ validationError }}</div>
+
+   <form class="signup-form" *ngIf="!accountCreated" (ngSubmit)="onSubmit(form)" #form="ngForm">
+      <div class="form-group row" [class.has-error]="userName.invalid && (userName.touched || userName.dirty)">
+         <label for="userName" class="col-form-label col-sm-3">Username</label>
+         <div class="col-sm-9">
+            <input
+               type="text"
+               class="form-control"
+               id="userName"
+               name="userName"
+               #userName="ngModel"
+               [(ngModel)]="user.userName"
+               required
+               maxlength="30"
+               pattern="^[\w-]+$"
+               aria-describedby="userNameHelpBlock"
+            />
+            <small class="input-length-indicator">{{ userName.value?.length }}/30</small>
+            <small class="error-help-block" *ngIf="userName.errors?.required && (userName.touched || userName.dirty)">
+               Please enter a username
+            </small>
+            <small class="error-help-block" *ngIf="userName.errors?.pattern && (userName.touched || userName.dirty)">
+               Username is invalid
+            </small>
+            <small class="form-text text-muted" id="userNameHelpBlock">
+               Username must only contain letters, numbers, hyphen (-), or underscore(_)
+            </small>
+         </div>
+      </div>
+      <div class="form-group row" [class.has-error]="firstName.invalid && (firstName.touched || firstName.dirty)">
+         <label for="firstName" class="col-form-label col-sm-3">First name</label>
+         <div class="col-sm-9">
+            <input
+               type="text"
+               class="form-control"
+               id="firstName"
+               name="firstName"
+               #firstName="ngModel"
+               [(ngModel)]="user.firstName"
+               required
+               maxlength="30"
+               pattern="^\S+$"
+            />
+            <small class="input-length-indicator">{{ firstName.value?.length }}/30</small>
+            <small
+               class="error-help-block"
+               *ngIf="firstName.errors?.required && (firstName.touched || firstName.dirty)"
+            >
+               Please enter your first name
+            </small>
+            <small class="error-help-block" *ngIf="firstName.errors?.pattern && (firstName.touched || firstName.dirty)">
+               First name cannot contain whitespace
+            </small>
+         </div>
+      </div>
+      <div class="form-group row" [class.has-error]="lastName.invalid && (lastName.touched || lastName.dirty)">
+         <label for="lastName" class="col-form-label col-sm-3">Last name</label>
+         <div class="col-sm-9">
+            <input
+               type="text"
+               class="form-control"
+               id="lastName"
+               name="lastName"
+               #lastName="ngModel"
+               [(ngModel)]="user.lastName"
+               required
+               maxlength="30"
+               pattern="^\S+$"
+            />
+            <small class="input-length-indicator">{{ lastName.value?.length }}/30</small>
+            <small class="error-help-block" *ngIf="lastName.errors?.required && (lastName.touched || lastName.dirty)">
+               Please enter your last name
+            </small>
+            <small class="error-help-block" *ngIf="lastName.errors?.pattern && (lastName.touched || lastName.dirty)">
+               Last name cannot contain whitespace
+            </small>
+         </div>
+      </div>
+      <div class="form-group row" [class.has-error]="password.invalid && password.touched">
+         <label for="password" class="col-form-label col-sm-3">Password</label>
+         <div class="col-sm-9">
+            <input
+               type="password"
+               class="form-control"
+               id="password"
+               name="password"
+               #password="ngModel"
+               [(ngModel)]="user.password"
+               required
+               pattern="[\w\s]{6}.*"
+               title="At least 6 characters"
+            />
+            <small class="error-help-block" *ngIf="password.errors?.required && password.touched">
+               Please enter a password
+            </small>
+            <small class="error-help-block" *ngIf="password.errors?.pattern && password.touched">
+               Password must be at least 6 characters
+            </small>
+         </div>
+      </div>
+      <div
+         class="form-group row"
+         [class.has-error]="confirmPassword.invalid && (confirmPassword.touched || confirmPassword.dirty)"
+      >
+         <label for="confirmPassword" class="col-form-label col-sm-3">Confirm password</label>
+         <div class="col-sm-9">
+            <input
+               type="password"
+               class="form-control"
+               id="confirmPassword"
+               name="confirmPassword"
+               #confirmPassword="ngModel"
+               [(ngModel)]="user.confirmPassword"
+               required
+               [pattern]="password.value"
+               title="Must match password"
+            />
+            <small
+               class="error-help-block"
+               *ngIf="password.valid && confirmPassword.errors?.required && confirmPassword.touched"
+            >
+               Please confirm your password
+            </small>
+            <small
+               class="error-help-block"
+               *ngIf="confirmPassword.errors?.pattern && (confirmPassword.touched || confirmPassword.dirty)"
+            >
+               Passwords do not match
+            </small>
+         </div>
+      </div>
+
+      <button type="submit" class="btn my-btn-primary" [disabled]="form.invalid">Create account</button>
+   </form>
+
+   <h6 class="login-text text-muted">
+      Already have an account? - <a class="login-text-link" routerLink="/login">Log in</a>
+   </h6>
+</div>

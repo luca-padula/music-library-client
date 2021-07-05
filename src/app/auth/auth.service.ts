@@ -4,6 +4,7 @@ import { Observable } from "rxjs"
 import { JwtHelperService } from "@auth0/angular-jwt"
 import { environment } from "src/environments/environment"
 import { User } from "./user"
+import { UserSignup } from "./user-signup"
 
 /*
    Docs say you can create an instance of JwtHelperService and use it directly
@@ -41,6 +42,15 @@ export class AuthService {
       return this.http.post<Partial<User>>(
          `${environment.apiUrl}/users/login`,
          user
+      )
+   }
+
+   signup(user: UserSignup): Observable<any> {
+      // confirmPassword is unnecessary for back end so destructure it out of the object
+      const { confirmPassword, ...newUser } = user
+      return this.http.post<UserSignup>(
+         `${environment.apiUrl}/users/register`,
+         newUser
       )
    }
 

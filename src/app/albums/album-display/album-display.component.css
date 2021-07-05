@@ -1,14 +1,13 @@
 .album-item {
    margin-bottom: 1.5rem;
-   height: 13rem;
+   height: 11.5rem;
    width: 20rem;
    border: 5px double hsl(0, 0%, 45%);
-   padding: 0.5rem;
+   padding: 0.35rem;
 }
 
 .add-to-playlist {
-   margin: 0 0 0 auto;
-   font-size: 1.4rem;
+   font-size: 1.5rem;
 }
 
 .add-to-playlist:hover {
@@ -21,7 +20,7 @@
 }
 
 .album-title {
-   margin: 0.9rem auto;
+   margin-bottom: 1rem;
    height: 4rem;
    overflow: hidden;
 }

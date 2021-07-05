@@ -1,0 +1,62 @@
+.title {
+   margin: 2rem 0;
+   font-weight: bold;
+}
+
+.signup-form {
+   margin-top: 2rem;
+}
+
+.col-form-label {
+   font-size: 1rem;
+}
+
+.input-length-indicator {
+   font-size: 0.9rem;
+   display: none;
+}
+
+.form-control:focus + .input-length-indicator {
+   display: block;
+}
+
+.my-btn-primary {
+   margin-top: 2rem;
+   margin-bottom: 1rem;
+   width: 100%;
+   font-size: 1.1rem;
+   padding: 0.5rem;
+   border-radius: 2rem;
+}
+
+.login-text {
+   text-align: center;
+   margin: 0.75rem auto;
+   font-size: 1rem;
+}
+
+.login-text-link {
+   color: var(--color-primary);
+}
+
+.login-text-link:hover {
+   color: var(--color-primary-darker);
+}
+
+@media (min-width: 768px) {
+   .container {
+      width: 50%;
+   }
+
+   .form-group {
+      margin-top: 2rem;
+   }
+
+   .signup-form {
+      margin-top: 3rem;
+   }
+
+   .col-form-label {
+      font-size: 1.1rem;
+   }
+}
