@@ -94,6 +94,14 @@ p {
    background-color: hsl(0, 0%, 85%);
 }
 
+.primary-color-link {
+   color: var(--color-primary);
+}
+
+.primary-color-link:hover {
+   color: var(--color-primary-darker);
+}
+
 @media (min-width: 768px) {
    :root {
       font-size: 16px;

@@ -24,11 +24,3 @@
    height: 4rem;
    overflow: hidden;
 }
-
-.artist-link {
-   color: var(--color-primary);
-}
-
-.artist-link:hover {
-   color: var(--color-primary-darker);
-}
