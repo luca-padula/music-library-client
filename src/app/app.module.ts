@@ -21,7 +21,8 @@ import { CreatePlaylistCollapseComponent } from "./playlists/create-playlist-col
 import { ActionFeedbackComponent } from './action-feedback/action-feedback.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AlbumsPageComponent } from './albums/albums-page/albums-page.component';
-import { ArtistDetailComponent } from './artists/artist-detail/artist-detail.component'
+import { ArtistDetailComponent } from './artists/artist-detail/artist-detail.component';
+import { PlaylistsPageComponent } from './playlists/playlists-page/playlists-page.component'
 
 @NgModule({
    declarations: [
@@ -40,6 +41,7 @@ import { ArtistDetailComponent } from './artists/artist-detail/artist-detail.com
       SignupComponent,
       AlbumsPageComponent,
       ArtistDetailComponent,
+      PlaylistsPageComponent,
    ],
    imports: [
       BrowserModule,
