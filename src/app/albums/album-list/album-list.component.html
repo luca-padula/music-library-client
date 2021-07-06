@@ -3,34 +3,32 @@
    [notifier]="playlistMenuNotifier$"
 ></app-add-album-to-playlist-menu>
 
-<div class="container">
-   <div class="form-row">
-      <div class="form-group col-md-6">
-         <label for="searchInput">Search for</label>
-         <input
-            type="search"
-            class="form-control"
-            id="searchInput"
-            #searchInput
-            placeholder="search by album or artist..."
-         />
-      </div>
-      <div class="form-group col-md-6">
-         <app-sort-option-select
-            [sortOptions]="sortOptions"
-            (sortChangeEvent)="handleSortChange($event)"
-         ></app-sort-option-select>
-      </div>
+<div class="form-row">
+   <div class="form-group col-md-6">
+      <label for="searchInput">Search for</label>
+      <input
+         type="search"
+         class="form-control"
+         id="searchInput"
+         #searchInput
+         placeholder="search by album or artist..."
+      />
    </div>
+   <div class="form-group col-md-6">
+      <app-sort-option-select
+         [sortOptions]="sortOptions"
+         (sortChangeEvent)="handleSortChange($event)"
+      ></app-sort-option-select>
+   </div>
+</div>
 
-   <div class="albums-wrapper">
-      <div class="row">
-         <div *ngFor="let album of albums$ | async" class="col-md-4 d-flex justify-content-center">
-            <app-album-display
-               [album]="album"
-               (AddAlbumToPlaylist)="handleAddAlbumToPlaylistEvent($event)"
-            ></app-album-display>
-         </div>
+<div class="albums-wrapper">
+   <div class="row">
+      <div *ngFor="let album of albums$ | async" class="col-md-4 d-flex justify-content-center">
+         <app-album-display
+            [album]="album"
+            (AddAlbumToPlaylist)="handleAddAlbumToPlaylistEvent($event)"
+         ></app-album-display>
       </div>
    </div>
 </div>

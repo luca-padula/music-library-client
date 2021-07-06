@@ -19,7 +19,8 @@ import { NgbModalModule, NgbCollapseModule } from "@ng-bootstrap/ng-bootstrap"
 import { AddAlbumToPlaylistMenuComponent } from "./playlists/add-album-to-playlist-menu/add-album-to-playlist-menu.component"
 import { CreatePlaylistCollapseComponent } from "./playlists/create-playlist-collapse/create-playlist-collapse.component";
 import { ActionFeedbackComponent } from './action-feedback/action-feedback.component';
-import { SignupComponent } from './auth/signup/signup.component'
+import { SignupComponent } from './auth/signup/signup.component';
+import { AlbumsPageComponent } from './albums/albums-page/albums-page.component'
 
 @NgModule({
    declarations: [
@@ -36,6 +37,7 @@ import { SignupComponent } from './auth/signup/signup.component'
       CreatePlaylistCollapseComponent,
       ActionFeedbackComponent,
       SignupComponent,
+      AlbumsPageComponent,
    ],
    imports: [
       BrowserModule,

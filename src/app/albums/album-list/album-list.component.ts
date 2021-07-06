@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core"
+import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core"
 import {
    BehaviorSubject,
    combineLatest,
@@ -15,7 +15,6 @@ import {
 } from "rxjs/operators"
 import { Album } from "../album"
 import { SortOption } from "../../sort-option-select/sort-option"
-import { AlbumService } from "../album.service"
 import { AuthService } from "src/app/auth/auth.service"
 import { albumSortOptions } from "../album-sort-options"
 
@@ -37,17 +36,14 @@ export class AlbumListComponent implements OnInit {
    playlistMenuNotifier$ = this.addAlbumToPlaylistSubject.asObservable()
    sortOptions = albumSortOptions
 
-   getAllAlbums$ = this.albumService.getAllAlbums()
+   @Input() albumsToFetch$ = new Observable<Album[]>()
    searchInput$ = new Observable<string>()
    sortOptionSubject = new BehaviorSubject<SortOption>(this.sortOptions[0])
    albums$ = new Observable<Album[]>()
 
    userIsAuthenticated: boolean = this.authService.userIsAuthenticated()
 
-   constructor(
-      private albumService: AlbumService,
-      private authService: AuthService
-   ) {}
+   constructor(private authService: AuthService) {}
 
    ngOnInit(): void {
       this.searchInput$ = fromEvent(
@@ -62,7 +58,7 @@ export class AlbumListComponent implements OnInit {
       )
 
       this.albums$ = combineLatest([
-         this.getAllAlbums$,
+         this.albumsToFetch$,
          this.searchInput$,
          this.sortOptionSubject,
       ]).pipe(
