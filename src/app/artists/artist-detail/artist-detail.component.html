@@ -1,1 +1,11 @@
-<p>artist-detail works!</p>
+<div class="container">
+   <h1 class="artist-name">{{ artist.name }}</h1>
+   <h5 class="artist-subtitle text-muted">Artist added on {{ artist.createdAt | date }}</h5>
+   <div class="flex-wrapper">
+      <h5 class="albums-heading">Discography</h5>
+      <!-- TODO: Change routerlink to add album page -->
+      <button class="btn my-btn-primary" *ngIf="userIsAuthenticated" routerLink="/albums">Add an album</button>
+   </div>
+   <div class="divider"></div>
+   <app-album-list [albumsToFetch$]="albumsFromArtist$"></app-album-list>
+</div>

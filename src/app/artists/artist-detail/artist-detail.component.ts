@@ -1,7 +1,10 @@
 import { Component, OnInit } from "@angular/core"
 import { ActivatedRoute } from "@angular/router"
+import { Observable } from "rxjs"
+import { Album } from "src/app/albums/album"
+import { AlbumService } from "src/app/albums/album.service"
+import { AuthService } from "src/app/auth/auth.service"
 import { Artist } from "../artist"
-import { ArtistService } from "../artist.service"
 
 @Component({
    selector: "app-artist-detail",
@@ -10,14 +13,19 @@ import { ArtistService } from "../artist.service"
 })
 export class ArtistDetailComponent implements OnInit {
    artist!: Artist
+   albumsFromArtist$ = new Observable<Album[]>()
+   userIsAuthenticated = this.authService.userIsAuthenticated()
 
    constructor(
       private route: ActivatedRoute,
-      private artistService: ArtistService
+      private albumService: AlbumService,
+      private authService: AuthService
    ) {}
 
    ngOnInit(): void {
       this.artist = this.route.snapshot.data.artist as Artist
-      console.log(this.artist)
+      this.albumsFromArtist$ = this.albumService.getAlbumsFromArtist(
+         this.artist._id
+      )
    }
 }
