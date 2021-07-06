@@ -11,11 +11,6 @@
    margin: 1.5rem auto;
 }
 
-.divider {
-   height: 2px;
-   background-color: hsl(0, 0%, 85%);
-}
-
 .list-group {
    margin: 1.5rem 0;
 }

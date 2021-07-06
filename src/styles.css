@@ -89,6 +89,11 @@ p {
    border-color: gray;
 }
 
+.divider {
+   height: 2px;
+   background-color: hsl(0, 0%, 85%);
+}
+
 @media (min-width: 768px) {
    :root {
       font-size: 16px;

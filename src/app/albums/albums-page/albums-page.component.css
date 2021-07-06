@@ -1,0 +1,13 @@
+.page-title {
+   color: var(--color-primary);
+   font-weight: bold;
+   margin: 2rem 0;
+}
+
+p {
+   margin: 2rem 0;
+}
+
+.divider {
+   margin-bottom: 1.5rem;
+}
