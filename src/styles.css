@@ -94,6 +94,12 @@ p {
    background-color: hsl(0, 0%, 85%);
 }
 
+.page-title {
+   color: var(--color-primary);
+   font-weight: bold;
+   margin: 2rem 0;
+}
+
 .primary-color-link {
    color: var(--color-primary);
 }

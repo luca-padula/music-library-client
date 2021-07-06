@@ -1,10 +1,4 @@
-.page-title {
-   color: var(--color-primary);
-   font-weight: bold;
-   margin: 2rem 0;
-}
-
-p {
+.page-description {
    margin: 2rem 0;
 }
 
