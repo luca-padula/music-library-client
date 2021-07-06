@@ -1,0 +1,19 @@
+.artist-name {
+   margin-top: 2rem;
+   font-weight: bold;
+}
+
+.artist-subtitle {
+   margin-bottom: 2.5rem;
+}
+
+.flex-wrapper {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin: 1rem 0;
+}
+
+.divider {
+   margin-bottom: 2rem;
+}

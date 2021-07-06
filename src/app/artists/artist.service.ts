@@ -14,6 +14,10 @@ export class ArtistService {
       return this.http.get<Artist[]>(`${environment.apiUrl}/artists`)
    }
 
+   getArtistById(artistId: string): Observable<Artist> {
+      return this.http.get<Artist>(`${environment.apiUrl}/artists/${artistId}`)
+   }
+
    addArtist(newArtist: Partial<Artist>): Observable<any> {
       return this.http.post(`${environment.apiUrl}/artists`, newArtist)
    }

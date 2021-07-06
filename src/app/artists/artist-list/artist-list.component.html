@@ -29,7 +29,11 @@
             </tr>
          </thead>
          <tbody>
-            <tr *ngFor="let artist of filteredArtists; index as idx">
+            <tr
+               class="artist-row"
+               *ngFor="let artist of filteredArtists; index as idx"
+               [routerLink]="'/artists/' + artist._id"
+            >
                <th>{{ idx + 1 }}</th>
                <td>{{ artist.name }}</td>
                <td>{{ artist.createdAt | date }}</td>

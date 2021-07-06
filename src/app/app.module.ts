@@ -20,7 +20,8 @@ import { AddAlbumToPlaylistMenuComponent } from "./playlists/add-album-to-playli
 import { CreatePlaylistCollapseComponent } from "./playlists/create-playlist-collapse/create-playlist-collapse.component";
 import { ActionFeedbackComponent } from './action-feedback/action-feedback.component';
 import { SignupComponent } from './auth/signup/signup.component';
-import { AlbumsPageComponent } from './albums/albums-page/albums-page.component'
+import { AlbumsPageComponent } from './albums/albums-page/albums-page.component';
+import { ArtistDetailComponent } from './artists/artist-detail/artist-detail.component'
 
 @NgModule({
    declarations: [
@@ -38,6 +39,7 @@ import { AlbumsPageComponent } from './albums/albums-page/albums-page.component'
       ActionFeedbackComponent,
       SignupComponent,
       AlbumsPageComponent,
+      ArtistDetailComponent,
    ],
    imports: [
       BrowserModule,

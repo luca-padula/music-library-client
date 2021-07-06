@@ -7,10 +7,17 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 import { AuthGuard } from "./auth/auth.guard"
 import { SignupComponent } from "./auth/signup/signup.component"
 import { AlbumsPageComponent } from "./albums/albums-page/albums-page.component"
+import { ArtistDetailComponent } from "./artists/artist-detail/artist-detail.component"
+import { ArtistResolver } from "./artists/artist.resolver"
 
 const routes: Routes = [
    { path: "home", component: HomeComponent },
    { path: "artists", component: ArtistListComponent },
+   {
+      path: "artists/:id",
+      component: ArtistDetailComponent,
+      resolve: { artist: ArtistResolver },
+   },
    { path: "login", component: LoginComponent },
    { path: "signup", component: SignupComponent },
    { path: "albums", component: AlbumsPageComponent },

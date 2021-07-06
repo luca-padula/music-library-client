@@ -13,4 +13,10 @@ export class AlbumService {
    getAllAlbums(): Observable<Album[]> {
       return this.http.get<Album[]>(`${environment.apiUrl}/albums`)
    }
+
+   getAlbumsFromArtist(artistId: string): Observable<Album[]> {
+      return this.http.get<Album[]>(
+         `${environment.apiUrl}/artists/${artistId}/albums`
+      )
+   }
 }
