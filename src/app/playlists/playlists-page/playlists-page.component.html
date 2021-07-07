@@ -1,1 +1,28 @@
-<p>playlists-page works!</p>
+<div class="container">
+   <h1 class="page-title">Playlists</h1>
+   <p class="page-description">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed praesentium quibusdam commodi! Tenetur cum in autem
+      pariatur asperiores, possimus quasi explicabo consequuntur eius recusandae aut.
+   </p>
+   <div class="divider"></div>
+   <div class="row" *ngIf="userIsAuthenticated">
+      <div class="col-md-6">
+         <app-create-playlist-collapse></app-create-playlist-collapse>
+      </div>
+      <div class="col-md-6">
+         <h4>Your playlists</h4>
+         <div class="user-playlists-wrapper row">
+            <div class="col-4 col-sm-3" *ngFor="let playlist of userPlaylists$ | async">
+               {{ playlist.name }} - {{ playlist.creatorUserName }}
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <h3>All playlists</h3>
+   <div class="all-playlists-wrapper row">
+      <div class="col-4 col-sm-3" *ngFor="let playlist of allPlaylists$ | async">
+         {{ playlist.name }} - {{ playlist.creatorUserName }}
+      </div>
+   </div>
+</div>

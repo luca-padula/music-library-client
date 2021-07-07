@@ -11,6 +11,10 @@ import { Playlist } from "./playlist"
 export class PlaylistService {
    constructor(private http: HttpClient) {}
 
+   getAllPlaylists(): Observable<Playlist[]> {
+      return this.http.get<Playlist[]>(`${environment.apiUrl}/playlists`)
+   }
+
    getPlaylistsForUser(userId: string): Observable<Playlist[]> {
       return this.http.get<Playlist[]>(
          `${environment.apiUrl}/users/${userId}/playlists`
