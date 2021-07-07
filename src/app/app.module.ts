@@ -22,7 +22,8 @@ import { ActionFeedbackComponent } from './action-feedback/action-feedback.compo
 import { SignupComponent } from './auth/signup/signup.component';
 import { AlbumsPageComponent } from './albums/albums-page/albums-page.component';
 import { ArtistDetailComponent } from './artists/artist-detail/artist-detail.component';
-import { PlaylistsPageComponent } from './playlists/playlists-page/playlists-page.component'
+import { PlaylistsPageComponent } from './playlists/playlists-page/playlists-page.component';
+import { PlaylistDisplayComponent } from './playlists/playlist-display/playlist-display.component'
 
 @NgModule({
    declarations: [
@@ -42,6 +43,7 @@ import { PlaylistsPageComponent } from './playlists/playlists-page/playlists-pag
       AlbumsPageComponent,
       ArtistDetailComponent,
       PlaylistsPageComponent,
+      PlaylistDisplayComponent,
    ],
    imports: [
       BrowserModule,

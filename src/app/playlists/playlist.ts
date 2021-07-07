@@ -1,6 +1,6 @@
 import { Album } from "../albums/album"
 
-export interface Playlist {
+interface Playlist {
    _id: string
    name: string
    isPrivate: boolean
@@ -11,3 +11,19 @@ export interface Playlist {
    updatedAt: Date
    __v: number
 }
+
+const emptyDate = new Date()
+
+const emptyPlaylist: Playlist = {
+   _id: "",
+   name: "",
+   isPrivate: false,
+   albums: [],
+   creator: "",
+   creatorUserName: "",
+   createdAt: emptyDate,
+   updatedAt: emptyDate,
+   __v: 0,
+}
+
+export { Playlist, emptyPlaylist }

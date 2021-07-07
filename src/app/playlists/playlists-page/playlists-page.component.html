@@ -11,18 +11,20 @@
       </div>
       <div class="col-md-6">
          <h4>Your playlists</h4>
-         <div class="user-playlists-wrapper row">
-            <div class="col-4 col-sm-3" *ngFor="let playlist of userPlaylists$ | async">
-               {{ playlist.name }} - {{ playlist.creatorUserName }}
-            </div>
-         </div>
+         <ul class="list-group">
+            <li class="list-group-item" *ngFor="let playlist of userPlaylists$ | async">
+               {{ playlist.name }}
+               <i class="fa fa-lock" *ngIf="playlist.isPrivate"></i>
+               <small class="text-muted">{{ playlist.albums.length }} albums</small>
+            </li>
+         </ul>
       </div>
    </div>
 
    <h3>All playlists</h3>
    <div class="all-playlists-wrapper row">
-      <div class="col-4 col-sm-3" *ngFor="let playlist of allPlaylists$ | async">
-         {{ playlist.name }} - {{ playlist.creatorUserName }}
+      <div class="col-6 col-sm-3" *ngFor="let playlist of allPlaylists$ | async">
+         <app-playlist-display [playlist]="playlist"></app-playlist-display>
       </div>
    </div>
 </div>
