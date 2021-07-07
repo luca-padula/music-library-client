@@ -1,0 +1,43 @@
+.user-playlists-title {
+   margin: 1rem 0;
+}
+
+.user-playlists-list {
+   margin-bottom: 2rem;
+   max-height: 15rem;
+   overflow-y: auto;
+}
+
+.user-playlists-list-item {
+   height: 5rem;
+   cursor: pointer;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.user-playlists-list-item:hover {
+   background-color: hsl(0, 0%, 90%);
+   color: var(--color-primary);
+}
+
+.fa-lock {
+   font-size: 1.5rem;
+}
+
+.all-playlists-row {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.all-playlists-title {
+   margin: 1.5rem 0;
+}
+
+@media (min-width: 768px) {
+   .all-playlists-row {
+      flex-direction: row;
+   }
+}
