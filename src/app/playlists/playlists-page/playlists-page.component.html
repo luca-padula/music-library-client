@@ -41,7 +41,7 @@
       />
    </div>
    <div class="all-playlists-wrapper row">
-      <div class="col-sm-4" *ngFor="let playlist of allPlaylists$ | async">
+      <div class="col-sm-4" *ngFor="let playlist of allPlaylistsFiltered$ | async">
          <app-playlist-display [playlist]="playlist"></app-playlist-display>
       </div>
    </div>
