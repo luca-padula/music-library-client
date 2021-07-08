@@ -28,16 +28,26 @@
 .all-playlists-row {
    display: flex;
    flex-direction: column;
-   justify-content: space-between;
-   align-items: center;
+   margin: 1.5rem 0;
 }
 
 .all-playlists-title {
-   margin: 1.5rem 0;
+   margin-bottom: 1.5rem;
 }
 
 @media (min-width: 768px) {
    .all-playlists-row {
       flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin: 2rem 0;
+   }
+
+   .all-playlists-title {
+      margin-bottom: 0;
+   }
+
+   #searchInput {
+      width: 75%;
    }
 }

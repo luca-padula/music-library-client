@@ -37,10 +37,11 @@
          id="searchInput"
          #searchInput
          placeholder="search by playlist name or username..."
+         aria-label="search by playlist name or username"
       />
    </div>
    <div class="all-playlists-wrapper row">
-      <div class="col-6 col-sm-3" *ngFor="let playlist of allPlaylists$ | async">
+      <div class="col-sm-4" *ngFor="let playlist of allPlaylists$ | async">
          <app-playlist-display [playlist]="playlist"></app-playlist-display>
       </div>
    </div>

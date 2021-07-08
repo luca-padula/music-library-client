@@ -12,7 +12,6 @@ export class PlaylistsPageComponent implements OnInit {
    userIsAuthenticated = this.authService.userIsAuthenticated()
    private token = this.authService.getDecodedToken()
    userPlaylists$ = this.playlistService.getPlaylistsForUser(this.token?._id)
-   // TODO: Only get public playlists
    allPlaylists$ = this.playlistService.getAllPlaylists().pipe(
       map((allPlaylists) => {
          if (this.userIsAuthenticated) {
