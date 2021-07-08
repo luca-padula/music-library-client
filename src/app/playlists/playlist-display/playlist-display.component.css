@@ -1,0 +1,21 @@
+.playlist-item {
+   margin: 1rem 0;
+   cursor: pointer;
+}
+
+.playlist-item:hover {
+   border-color: var(--color-primary);
+}
+
+.playlist-name {
+   margin-bottom: 1.5rem;
+   font-size: 1.6rem;
+}
+
+.playlist-creator {
+   margin-bottom: 0.3rem;
+}
+
+.creator-name {
+   font-weight: bold;
+}

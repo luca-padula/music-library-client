@@ -1,6 +1,9 @@
-<div class="card">
+<div class="card playlist-item">
    <div class="card-body">
-      <h4 class="card-title">{{ playlist.name }}</h4>
-      <h6 class="card-subtitle">created by {{ playlist.creatorUserName }}</h6>
+      <h3 class="card-title playlist-name">{{ playlist.name }}</h3>
+      <h6 class="card-subtitle playlist-creator">
+         created by <span class="creator-name">{{ playlist.creatorUserName }}</span>
+      </h6>
+      <h6 class="text-muted playlist-info">{{ playlist.albums.length }} albums - {{ playlist.createdAt | date }}</h6>
    </div>
 </div>
