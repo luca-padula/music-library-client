@@ -11,15 +11,6 @@
    font-size: 1rem;
 }
 
-.input-length-indicator {
-   font-size: 0.9rem;
-   display: none;
-}
-
-.form-control:focus + .input-length-indicator {
-   display: block;
-}
-
 .my-btn-primary {
    margin-top: 2rem;
    margin-bottom: 1rem;

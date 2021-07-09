@@ -34,6 +34,15 @@ p {
    border-color: var(--color-primary);
 }
 
+.input-length-indicator {
+   font-size: 0.9rem;
+   display: none;
+}
+
+.form-control:focus + .input-length-indicator {
+   display: block;
+}
+
 .form-group.has-error {
    color: red;
 }
