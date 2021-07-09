@@ -1,11 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core"
-import { combineLatest, fromEvent, Observable } from "rxjs"
+import { combineLatest, fromEvent, Observable, Subject } from "rxjs"
 import {
    debounceTime,
    distinctUntilChanged,
    map,
    pluck,
    startWith,
+   takeUntil,
 } from "rxjs/operators"
 import { AuthService } from "src/app/auth/auth.service"
 import { Playlist } from "../playlist"
@@ -17,9 +18,10 @@ import { PlaylistService } from "../playlist.service"
    styleUrls: ["./playlists-page.component.css"],
 })
 export class PlaylistsPageComponent implements OnInit {
+   ngUnsubscribe = new Subject<any>()
    userIsAuthenticated = this.authService.userIsAuthenticated()
    private token = this.authService.getDecodedToken()
-   userPlaylists$ = this.playlistService.getPlaylistsForUser(this.token?._id)
+   userPlaylists: Playlist[] = []
 
    @ViewChild("searchInput", { static: true })
    searchInputEl!: ElementRef<HTMLInputElement>
@@ -70,5 +72,21 @@ export class PlaylistsPageComponent implements OnInit {
             )
          )
       )
+
+      if (this.userIsAuthenticated) {
+         this.playlistService
+            .getPlaylistsForUser(this.token._id)
+            .pipe(takeUntil(this.ngUnsubscribe))
+            .subscribe((playlists) => (this.userPlaylists = playlists))
+      }
+   }
+
+   handlePlaylistCreated(createdPlaylist: Playlist): void {
+      this.userPlaylists = [...this.userPlaylists, createdPlaylist]
+   }
+
+   ngOnDestroy(): void {
+      this.ngUnsubscribe.next()
+      this.ngUnsubscribe.complete()
    }
 }

@@ -8,13 +8,13 @@
 
    <div class="row" *ngIf="userIsAuthenticated">
       <div class="col-md-6">
-         <app-create-playlist-collapse></app-create-playlist-collapse>
+         <app-create-playlist-collapse (playlistCreated)="handlePlaylistCreated($event)"></app-create-playlist-collapse>
       </div>
       <div class="col-md-6">
          <h4 class="user-playlists-title">Your playlists</h4>
          <ul class="list-group user-playlists-list">
             <!-- TODO: Add link to playlist detail page -->
-            <li class="list-group-item user-playlists-list-item" *ngFor="let playlist of userPlaylists$ | async">
+            <li class="list-group-item user-playlists-list-item" *ngFor="let playlist of userPlaylists">
                <div>
                   <h6>{{ playlist.name }}</h6>
                   <small class="text-muted">
