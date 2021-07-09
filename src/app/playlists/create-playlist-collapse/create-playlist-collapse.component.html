@@ -5,7 +5,7 @@
 </div>
 <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
    <form class="create-playlist-form" #form="ngForm" (ngSubmit)="onSubmit(form)">
-      <div class="form-group row" [class.has-error]="name.touched && name.errors">
+      <div class="form-group row" [class.has-error]="name.invalid && (name.touched || name.dirty)">
          <label for="playlistName" class="col-2 col-form-label">Name</label>
          <div class="col-10">
             <input
@@ -16,8 +16,16 @@
                #name="ngModel"
                [(ngModel)]="newPlaylist.name"
                required
+               maxlength="30"
+               pattern="^\S+.*(?<!\s)$"
             />
-            <span class="error-help-block" *ngIf="name.touched && name.errors">Playlist name is required</span>
+            <small class="input-length-indicator">{{ name.value.length }}/30</small>
+            <small class="error-help-block" *ngIf="name.touched && name.errors?.required">
+               Playlist name is required
+            </small>
+            <small class="error-help-block" *ngIf="name.dirty && name.errors?.pattern">
+               Playlist name cannot start or end with whitespace
+            </small>
          </div>
       </div>
       <div class="form-check">
