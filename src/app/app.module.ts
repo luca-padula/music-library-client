@@ -23,7 +23,8 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AlbumsPageComponent } from './albums/albums-page/albums-page.component';
 import { ArtistDetailComponent } from './artists/artist-detail/artist-detail.component';
 import { PlaylistsPageComponent } from './playlists/playlists-page/playlists-page.component';
-import { PlaylistDisplayComponent } from './playlists/playlist-display/playlist-display.component'
+import { PlaylistDisplayComponent } from './playlists/playlist-display/playlist-display.component';
+import { BackToTopComponent } from './back-to-top/back-to-top.component'
 
 @NgModule({
    declarations: [
@@ -44,6 +45,7 @@ import { PlaylistDisplayComponent } from './playlists/playlist-display/playlist-
       ArtistDetailComponent,
       PlaylistsPageComponent,
       PlaylistDisplayComponent,
+      BackToTopComponent,
    ],
    imports: [
       BrowserModule,
