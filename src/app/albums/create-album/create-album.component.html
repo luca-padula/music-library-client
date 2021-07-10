@@ -1,1 +1,45 @@
-<p>create-album works!</p>
+<div class="container">
+   <h1 class="page-title">Create Album</h1>
+   <form #form="ngForm">
+      <div class="form-group">
+         <label for="albumName" class="control-label">Title</label>
+         <input type="text" class="form-control" name="name" id="albumName" #name="ngModel" [(ngModel)]="album.name" />
+      </div>
+      <div class="form-row">
+         <div class="col-6">
+            <div class="form-group">
+               <label for="releaseDate" class="control-label">Release Date</label>
+               <input
+                  type="date"
+                  class="form-control"
+                  name="releaseDate"
+                  id="releaseDate"
+                  #releaseDate="ngModel"
+                  [(ngModel)]="album.releaseDate"
+               />
+            </div>
+         </div>
+         <div class="col-6">
+            <div class="form-group">
+               <label for="albumLength" class="control-label">Length</label>
+               <input
+                  type="text"
+                  class="form-control"
+                  name="albumLength"
+                  id="albumLength"
+                  #albumLength="ngModel"
+                  [(ngModel)]="album.albumLength"
+                  required
+                  pattern="^(?:\d{1,2}:)?\d{1,2}:\d{2}$"
+                  placeholder="x:xx:xx"
+                  aria-labelledby="lengthHelpBlock"
+               />
+               <small class="sr-only" id="lengthHelpBlock">
+                  Album length must be entered as hours followed by colon (if at least one hour) followed by minutes
+                  colon seconds x:xx:xx
+               </small>
+            </div>
+         </div>
+      </div>
+   </form>
+</div>
