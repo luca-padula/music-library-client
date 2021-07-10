@@ -9,6 +9,7 @@ import { SignupComponent } from "./auth/signup/signup.component"
 import { AlbumsPageComponent } from "./albums/albums-page/albums-page.component"
 import { ArtistDetailComponent } from "./artists/artist-detail/artist-detail.component"
 import { ArtistResolver } from "./artists/artist.resolver"
+import { PlaylistsPageComponent } from "./playlists/playlists-page/playlists-page.component"
 
 const routes: Routes = [
    { path: "home", component: HomeComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
    { path: "login", component: LoginComponent },
    { path: "signup", component: SignupComponent },
    { path: "albums", component: AlbumsPageComponent },
+   { path: "playlists", component: PlaylistsPageComponent },
    { path: "", redirectTo: "/home", pathMatch: "full" },
    { path: "**", component: PageNotFoundComponent },
 ]

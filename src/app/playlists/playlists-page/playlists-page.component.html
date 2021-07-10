@@ -1,0 +1,49 @@
+<div class="container">
+   <h1 class="page-title">Playlists</h1>
+   <p class="page-description">
+      Here, you can browse all the public playlists created by our users. You can use the search bar to search playlists
+      by name or the username of its creator. <strong>If you're logged in,</strong> you can see your personal playlists
+      and create a new one. Click a playlist to view it in more detail.
+   </p>
+   <div class="divider"></div>
+
+   <div class="row" *ngIf="userIsAuthenticated">
+      <div class="col-md-6">
+         <app-create-playlist-collapse (playlistCreated)="handlePlaylistCreated($event)"></app-create-playlist-collapse>
+      </div>
+      <div class="col-md-6">
+         <h4 class="user-playlists-title">Your playlists</h4>
+         <ul class="list-group user-playlists-list">
+            <!-- TODO: Add link to playlist detail page -->
+            <li class="list-group-item user-playlists-list-item" *ngFor="let playlist of userPlaylists">
+               <div>
+                  <h6>{{ playlist.name }}</h6>
+                  <small class="text-muted">
+                     {{ playlist.albums.length }} album<span *ngIf="playlist.albums.length !== 1">s</span> -
+                     {{ playlist.createdAt | date }}
+                  </small>
+               </div>
+               <i class="fa fa-lock" *ngIf="playlist.isPrivate"></i>
+            </li>
+         </ul>
+      </div>
+   </div>
+
+   <div class="divider" *ngIf="userIsAuthenticated"></div>
+   <div class="all-playlists-row">
+      <h3 class="all-playlists-title">All playlists</h3>
+      <input
+         type="search"
+         class="form-control"
+         id="searchInput"
+         #searchInput
+         placeholder="search by playlist name or username..."
+         aria-label="search by playlist name or username"
+      />
+   </div>
+   <div class="all-playlists-wrapper row">
+      <div class="col-sm-4" *ngFor="let playlist of allPlaylistsFiltered$ | async">
+         <app-playlist-display [playlist]="playlist"></app-playlist-display>
+      </div>
+   </div>
+</div>
