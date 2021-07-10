@@ -24,7 +24,8 @@ import { AlbumsPageComponent } from './albums/albums-page/albums-page.component'
 import { ArtistDetailComponent } from './artists/artist-detail/artist-detail.component';
 import { PlaylistsPageComponent } from './playlists/playlists-page/playlists-page.component';
 import { PlaylistDisplayComponent } from './playlists/playlist-display/playlist-display.component';
-import { BackToTopComponent } from './back-to-top/back-to-top.component'
+import { BackToTopComponent } from './back-to-top/back-to-top.component';
+import { CreateAlbumComponent } from './albums/create-album/create-album.component'
 
 @NgModule({
    declarations: [
@@ -46,6 +47,7 @@ import { BackToTopComponent } from './back-to-top/back-to-top.component'
       PlaylistsPageComponent,
       PlaylistDisplayComponent,
       BackToTopComponent,
+      CreateAlbumComponent,
    ],
    imports: [
       BrowserModule,

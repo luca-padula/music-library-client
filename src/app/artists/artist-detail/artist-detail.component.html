@@ -4,7 +4,7 @@
    <div class="flex-wrapper">
       <h5 class="albums-heading">Discography</h5>
       <!-- TODO: Change routerlink to add album page -->
-      <button class="btn my-btn-primary" *ngIf="userIsAuthenticated" routerLink="/albums">Add an album</button>
+      <button class="btn my-btn-primary" *ngIf="userIsAuthenticated" routerLink="/create-album">Add an album</button>
    </div>
    <div class="divider"></div>
    <app-album-list [albumsToFetch$]="albumsFromArtist$"></app-album-list>
