@@ -20,6 +20,7 @@ export class ArtistSelectComponent implements OnInit {
    artistAlbums$ = this.artistSelectedAction$.pipe(
       switchMap((artist) => this.albumService.getAlbumsFromArtist(artist._id))
    )
+   selectedArtist: Artist | undefined
 
    constructor(
       private albumService: AlbumService,
@@ -31,5 +32,6 @@ export class ArtistSelectComponent implements OnInit {
    selectArtist(artist: Artist): void {
       this.artistSelectedAction.next(artist)
       this.artistSelectedEvent.emit(artist)
+      this.selectedArtist = artist
    }
 }

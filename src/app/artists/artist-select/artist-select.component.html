@@ -1,19 +1,32 @@
 <div class="artist-select">
-   <label>Select an artist</label>
+   <h4 class="heading">Select an artist</h4>
    <div class="row">
       <div class="col-lg-6">
-         <ul class="list-group">
-            <li class="list-group-item" *ngFor="let artist of allArtists$ | async" (click)="selectArtist(artist)">
+         <ul class="list-group artist-list">
+            <li
+               class="list-group-item artist-list-item"
+               *ngFor="let artist of allArtists$ | async"
+               [class.selected]="artist === selectedArtist"
+               (click)="selectArtist(artist)"
+            >
                {{ artist.name }}
             </li>
          </ul>
       </div>
       <div class="col-lg-6">
-         <ul class="list-group">
-            <li class="list-group-item" *ngFor="let album of artistAlbums$ | async">
-               {{ album.name }}
-            </li>
-         </ul>
+         <div class="artist-info">
+            <h5 class="text-muted" *ngIf="!selectedArtist">Select an artist to see more info</h5>
+            <ng-container *ngIf="selectedArtist">
+               <h4>{{ selectedArtist.name }}</h4>
+               <h6 class="text-muted">Added on {{ selectedArtist.createdAt | date }}</h6>
+               <h5 class="albums-heading">Existing albums</h5>
+            </ng-container>
+            <ul class="list-group album-list">
+               <li class="list-group-item" *ngFor="let album of artistAlbums$ | async">
+                  {{ album.name }}
+               </li>
+            </ul>
+         </div>
       </div>
    </div>
 </div>

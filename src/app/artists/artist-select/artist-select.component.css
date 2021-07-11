@@ -1,0 +1,35 @@
+.heading {
+   margin: 1.25rem 0;
+}
+
+.artist-list {
+   max-height: 25rem;
+   overflow-y: auto;
+}
+
+.artist-list-item {
+   cursor: pointer;
+}
+
+.artist-list-item.selected {
+   color: var(--color-primary);
+   background-color: hsl(0, 0%, 90%);
+   font-weight: bold;
+}
+
+.artist-info {
+   padding: 1.5rem;
+   border: 2px solid var(--color-primary);
+   border-radius: 0.3rem;
+   height: 100%;
+   overflow-y: auto;
+}
+
+.albums-heading {
+   margin-top: 1.5rem;
+}
+
+.album-list {
+   max-height: 15rem;
+   overflow-y: auto;
+}

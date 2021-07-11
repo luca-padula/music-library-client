@@ -23,6 +23,5 @@ export class CreateAlbumComponent implements OnInit {
    handleArtistSelected(artist: Artist): void {
       this.album.artist = artist._id
       this.album.artistName = artist.name
-      console.log(this.album)
    }
 }
