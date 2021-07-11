@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core"
+import { Artist } from "src/app/artists/artist"
 import { Album } from "../album"
-import { AlbumService } from "../album.service"
 
 @Component({
    selector: "app-create-album",
@@ -16,7 +16,13 @@ export class CreateAlbumComponent implements OnInit {
       artistName: "",
    }
 
-   constructor(private albumService: AlbumService) {}
+   constructor() {}
 
    ngOnInit(): void {}
+
+   handleArtistSelected(artist: Artist): void {
+      this.album.artist = artist._id
+      this.album.artistName = artist.name
+      console.log(this.album)
+   }
 }

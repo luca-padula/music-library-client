@@ -1,0 +1,19 @@
+<div class="artist-select">
+   <label>Select an artist</label>
+   <div class="row">
+      <div class="col-lg-6">
+         <ul class="list-group">
+            <li class="list-group-item" *ngFor="let artist of allArtists$ | async" (click)="selectArtist(artist)">
+               {{ artist.name }}
+            </li>
+         </ul>
+      </div>
+      <div class="col-lg-6">
+         <ul class="list-group">
+            <li class="list-group-item" *ngFor="let album of artistAlbums$ | async">
+               {{ album.name }}
+            </li>
+         </ul>
+      </div>
+   </div>
+</div>
