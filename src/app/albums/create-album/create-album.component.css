@@ -1,3 +1,7 @@
 .submit-btn {
+   margin-top: 1.5rem;
+}
+
+.error-wrapper {
    margin-top: 2rem;
 }

@@ -77,6 +77,12 @@
          </div>
       </div>
       <app-artist-select (artistSelectedEvent)="handleArtistSelected($event)"></app-artist-select>
+      <div class="error-wrapper">
+         <div class="alert alert-danger" *ngIf="error.message">{{ error.message }}</div>
+         <div class="alert alert-danger" *ngFor="let validationErr of error.validationErrors">
+            {{ error.validationErrors }}
+         </div>
+      </div>
       <button
          type="submit"
          class="btn my-btn-primary submit-btn"
@@ -86,8 +92,4 @@
       </button>
    </form>
    <div class="alert alert-success" *ngIf="successAlbum">Successfully created album '{{ successAlbum.name }}'</div>
-   <div class="alert alert-danger" *ngIf="error.message">{{ error.message }}</div>
-   <div class="alert alert-danger" *ngFor="let validationErr of error.validationErrors">
-      {{ error.validationErrors }}
-   </div>
 </div>
