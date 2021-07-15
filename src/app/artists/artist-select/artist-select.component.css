@@ -2,8 +2,16 @@
    margin: 1.25rem 0;
 }
 
-.artist-list {
-   max-height: 25rem;
+.artist-list-wrapper {
+   margin-bottom: 1rem;
+}
+
+#searchInput {
+   margin-bottom: 0.5rem;
+}
+
+.table-responsive {
+   max-height: 22rem;
    overflow-y: auto;
 }
 
@@ -14,7 +22,6 @@
 .artist-list-item.selected {
    color: var(--color-primary);
    background-color: hsl(0, 0%, 90%);
-   font-weight: bold;
 }
 
 .artist-info {
@@ -32,4 +39,14 @@
 .album-list {
    max-height: 15rem;
    overflow-y: auto;
+}
+
+@media (min-width: 992px) {
+   .artist-list-wrapper {
+      margin-bottom: 0;
+   }
+
+   .table-responsive {
+      max-height: 25rem;
+   }
 }

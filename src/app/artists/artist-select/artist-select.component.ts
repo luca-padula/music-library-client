@@ -30,8 +30,8 @@ export class ArtistSelectComponent implements OnInit {
    ngOnInit(): void {}
 
    selectArtist(artist: Artist): void {
+      this.selectedArtist = artist
       this.artistSelectedAction.next(artist)
       this.artistSelectedEvent.emit(artist)
-      this.selectedArtist = artist
    }
 }
