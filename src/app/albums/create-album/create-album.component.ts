@@ -1,7 +1,10 @@
 import { Component, OnInit } from "@angular/core"
 import { NgForm } from "@angular/forms"
+import { take } from "rxjs/operators"
 import { Artist } from "src/app/artists/artist"
+import { emptyApiError } from "src/app/shared/models/api-error"
 import { Album } from "../album"
+import { AlbumService } from "../album.service"
 
 @Component({
    selector: "app-create-album",
@@ -18,7 +21,10 @@ export class CreateAlbumComponent implements OnInit {
       artistName: "",
    }
 
-   constructor() {}
+   error = emptyApiError
+   successAlbum: Album | undefined = undefined
+
+   constructor(private albumService: AlbumService) {}
 
    ngOnInit(): void {
       this.maxAcceptableDate.setFullYear(
@@ -31,9 +37,22 @@ export class CreateAlbumComponent implements OnInit {
       this.album.artistName = artist.name
    }
 
+   validReleaseDate(): boolean {
+      if (this.album.releaseDate) {
+         const releaseDate = new Date(this.album.releaseDate)
+         return releaseDate <= this.maxAcceptableDate
+      }
+      return false
+   }
+
    onSubmit(form: NgForm): void {
-      console.log(this.album)
-      console.log(this.maxAcceptableDate)
-      console.log(this.album.releaseDate! > this.maxAcceptableDate)
+      this.error = emptyApiError
+      this.albumService
+         .createAlbum(this.album)
+         .pipe(take(1))
+         .subscribe(
+            (success) => (this.successAlbum = success.createdAlbum),
+            (err) => (this.error = err)
+         )
    }
 }
