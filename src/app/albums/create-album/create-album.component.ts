@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core"
+import { NgForm } from "@angular/forms"
 import { Artist } from "src/app/artists/artist"
 import { Album } from "../album"
 
@@ -8,6 +9,7 @@ import { Album } from "../album"
    styleUrls: ["./create-album.component.css"],
 })
 export class CreateAlbumComponent implements OnInit {
+   maxAcceptableDate = new Date()
    album: Partial<Album> = {
       name: "",
       releaseDate: undefined,
@@ -18,10 +20,20 @@ export class CreateAlbumComponent implements OnInit {
 
    constructor() {}
 
-   ngOnInit(): void {}
+   ngOnInit(): void {
+      this.maxAcceptableDate.setFullYear(
+         this.maxAcceptableDate.getFullYear() + 5
+      )
+   }
 
    handleArtistSelected(artist: Artist): void {
       this.album.artist = artist._id
       this.album.artistName = artist.name
+   }
+
+   onSubmit(form: NgForm): void {
+      console.log(this.album)
+      console.log(this.maxAcceptableDate)
+      console.log(this.album.releaseDate! > this.maxAcceptableDate)
    }
 }

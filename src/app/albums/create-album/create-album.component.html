@@ -1,13 +1,33 @@
 <div class="container">
    <h1 class="page-title">Create Album</h1>
-   <form #form="ngForm">
-      <div class="form-group">
+   <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <div class="form-group" [class.has-error]="name.invalid && name.touched">
          <label for="albumName" class="control-label">Title</label>
-         <input type="text" class="form-control" name="name" id="albumName" #name="ngModel" [(ngModel)]="album.name" />
+         <input
+            type="text"
+            class="form-control"
+            name="name"
+            id="albumName"
+            #name="ngModel"
+            [(ngModel)]="album.name"
+            required
+            pattern="^\S+.*(?<!\s)$"
+            maxlength="70"
+         />
+         <small class="input-length-indicator">{{ name.value?.length }}/70</small>
+         <small class="error-help-block" *ngIf="name.errors?.required && name.touched">
+            Please enter an album name
+         </small>
+         <small class="error-help-block" *ngIf="name.errors?.pattern && name.touched">
+            Album name cannot start or end in whitespace
+         </small>
       </div>
       <div class="form-row">
          <div class="col-6">
-            <div class="form-group">
+            <div
+               class="form-group"
+               [class.has-error]="form.valid && (!album.releaseDate || album.releaseDate > maxAcceptableDate)"
+            >
                <label for="releaseDate" class="control-label">Release Date</label>
                <input
                   type="date"
@@ -17,11 +37,23 @@
                   #releaseDate="ngModel"
                   [(ngModel)]="album.releaseDate"
                />
+               <small class="error-help-block" *ngIf="form.valid && !album.releaseDate">
+                  Please enter a release date
+               </small>
+               <small
+                  class="error-help-block"
+                  *ngIf="form.valid && album.releaseDate && album.releaseDate > maxAcceptableDate"
+               >
+                  Release date cannot be more than 5 hours from now
+               </small>
             </div>
          </div>
          <div class="col-6">
-            <div class="form-group">
-               <label for="albumLength" class="control-label">Length</label>
+            <div
+               class="form-group"
+               [class.has-error]="albumLength.invalid && (albumLength.touched || albumLength.dirty)"
+            >
+               <label for="albumLength" class="control-label">Length (Time)</label>
                <input
                   type="text"
                   class="form-control"
@@ -31,16 +63,32 @@
                   [(ngModel)]="album.albumLength"
                   required
                   pattern="^(?:\d{1,2}:)?\d{1,2}:\d{2}$"
-                  placeholder="x:xx:xx"
+                  placeholder="xx:xx:xx or xx:xx"
                   aria-describedby="lengthHelpBlock"
                />
                <small class="sr-only" id="lengthHelpBlock">
                   Album length must be entered as hours followed by colon (if at least one hour) followed by minutes
                   colon seconds x:xx:xx
                </small>
+               <small class="error-help-block" *ngIf="albumLength.errors?.required && albumLength.touched">
+                  Please enter the album length
+               </small>
+               <small
+                  class="error-help-block"
+                  *ngIf="albumLength.errors?.pattern && (albumLength.touched || albumLength.dirty)"
+               >
+                  Album length must be entered as xx:xx:xx or xx:xx
+               </small>
             </div>
          </div>
       </div>
       <app-artist-select (artistSelectedEvent)="handleArtistSelected($event)"></app-artist-select>
+      <button
+         type="submit"
+         class="btn my-btn-primary submit-btn"
+         [disabled]="form.invalid || !album.artist || !album.releaseDate || album.releaseDate > maxAcceptableDate"
+      >
+         Create album <span *ngIf="album.artist">for {{ album.artistName }}</span>
+      </button>
    </form>
 </div>
