@@ -11,19 +11,22 @@
             aria-label="search for an artist"
          />
          <div class="table-responsive">
-            <table class="table artist-list">
+            <table class="table table-hover artist-list">
+               <caption class="sr-only">
+                  List of artists
+               </caption>
                <thead>
-                  <th>#</th>
+                  <th class="num-row-heading">#</th>
                   <th>Artist name</th>
                </thead>
                <tbody>
                   <tr
                      class="artist-list-item"
-                     *ngFor="let artist of allArtists$ | async; index as idx"
+                     *ngFor="let artist of filteredArtists$ | async; index as idx"
                      [class.selected]="artist === selectedArtist"
                      (click)="selectArtist(artist)"
                   >
-                     <td>{{ idx + 1 }}</td>
+                     <td class="num-row">{{ idx + 1 }}</td>
                      <td>{{ artist.name }}</td>
                   </tr>
                </tbody>

@@ -1,6 +1,20 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core"
-import { Subject } from "rxjs"
-import { distinctUntilChanged, switchMap } from "rxjs/operators"
+import {
+   Component,
+   ElementRef,
+   EventEmitter,
+   OnInit,
+   Output,
+   ViewChild,
+} from "@angular/core"
+import { combineLatest, fromEvent, Observable, Subject } from "rxjs"
+import {
+   debounceTime,
+   distinctUntilChanged,
+   map,
+   pluck,
+   startWith,
+   switchMap,
+} from "rxjs/operators"
 import { AlbumService } from "src/app/albums/album.service"
 import { Artist } from "../artist"
 import { ArtistService } from "../artist.service"
@@ -22,12 +36,39 @@ export class ArtistSelectComponent implements OnInit {
    )
    selectedArtist: Artist | undefined
 
+   @ViewChild("searchInput", { static: true })
+   searchInputEl!: ElementRef<HTMLInputElement>
+   searchInput$ = new Observable<string>()
+   filteredArtists$ = new Observable<Artist[]>()
+
    constructor(
       private albumService: AlbumService,
       private artistService: ArtistService
    ) {}
 
-   ngOnInit(): void {}
+   ngOnInit(): void {
+      this.searchInput$ = fromEvent(
+         this.searchInputEl.nativeElement,
+         "keyup"
+      ).pipe(
+         map((event) => event.target as HTMLInputElement),
+         pluck("value"),
+         debounceTime(400),
+         distinctUntilChanged(),
+         startWith("")
+      )
+
+      this.filteredArtists$ = combineLatest([
+         this.allArtists$,
+         this.searchInput$,
+      ]).pipe(
+         map(([artists, filter]) =>
+            artists.filter((artist) =>
+               artist.name.toLowerCase().includes(filter.toLowerCase())
+            )
+         )
+      )
+   }
 
    selectArtist(artist: Artist): void {
       this.selectedArtist = artist

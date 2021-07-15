@@ -22,6 +22,12 @@
 .artist-list-item.selected {
    color: var(--color-primary);
    background-color: hsl(0, 0%, 90%);
+   font-weight: bold;
+}
+
+.num-row,
+.num-row-heading {
+   width: 5rem;
 }
 
 .artist-info {
