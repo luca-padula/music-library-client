@@ -91,5 +91,8 @@
          Create album <span *ngIf="album.artist">for {{ album.artistName }}</span>
       </button>
    </form>
-   <div class="alert alert-success" *ngIf="successAlbum">Successfully created album '{{ successAlbum.name }}'</div>
+   <div class="alert alert-success" *ngIf="successAlbum">
+      Successfully created album '{{ successAlbum.name }}' by {{ successAlbum.artistName }}
+      <h6 class="success-albums-link" routerLink="/albums">Go to albums</h6>
+   </div>
 </div>
