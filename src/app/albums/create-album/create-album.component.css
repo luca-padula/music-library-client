@@ -1,0 +1,15 @@
+.submit-btn {
+   margin-top: 1.5rem;
+}
+
+.error-wrapper {
+   margin-top: 2rem;
+}
+
+.success-albums-link {
+   color: inherit;
+   text-decoration: underline;
+   margin-top: 1rem;
+   cursor: pointer;
+   width: max-content;
+}

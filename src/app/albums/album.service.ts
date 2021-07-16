@@ -19,4 +19,8 @@ export class AlbumService {
          `${environment.apiUrl}/artists/${artistId}/albums`
       )
    }
+
+   createAlbum(newAlbum: Partial<Album>): Observable<any> {
+      return this.http.post(`${environment.apiUrl}/albums`, newAlbum)
+   }
 }

@@ -1,0 +1,52 @@
+<div class="artist-select">
+   <h4 class="heading">Select an artist</h4>
+   <div class="row">
+      <div class="col-lg-6 artist-list-wrapper">
+         <input
+            type="search"
+            class="form-control"
+            id="searchInput"
+            #searchInput
+            placeholder="search for an artist..."
+            aria-label="search for an artist"
+         />
+         <div class="table-responsive">
+            <table class="table table-hover artist-list">
+               <caption class="sr-only">
+                  List of artists
+               </caption>
+               <thead>
+                  <th class="num-row-heading">#</th>
+                  <th>Artist name</th>
+               </thead>
+               <tbody>
+                  <tr
+                     class="artist-list-item"
+                     *ngFor="let artist of filteredArtists$ | async; index as idx"
+                     [class.selected]="artist === selectedArtist"
+                     (click)="selectArtist(artist)"
+                  >
+                     <td class="num-row">{{ idx + 1 }}</td>
+                     <td>{{ artist.name }}</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div class="col-lg-6">
+         <div class="artist-info">
+            <h5 class="text-muted" *ngIf="!selectedArtist">Select an artist to see more info</h5>
+            <ng-container *ngIf="selectedArtist">
+               <h4>{{ selectedArtist.name }}</h4>
+               <h6 class="text-muted">Added on {{ selectedArtist.createdAt | date }}</h6>
+               <h5 class="albums-heading">Existing albums</h5>
+            </ng-container>
+            <ul class="list-group album-list">
+               <li class="list-group-item" *ngFor="let album of artistAlbums$ | async">
+                  {{ album.name }}
+               </li>
+            </ul>
+         </div>
+      </div>
+   </div>
+</div>

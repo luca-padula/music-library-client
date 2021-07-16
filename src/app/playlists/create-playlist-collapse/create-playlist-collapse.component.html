@@ -19,7 +19,7 @@
                maxlength="30"
                pattern="^\S+.*(?<!\s)$"
             />
-            <small class="input-length-indicator">{{ name.value.length }}/30</small>
+            <small class="input-length-indicator">{{ name.value?.length }}/30</small>
             <small class="error-help-block" *ngIf="name.touched && name.errors?.required">
                Playlist name is required
             </small>
