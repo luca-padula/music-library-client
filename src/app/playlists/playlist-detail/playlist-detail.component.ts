@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core"
 import { ActivatedRoute } from "@angular/router"
+import { Subject } from "rxjs"
 import { Album } from "src/app/albums/album"
 import { AuthService } from "src/app/auth/auth.service"
 import { emptyPlaylist, Playlist } from "../playlist"
@@ -14,6 +15,8 @@ export class PlaylistDetailComponent implements OnInit {
    playlistAlbums: Album[] = []
    private token = this.authService.getDecodedToken()
    userIsAuthenticated = this.authService.userIsAuthenticated()
+
+   addAlbumToPlaylistAction = new Subject<Album>()
 
    constructor(
       private route: ActivatedRoute,

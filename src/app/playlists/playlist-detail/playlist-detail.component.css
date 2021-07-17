@@ -17,3 +17,7 @@
 .albums-list {
    margin-top: 2rem;
 }
+
+.remove-from-playlist {
+   color: red;
+}

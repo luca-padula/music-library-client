@@ -1,4 +1,8 @@
 <div class="container">
+   <app-add-album-to-playlist-menu
+      [notifier]="addAlbumToPlaylistAction.asObservable()"
+   ></app-add-album-to-playlist-menu>
+
    <h1 class="page-title">{{ playlist.name }}</h1>
    <h4>
       <span class="text-muted">Playlist by </span>
@@ -22,7 +26,15 @@
             <tr *ngFor="let album of playlistAlbums">
                <td>{{ album.name }}</td>
                <td>{{ album.artistName }}</td>
-               <td><button class="btn my-btn-outline-primary">Actions</button></td>
+               <td>
+                  <div ngbDropdown>
+                     <button class="btn my-btn-outline-primary" id="actionsBtn" ngbDropdownToggle>Actions</button>
+                     <div ngbDropdownMenu aria-labelledby="actionsBtn">
+                        <button ngbDropdownItem (click)="addAlbumToPlaylistAction.next(album)">Add to playlist</button>
+                        <button class="remove-from-playlist" ngbDropdownItem>Remove from playlist</button>
+                     </div>
+                  </div>
+               </td>
             </tr>
          </tbody>
       </table>
