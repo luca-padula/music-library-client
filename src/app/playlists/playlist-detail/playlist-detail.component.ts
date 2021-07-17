@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core"
 import { ActivatedRoute } from "@angular/router"
+import { Album } from "src/app/albums/album"
+import { AuthService } from "src/app/auth/auth.service"
 import { emptyPlaylist, Playlist } from "../playlist"
 
 @Component({
@@ -9,10 +11,17 @@ import { emptyPlaylist, Playlist } from "../playlist"
 })
 export class PlaylistDetailComponent implements OnInit {
    playlist = emptyPlaylist
+   playlistAlbums: Album[] = []
+   private token = this.authService.getDecodedToken()
+   userIsAuthenticated = this.authService.userIsAuthenticated()
 
-   constructor(private route: ActivatedRoute) {}
+   constructor(
+      private route: ActivatedRoute,
+      private authService: AuthService
+   ) {}
 
    ngOnInit(): void {
       this.playlist = this.route.snapshot.data.playlist as Playlist
+      this.playlistAlbums = this.playlist.albums as Album[]
    }
 }
