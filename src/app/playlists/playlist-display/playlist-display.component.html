@@ -1,5 +1,4 @@
-<!-- TODO: add link to playlist -->
-<div class="card playlist-item">
+<div class="card playlist-item" [routerLink]="'/playlists/' + playlist._id">
    <div class="card-body">
       <h3 class="card-title playlist-name">{{ playlist.name }}</h3>
       <h6 class="card-subtitle playlist-creator">
