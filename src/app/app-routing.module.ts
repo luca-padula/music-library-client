@@ -18,7 +18,7 @@ const routes: Routes = [
    { path: "home", component: HomeComponent },
    { path: "artists", component: ArtistListComponent },
    {
-      path: "artists/:id",
+      path: "artist/:id",
       component: ArtistDetailComponent,
       resolve: { artist: ArtistResolver },
    },
@@ -32,7 +32,7 @@ const routes: Routes = [
    },
    { path: "playlists", component: PlaylistsPageComponent },
    {
-      path: "playlists/:id",
+      path: "playlist/:id",
       component: PlaylistDetailComponent,
       resolve: { playlist: PlaylistResolver },
    },

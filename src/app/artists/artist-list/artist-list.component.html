@@ -32,7 +32,7 @@
             <tr
                class="artist-row"
                *ngFor="let artist of filteredArtists; index as idx"
-               [routerLink]="'/artists/' + artist._id"
+               [routerLink]="'/artist/' + artist._id"
             >
                <th>{{ idx + 1 }}</th>
                <td>{{ artist.name }}</td>

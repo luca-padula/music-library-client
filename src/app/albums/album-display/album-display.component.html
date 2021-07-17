@@ -8,7 +8,7 @@
    <div class="album-info">
       <!-- ngStyle to disable top margin if the add to playlist button is rendered and already taking up space -->
       <h3 class="album-title" [ngStyle]="{ 'margin-top': userIsAuthenticated ? '0' : '1rem' }">{{ album.name }}</h3>
-      <a class="artist-link primary-color-link" [routerLink]="'/artists/' + album.artist">{{ album.artistName }}</a>
+      <a class="artist-link primary-color-link" [routerLink]="'/artist/' + album.artist">{{ album.artistName }}</a>
       <h6 class="text-muted other-info">{{ album.releaseDate | date: "longDate":"+0000" }}, {{ album.albumLength }}</h6>
    </div>
 </div>
