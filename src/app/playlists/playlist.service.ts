@@ -21,6 +21,12 @@ export class PlaylistService {
       )
    }
 
+   getPlaylistById(playlistId: string): Observable<Playlist> {
+      return this.http.get<Playlist>(
+         `${environment.apiUrl}/playlists/${playlistId}`
+      )
+   }
+
    createPlaylist(newPlaylist: Partial<Playlist>): Observable<any> {
       return this.http.post(`${environment.apiUrl}/playlists`, newPlaylist)
    }
