@@ -4,9 +4,11 @@
       <span class="text-muted">Playlist by </span>
       <strong>{{ playlist.creatorUserName }}</strong>
    </h4>
-   <button class="btn my-btn-primary">Duplicate playlist</button>
-   <button class="btn btn-secondary">Make playlist private</button>
-   <button class="btn btn-danger">Delete playlist</button>
+   <div class="btn-row">
+      <button class="btn my-btn-primary">Duplicate playlist</button>
+      <button class="btn btn-secondary">Make playlist private</button>
+      <button class="btn btn-danger">Delete playlist</button>
+   </div>
 
    <div class="table-responsive albums-list">
       <h4>{{ playlistAlbums.length }} Albums</h4>

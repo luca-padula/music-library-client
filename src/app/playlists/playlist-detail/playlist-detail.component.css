@@ -2,6 +2,18 @@
    margin-bottom: 0.75rem;
 }
 
+.btn-row {
+   display: flex;
+   align-items: center;
+   flex-wrap: wrap;
+   margin-top: 2rem;
+}
+
+.btn-row > button {
+   margin-top: 0.5rem;
+   margin-right: 1rem;
+}
+
 .albums-list {
    margin-top: 2rem;
 }
