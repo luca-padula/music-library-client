@@ -15,6 +15,7 @@ export class PlaylistDetailComponent implements OnInit {
    playlistAlbums: Album[] = []
    private token = this.authService.getDecodedToken()
    userIsAuthenticated = this.authService.userIsAuthenticated()
+   userOwnsPlaylist = false
 
    addAlbumToPlaylistAction = new Subject<Album>()
 
@@ -26,5 +27,8 @@ export class PlaylistDetailComponent implements OnInit {
    ngOnInit(): void {
       this.playlist = this.route.snapshot.data.playlist as Playlist
       this.playlistAlbums = this.playlist.albums as Album[]
+      if (this.userIsAuthenticated) {
+         this.userOwnsPlaylist = this.playlist.creator === this.token._id
+      }
    }
 }

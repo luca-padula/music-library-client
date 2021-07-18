@@ -9,9 +9,11 @@
       <strong>{{ playlist.creatorUserName }}</strong>
    </h4>
    <div class="btn-row">
-      <button class="btn my-btn-primary">Duplicate playlist</button>
-      <button class="btn btn-secondary">Make playlist private</button>
-      <button class="btn btn-danger">Delete playlist</button>
+      <button class="btn my-btn-primary" *ngIf="userIsAuthenticated">Duplicate playlist</button>
+      <button class="btn btn-secondary" *ngIf="userOwnsPlaylist">
+         Make playlist {{ playlist.isPrivate ? "public" : "private" }}
+      </button>
+      <button class="btn btn-danger" *ngIf="userOwnsPlaylist">Delete playlist</button>
    </div>
 
    <div class="table-responsive albums-list">
@@ -20,18 +22,20 @@
          <thead>
             <th>Title</th>
             <th>Artist</th>
-            <th></th>
+            <th *ngIf="userIsAuthenticated"></th>
          </thead>
          <tbody>
             <tr *ngFor="let album of playlistAlbums">
                <td>{{ album.name }}</td>
                <td>{{ album.artistName }}</td>
-               <td>
+               <td *ngIf="userIsAuthenticated">
                   <div ngbDropdown>
                      <button class="btn my-btn-outline-primary" id="actionsBtn" ngbDropdownToggle>Actions</button>
                      <div ngbDropdownMenu aria-labelledby="actionsBtn">
                         <button ngbDropdownItem (click)="addAlbumToPlaylistAction.next(album)">Add to playlist</button>
-                        <button class="remove-from-playlist" ngbDropdownItem>Remove from playlist</button>
+                        <ng-container *ngIf="userOwnsPlaylist">
+                           <button class="remove-from-playlist" ngbDropdownItem>Remove from playlist</button>
+                        </ng-container>
                      </div>
                   </div>
                </td>
