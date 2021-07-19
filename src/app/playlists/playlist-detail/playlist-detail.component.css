@@ -26,12 +26,12 @@
    font-size: 1.1rem;
 }
 
-.mobile-album-artist {
+.album-artist {
    font-size: 0.9rem;
 }
 
 @media (min-width: 992px) {
-   .album-title {
+   .album-artist {
       font-size: 1rem;
    }
 }
