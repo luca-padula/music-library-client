@@ -24,3 +24,10 @@
    height: 4.25rem;
    overflow: hidden;
 }
+
+.artist-link-text {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   margin-bottom: 0.25rem;
+}
