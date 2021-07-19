@@ -26,6 +26,7 @@
 }
 
 .artist-link-text {
+   height: 1.25rem;
    overflow: hidden;
    text-overflow: ellipsis;
    white-space: nowrap;
