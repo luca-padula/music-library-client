@@ -31,12 +31,16 @@
                <th scope="row" class="d-none d-lg-table-cell">{{ idx + 1 }}</th>
                <td>
                   <h5 class="album-title">{{ album.name }}</h5>
-                  <h6 class="text-muted album-artist">{{ album.artistName }}</h6>
+                  <a [routerLink]="'/artist/' + album.artist">
+                     <h6 class="text-muted album-artist">
+                        {{ album.artistName }}
+                     </h6>
+                  </a>
                </td>
                <td class="d-none d-lg-table-cell text-muted">{{ album.releaseDate | date: "y" }}</td>
                <td class="d-none d-lg-table-cell text-muted">{{ album.albumLength }}</td>
                <td *ngIf="userIsAuthenticated">
-                  <div ngbDropdown>
+                  <div ngbDropdown container="body">
                      <button class="btn my-btn-outline-primary btn-sm" id="actionsBtn" ngbDropdownToggle>
                         Actions
                      </button>
