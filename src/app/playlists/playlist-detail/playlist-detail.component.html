@@ -19,15 +19,18 @@
    <div class="table-responsive albums-list">
       <h4>{{ playlistAlbums.length }} Albums</h4>
       <table class="table">
-         <thead>
+         <thead class="d-none d-lg-table-row">
             <th>Title</th>
             <th>Artist</th>
             <th *ngIf="userIsAuthenticated"></th>
          </thead>
          <tbody>
             <tr *ngFor="let album of playlistAlbums">
-               <td>{{ album.name }}</td>
-               <td>{{ album.artistName }}</td>
+               <td>
+                  <h5 class="album-title">{{ album.name }}</h5>
+                  <h6 class="text-muted d-lg-none mobile-album-artist">{{ album.artistName }}</h6>
+               </td>
+               <td class="d-none d-lg-table-cell">{{ album.artistName }}</td>
                <td *ngIf="userIsAuthenticated">
                   <div ngbDropdown>
                      <button class="btn my-btn-outline-primary btn-sm" id="actionsBtn" ngbDropdownToggle>
