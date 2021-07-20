@@ -4,10 +4,10 @@
    ></app-add-album-to-playlist-menu>
 
    <h1 class="page-title">{{ playlist.name }}</h1>
-   <h4>
+   <h5>
       <span class="text-muted">Playlist by </span>
       <strong>{{ playlist.creatorUserName }}</strong>
-   </h4>
+   </h5>
    <div class="btn-row">
       <button class="btn my-btn-primary" *ngIf="userIsAuthenticated">Duplicate playlist</button>
       <button class="btn btn-secondary" *ngIf="userOwnsPlaylist">
