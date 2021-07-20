@@ -10,10 +10,7 @@
    </h5>
    <div class="btn-row">
       <button class="btn my-btn-primary" *ngIf="userIsAuthenticated">Duplicate playlist</button>
-      <button class="btn btn-secondary" *ngIf="userOwnsPlaylist">
-         Make playlist {{ playlist.isPrivate ? "public" : "private" }}
-      </button>
-      <button class="btn btn-danger" *ngIf="userOwnsPlaylist">Delete playlist</button>
+      <button class="btn btn-secondary" *ngIf="userOwnsPlaylist" routerLink="edit">Edit playlist</button>
    </div>
 
    <app-action-feedback

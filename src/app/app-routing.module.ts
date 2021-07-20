@@ -13,6 +13,7 @@ import { PlaylistsPageComponent } from "./playlists/playlists-page/playlists-pag
 import { CreateAlbumComponent } from "./albums/create-album/create-album.component"
 import { PlaylistDetailComponent } from "./playlists/playlist-detail/playlist-detail.component"
 import { PlaylistResolver } from "./playlists/playlist.resolver"
+import { EditPlaylistComponent } from "./playlists/edit-playlist/edit-playlist.component"
 
 const routes: Routes = [
    { path: "home", component: HomeComponent },
@@ -34,6 +35,11 @@ const routes: Routes = [
    {
       path: "playlist/:id",
       component: PlaylistDetailComponent,
+      resolve: { playlist: PlaylistResolver },
+   },
+   {
+      path: "playlist/:id/edit",
+      component: EditPlaylistComponent,
       resolve: { playlist: PlaylistResolver },
    },
    { path: "", redirectTo: "/home", pathMatch: "full" },
