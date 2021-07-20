@@ -16,6 +16,11 @@
       <button class="btn btn-danger" *ngIf="userOwnsPlaylist">Delete playlist</button>
    </div>
 
+   <app-action-feedback
+      [successNotifier]="successNotifier.asObservable()"
+      [errorNotifier]="errorNotifier.asObservable()"
+   ></app-action-feedback>
+
    <div class="table-responsive albums-list">
       <h4>{{ playlistAlbums.length }} Albums</h4>
       <table class="table">

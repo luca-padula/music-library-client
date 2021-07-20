@@ -4,6 +4,7 @@ import { Subject } from "rxjs"
 import { take } from "rxjs/operators"
 import { Album } from "src/app/albums/album"
 import { AuthService } from "src/app/auth/auth.service"
+import { ApiError } from "src/app/shared/models/api-error"
 import { emptyPlaylist, Playlist } from "../playlist"
 import { PlaylistService } from "../playlist.service"
 
@@ -20,6 +21,8 @@ export class PlaylistDetailComponent implements OnInit {
    userOwnsPlaylist = false
 
    addAlbumToPlaylistAction = new Subject<Album>()
+   successNotifier = new Subject<string>()
+   errorNotifier = new Subject<ApiError>()
 
    constructor(
       private route: ActivatedRoute,
@@ -50,8 +53,13 @@ export class PlaylistDetailComponent implements OnInit {
          .removeAlbumFromPlaylist(albumToRemove._id, this.playlist._id)
          .pipe(take(1))
          .subscribe(
-            (success) => this.updateLocalPlaylistAlbums(albumToRemove),
-            (err) => console.log(err)
+            (success) => {
+               this.updateLocalPlaylistAlbums(albumToRemove)
+               this.successNotifier.next(
+                  `Successfully removed '${albumToRemove.name}' from playlist`
+               )
+            },
+            (err: ApiError) => this.errorNotifier.next(err)
          )
    }
 }
