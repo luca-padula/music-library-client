@@ -32,7 +32,8 @@ import { BackToTopComponent } from "./back-to-top/back-to-top.component"
 import { CreateAlbumComponent } from "./albums/create-album/create-album.component"
 import { ArtistSelectComponent } from "./artists/artist-select/artist-select.component"
 import { PlaylistDetailComponent } from "./playlists/playlist-detail/playlist-detail.component";
-import { EditPlaylistComponent } from './playlists/edit-playlist/edit-playlist.component'
+import { EditPlaylistComponent } from './playlists/edit-playlist/edit-playlist.component';
+import { DeletePlaylistMenuComponent } from './playlists/delete-playlist-menu/delete-playlist-menu.component'
 
 @NgModule({
    declarations: [
@@ -58,6 +59,7 @@ import { EditPlaylistComponent } from './playlists/edit-playlist/edit-playlist.c
       ArtistSelectComponent,
       PlaylistDetailComponent,
       EditPlaylistComponent,
+      DeletePlaylistMenuComponent,
    ],
    imports: [
       BrowserModule,
