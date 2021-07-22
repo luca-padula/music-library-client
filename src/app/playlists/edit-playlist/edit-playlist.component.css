@@ -13,9 +13,13 @@
 }
 
 .btn-row {
-   margin-top: 3rem;
+   margin-top: 1.5rem;
 }
 
 .btn-row > button {
    margin-right: 1rem;
+}
+
+.feedback-container {
+   margin-top: 3rem;
 }

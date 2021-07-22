@@ -1,7 +1,7 @@
 <div class="container">
    <h1 class="page-title">Edit playlist</h1>
 
-   <form class="edit-playlist-form" #form="ngForm">
+   <form class="edit-playlist-form" #form="ngForm" (ngSubmit)="onSubmit(form)">
       <div class="form-group row" [class.has-error]="name.invalid && (name.touched || name.dirty)">
          <label for="playlistName" class="col-2 col-form-label-lg">Name</label>
          <div class="col-10">
@@ -39,9 +39,15 @@
             </div>
          </div>
       </div>
-      <div class="btn-row">
-         <button type="submit" class="btn my-btn-primary" [disabled]="form.invalid">Update playlist</button>
-         <button class="btn btn-danger">Delete playlist</button>
+      <div class="feedback-container">
+         <app-action-feedback
+            [successNotifier]="updateSuccessNotifier.asObservable()"
+            [errorNotifier]="updateErrorNotifier.asObservable()"
+         ></app-action-feedback>
+         <div class="btn-row">
+            <button type="submit" class="btn my-btn-primary" [disabled]="form.invalid">Update playlist</button>
+            <button class="btn btn-danger">Delete playlist</button>
+         </div>
       </div>
    </form>
 </div>
