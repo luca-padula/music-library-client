@@ -3,7 +3,7 @@ import { NgForm } from "@angular/forms"
 import { ActivatedRoute } from "@angular/router"
 import { Subject } from "rxjs"
 import { take } from "rxjs/operators"
-import { ApiError } from "src/app/shared/models/api-error"
+import { ApiError, emptyApiError } from "src/app/shared/models/api-error"
 import { emptyPlaylist, Playlist } from "../playlist"
 import { PlaylistService } from "../playlist.service"
 
@@ -27,6 +27,8 @@ export class EditPlaylistComponent implements OnInit {
    }
 
    onSubmit(form: NgForm): void {
+      this.updateSuccessNotifier.next("")
+      this.updateErrorNotifier.next(emptyApiError)
       const { name, isPrivate } = this.playlist
       const fieldsToUpdate: Partial<Playlist> = { name, isPrivate }
       this.playlistService
