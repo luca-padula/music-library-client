@@ -1,7 +1,7 @@
 <div class="container">
    <h1 class="page-title">Edit playlist</h1>
 
-   <form class="edit-playlist-form">
+   <form class="edit-playlist-form" #form="ngForm">
       <div class="form-group row" [class.has-error]="name.invalid && (name.touched || name.dirty)">
          <label for="playlistName" class="col-2 col-form-label-lg">Name</label>
          <div class="col-10">
@@ -38,6 +38,10 @@
                <label class="form-check-label" for="isPrivate">Make it private</label>
             </div>
          </div>
+      </div>
+      <div class="btn-row">
+         <button type="submit" class="btn my-btn-primary" [disabled]="form.invalid">Update playlist</button>
+         <button class="btn btn-danger">Delete playlist</button>
       </div>
    </form>
 </div>

@@ -1,5 +1,5 @@
 .edit-playlist-form {
-   margin: 3rem 0;
+   margin-top: 4rem;
 }
 
 .form-check-input {
@@ -9,5 +9,13 @@
 
 .form-check-label {
    font-size: 1.25rem;
-   margin-left: 1rem;
+   margin-left: 1.5rem;
+}
+
+.btn-row {
+   margin-top: 3rem;
+}
+
+.btn-row > button {
+   margin-right: 1rem;
 }
