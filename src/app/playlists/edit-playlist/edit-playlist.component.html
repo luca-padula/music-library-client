@@ -46,8 +46,10 @@
          ></app-action-feedback>
          <div class="btn-row">
             <button type="submit" class="btn my-btn-primary" [disabled]="form.invalid">Update playlist</button>
-            <button type="button" class="btn btn-danger">Delete playlist</button>
+            <button type="button" class="btn btn-danger" (click)="openDeletePlaylistMenu()">Delete playlist</button>
          </div>
       </div>
    </form>
+
+   <app-delete-playlist-menu [openModalNotifier]="deletePlaylistNotifier.asObservable()"></app-delete-playlist-menu>
 </div>

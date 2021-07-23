@@ -1,5 +1,18 @@
 <ng-template #myModal let-modal>
-   <div class="modal-header"></div>
-   <div class="modal-body"></div>
-   <div class="modal-footer"></div>
+   <div class="modal-header">
+      <h4 class="modal-title">{{ playlistToDelete.name }}</h4>
+   </div>
+   <div class="modal-body">
+      <div class="alert alert-warning" *ngIf="!playlistWasDeletedMsg">
+         Are you sure you want to delete your playlist '{{ playlistToDelete.name }}'? This cannot be undone.
+      </div>
+      <div class="alert alert-success" *ngIf="playlistWasDeletedMsg">{{ playlistWasDeletedMsg }}</div>
+      <div class="alert alert-danger" *ngIf="error.message">{{ error.message }}</div>
+   </div>
+   <div class="modal-footer">
+      <button class="btn btn-danger" (click)="deletePlaylist()" [disabled]="playlistWasDeletedMsg">
+         Delete playlist
+      </button>
+      <button class="btn btn-secondary" (click)="modal.close()">Cancel</button>
+   </div>
 </ng-template>
