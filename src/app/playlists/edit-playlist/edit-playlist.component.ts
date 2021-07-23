@@ -17,6 +17,7 @@ export class EditPlaylistComponent implements OnInit {
    updateSuccessNotifier = new Subject<string>()
    updateErrorNotifier = new Subject<ApiError>()
    deletePlaylistNotifier = new Subject<Playlist>()
+   playlistWasDeleted = false
 
    constructor(
       private route: ActivatedRoute,
@@ -44,5 +45,9 @@ export class EditPlaylistComponent implements OnInit {
 
    openDeletePlaylistMenu(): void {
       this.deletePlaylistNotifier.next(this.playlist)
+   }
+
+   handlePlaylistDeleted(): void {
+      this.playlistWasDeleted = true
    }
 }

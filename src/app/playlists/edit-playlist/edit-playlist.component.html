@@ -1,55 +1,61 @@
 <div class="container">
    <h1 class="page-title">Edit playlist</h1>
+   <div class="alert alert-success" *ngIf="playlistWasDeleted">Your playlist has been successfully deleted</div>
 
-   <form class="edit-playlist-form" #form="ngForm" (ngSubmit)="onSubmit(form)">
-      <div class="form-group row" [class.has-error]="name.invalid && (name.touched || name.dirty)">
-         <label for="playlistName" class="col-2 col-form-label-lg">Name</label>
-         <div class="col-10">
-            <input
-               type="text"
-               name="name"
-               class="form-control form-control-lg"
-               id="playlistName"
-               #name="ngModel"
-               [(ngModel)]="playlist.name"
-               required
-               maxlength="30"
-               pattern="^\S+.*(?<!\s)$"
-            />
-            <small class="input-length-indicator">{{ name.value?.length }}/30</small>
-            <small class="error-help-block" *ngIf="name.touched && name.errors?.required">
-               Playlist name is required
-            </small>
-            <small class="error-help-block" *ngIf="name.dirty && name.errors?.pattern">
-               Playlist name cannot start or end with whitespace
-            </small>
-         </div>
-      </div>
-      <div class="form-group row">
-         <div class="col-sm-10 offset-sm-2">
-            <div class="form-check">
+   <ng-container *ngIf="!playlistWasDeleted">
+      <form class="edit-playlist-form" #form="ngForm" (ngSubmit)="onSubmit(form)">
+         <div class="form-group row" [class.has-error]="name.invalid && (name.touched || name.dirty)">
+            <label for="playlistName" class="col-2 col-form-label-lg">Name</label>
+            <div class="col-10">
                <input
-                  type="checkbox"
-                  name="isPrivate"
-                  class="form-check-input"
-                  id="isPrivate"
-                  [(ngModel)]="playlist.isPrivate"
+                  type="text"
+                  name="name"
+                  class="form-control form-control-lg"
+                  id="playlistName"
+                  #name="ngModel"
+                  [(ngModel)]="playlist.name"
+                  required
+                  maxlength="30"
+                  pattern="^\S+.*(?<!\s)$"
                />
-               <label class="form-check-label" for="isPrivate">Make it private</label>
+               <small class="input-length-indicator">{{ name.value?.length }}/30</small>
+               <small class="error-help-block" *ngIf="name.touched && name.errors?.required">
+                  Playlist name is required
+               </small>
+               <small class="error-help-block" *ngIf="name.dirty && name.errors?.pattern">
+                  Playlist name cannot start or end with whitespace
+               </small>
             </div>
          </div>
-      </div>
-      <div class="feedback-container">
-         <app-action-feedback
-            [successNotifier]="updateSuccessNotifier.asObservable()"
-            [errorNotifier]="updateErrorNotifier.asObservable()"
-         ></app-action-feedback>
-         <div class="btn-row">
-            <button type="submit" class="btn my-btn-primary" [disabled]="form.invalid">Update playlist</button>
-            <button type="button" class="btn btn-danger" (click)="openDeletePlaylistMenu()">Delete playlist</button>
+         <div class="form-group row">
+            <div class="col-sm-10 offset-sm-2">
+               <div class="form-check">
+                  <input
+                     type="checkbox"
+                     name="isPrivate"
+                     class="form-check-input"
+                     id="isPrivate"
+                     [(ngModel)]="playlist.isPrivate"
+                  />
+                  <label class="form-check-label" for="isPrivate">Make it private</label>
+               </div>
+            </div>
          </div>
-      </div>
-   </form>
+         <div class="feedback-container">
+            <app-action-feedback
+               [successNotifier]="updateSuccessNotifier.asObservable()"
+               [errorNotifier]="updateErrorNotifier.asObservable()"
+            ></app-action-feedback>
+            <div class="btn-row">
+               <button type="submit" class="btn my-btn-primary" [disabled]="form.invalid">Update playlist</button>
+               <button type="button" class="btn btn-danger" (click)="openDeletePlaylistMenu()">Delete playlist</button>
+            </div>
+         </div>
+      </form>
 
-   <app-delete-playlist-menu [openModalNotifier]="deletePlaylistNotifier.asObservable()"></app-delete-playlist-menu>
+      <app-delete-playlist-menu
+         [openModalNotifier]="deletePlaylistNotifier.asObservable()"
+         (playlistDeletedEvent)="handlePlaylistDeleted()"
+      ></app-delete-playlist-menu>
+   </ng-container>
 </div>

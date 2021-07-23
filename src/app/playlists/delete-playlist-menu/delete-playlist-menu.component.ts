@@ -42,7 +42,18 @@ export class DeletePlaylistMenuComponent implements OnInit {
    }
 
    openModal(): void {
-      this.modalService.open(this.deletePlaylistModal)
+      this.modalService
+         .open(this.deletePlaylistModal)
+         .result.then((result) => {
+            if (this.playlistWasDeletedMsg) {
+               this.playlistDeletedEvent.emit(this.playlistWasDeletedMsg)
+            }
+         })
+         .catch(() => {
+            if (this.playlistWasDeletedMsg) {
+               this.playlistDeletedEvent.emit(this.playlistWasDeletedMsg)
+            }
+         })
    }
 
    deletePlaylist(): void {
@@ -54,7 +65,6 @@ export class DeletePlaylistMenuComponent implements OnInit {
             (success) => {
                this.playlistWasDeletedMsg =
                   "Your playlist has been successfully deleted"
-               this.playlistDeletedEvent.emit(this.playlistWasDeletedMsg)
             },
             (err: ApiError) => (this.error = err)
          )
