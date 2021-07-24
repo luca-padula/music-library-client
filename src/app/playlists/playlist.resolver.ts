@@ -5,8 +5,10 @@ import {
    RouterStateSnapshot,
    ActivatedRouteSnapshot,
 } from "@angular/router"
-import { Observable, throwError } from "rxjs"
-import { catchError } from "rxjs/operators"
+import { Observable, of, throwError } from "rxjs"
+import { catchError, switchMap } from "rxjs/operators"
+import { AuthService } from "../auth/auth.service"
+import { ApiError } from "../shared/models/api-error"
 import { Playlist } from "./playlist"
 import { PlaylistService } from "./playlist.service"
 
@@ -14,9 +16,12 @@ import { PlaylistService } from "./playlist.service"
    providedIn: "root",
 })
 export class PlaylistResolver implements Resolve<Playlist> {
+   private token = this.authService.getDecodedToken()
+
    constructor(
       private playlistService: PlaylistService,
-      private router: Router
+      private router: Router,
+      private authService: AuthService
    ) {}
 
    resolve(
@@ -25,6 +30,24 @@ export class PlaylistResolver implements Resolve<Playlist> {
    ): Observable<Playlist> {
       const playlistId = route.paramMap.get("id")
       return this.playlistService.getPlaylistById(playlistId!).pipe(
+         switchMap((playlist) => {
+            if (playlist.isPrivate) {
+               if (
+                  this.authService.userIsAuthenticated() &&
+                  this.token._id === playlist.creator
+               ) {
+                  return of(playlist)
+               }
+               const err: ApiError = {
+                  message: "not authorized for playlist",
+                  status: 401,
+                  validationErrors: undefined,
+               }
+               return throwError(err)
+            }
+
+            return of(playlist)
+         }),
          catchError((err) => {
             this.router.navigate(["/page-not-found"])
             return throwError(err)
