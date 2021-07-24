@@ -1,6 +1,7 @@
 <div class="container">
    <app-add-album-to-playlist-menu
       [notifier]="addAlbumToPlaylistAction.asObservable()"
+      *ngIf="userIsAuthenticated"
    ></app-add-album-to-playlist-menu>
 
    <h1 class="page-title">{{ playlist.name }}</h1>
