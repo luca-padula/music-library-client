@@ -31,13 +31,11 @@ export class PlaylistResolver implements Resolve<Playlist> {
       const playlistId = route.paramMap.get("id")
       return this.playlistService.getPlaylistById(playlistId!).pipe(
          switchMap((playlist) => {
-            if (playlist.isPrivate) {
-               if (
-                  this.authService.userIsAuthenticated() &&
-                  this.token._id === playlist.creator
-               ) {
-                  return of(playlist)
-               }
+            if (
+               playlist.isPrivate &&
+               (!this.authService.userIsAuthenticated() ||
+                  this.token._id !== playlist.creator)
+            ) {
                const err: ApiError = {
                   message: "not authorized for playlist",
                   status: 401,
@@ -45,7 +43,6 @@ export class PlaylistResolver implements Resolve<Playlist> {
                }
                return throwError(err)
             }
-
             return of(playlist)
          }),
          catchError((err) => {
