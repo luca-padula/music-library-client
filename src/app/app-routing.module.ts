@@ -14,6 +14,7 @@ import { CreateAlbumComponent } from "./albums/create-album/create-album.compone
 import { PlaylistDetailComponent } from "./playlists/playlist-detail/playlist-detail.component"
 import { PlaylistResolver } from "./playlists/playlist.resolver"
 import { EditPlaylistComponent } from "./playlists/edit-playlist/edit-playlist.component"
+import { PlaylistOwnerGuard } from "./playlists/playlist-owner.guard"
 
 const routes: Routes = [
    { path: "home", component: HomeComponent },
@@ -41,6 +42,7 @@ const routes: Routes = [
       path: "playlist/:id/edit",
       component: EditPlaylistComponent,
       resolve: { playlist: PlaylistResolver },
+      canActivate: [PlaylistOwnerGuard],
    },
    { path: "", redirectTo: "/home", pathMatch: "full" },
    { path: "**", component: PageNotFoundComponent },
