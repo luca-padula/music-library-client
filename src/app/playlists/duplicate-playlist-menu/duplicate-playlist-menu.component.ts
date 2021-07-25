@@ -1,7 +1,8 @@
 import { Component, Input, OnInit, ViewChild } from "@angular/core"
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap"
 import { Observable, Subject } from "rxjs"
-import { takeUntil } from "rxjs/operators"
+import { take, takeUntil } from "rxjs/operators"
+import { Album } from "src/app/albums/album"
 import { AuthService } from "src/app/auth/auth.service"
 import { emptyPlaylist, Playlist } from "../playlist"
 import { PlaylistService } from "../playlist.service"
@@ -33,12 +34,28 @@ export class DuplicatePlaylistMenuComponent implements OnInit {
             this.newPlaylist = emptyPlaylist
             this.newPlaylist.creator = this.token._id
             this.newPlaylist.creatorUserName = this.token.userName
+            this.newPlaylist.albums = this.playlistToDuplicate.albums
             this.openModal()
          })
    }
 
    openModal(): void {
       this.modalService.open(this.duplicatePlaylistModal)
+   }
+
+   duplicatePlaylist(): void {
+      const { _id, __v, createdAt, updatedAt, ...fieldsToPost } =
+         this.newPlaylist
+      const albums = fieldsToPost.albums as Album[]
+      const albumsAsStringArr = albums.map((album) => album._id)
+      fieldsToPost.albums = albumsAsStringArr
+      this.playlistService
+         .createPlaylist(fieldsToPost)
+         .pipe(take(1))
+         .subscribe(
+            (success) => console.log(success.createdPlaylist),
+            (err) => console.log(err)
+         )
    }
 
    ngOnDestroy(): void {

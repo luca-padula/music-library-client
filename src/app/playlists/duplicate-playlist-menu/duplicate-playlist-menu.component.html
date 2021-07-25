@@ -1,10 +1,36 @@
 <ng-template #myModal let-modal>
    <div class="modal-header">
-      <h4 class="modal-title">Duplicate playlist</h4>
+      <h4 class="modal-title">Duplicate playlist '{{ playlistToDuplicate.name }}'</h4>
    </div>
-   <div class="modal-body"></div>
+   <div class="modal-body">
+      <form class="duplicate-form" #form="ngForm">
+         <div class="form-group" [class.has-error]="name.invalid && (name.touched || name.dirty)">
+            <label for="playlistName" class="control-label">What do you want to call your new playlist?</label>
+            <input
+               type="text"
+               name="name"
+               class="form-control"
+               id="playlistName"
+               #name="ngModel"
+               [(ngModel)]="newPlaylist.name"
+               required
+               maxlength="30"
+               pattern="^\S+.*(?<!\s)$"
+            />
+            <small class="input-length-indicator">{{ name.value?.length }}/30</small>
+            <small class="error-help-block" *ngIf="name.touched && name.errors?.required">
+               Playlist name is required
+            </small>
+            <small class="error-help-block" *ngIf="name.dirty && name.errors?.pattern">
+               Playlist name cannot start or end with whitespace
+            </small>
+         </div>
+      </form>
+   </div>
    <div class="modal-footer">
-      <button class="btn my-btn-primary">Create duplicate</button>
+      <button class="btn my-btn-primary" (click)="duplicatePlaylist()" [disabled]="form.invalid">
+         Create duplicate
+      </button>
       <button class="btn btn-secondary" (click)="modal.close()">close</button>
    </div>
 </ng-template>
