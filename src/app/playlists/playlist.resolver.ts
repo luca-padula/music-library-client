@@ -16,8 +16,6 @@ import { PlaylistService } from "./playlist.service"
    providedIn: "root",
 })
 export class PlaylistResolver implements Resolve<Playlist> {
-   private token = this.authService.getDecodedToken()
-
    constructor(
       private playlistService: PlaylistService,
       private router: Router,
@@ -28,13 +26,14 @@ export class PlaylistResolver implements Resolve<Playlist> {
       route: ActivatedRouteSnapshot,
       state: RouterStateSnapshot
    ): Observable<Playlist> {
+      const token = this.authService.getDecodedToken()
       const playlistId = route.paramMap.get("id")
       return this.playlistService.getPlaylistById(playlistId!).pipe(
          switchMap((playlist) => {
             if (
                playlist.isPrivate &&
                (!this.authService.userIsAuthenticated() ||
-                  this.token._id !== playlist.creator)
+                  token._id !== playlist.creator)
             ) {
                const err: ApiError = {
                   message: "not authorized for playlist",

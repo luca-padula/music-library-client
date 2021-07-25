@@ -7,7 +7,7 @@ import {
    UrlTree,
 } from "@angular/router"
 import { Observable, of, throwError } from "rxjs"
-import { catchError, map, take } from "rxjs/operators"
+import { catchError, map } from "rxjs/operators"
 import { AuthService } from "../auth/auth.service"
 import { PlaylistService } from "./playlist.service"
 
@@ -15,8 +15,6 @@ import { PlaylistService } from "./playlist.service"
    providedIn: "root",
 })
 export class PlaylistOwnerGuard implements CanActivate {
-   private token = this.authService.getDecodedToken()
-
    constructor(
       private playlistService: PlaylistService,
       private authService: AuthService,
@@ -27,11 +25,12 @@ export class PlaylistOwnerGuard implements CanActivate {
       route: ActivatedRouteSnapshot,
       state: RouterStateSnapshot
    ): Observable<boolean> {
+      const token = this.authService.getDecodedToken()
       if (this.authService.userIsAuthenticated()) {
          const playlistId = route.paramMap.get("id")
          return this.playlistService.getPlaylistById(playlistId!).pipe(
             map((playlist) => {
-               if (playlist.creator === this.token._id) {
+               if (playlist.creator === token._id) {
                   return true
                }
                this.router.navigate(["/login"])
