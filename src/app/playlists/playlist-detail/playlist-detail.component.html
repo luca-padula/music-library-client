@@ -6,7 +6,7 @@
 
    <h1 class="page-title">{{ playlist.name }}</h1>
    <h5>
-      <span class="text-muted">Playlist by </span>
+      <span class="text-muted">{{ playlist.isPrivate ? "Private playlist" : "Playlist" }} by </span>
       <strong>{{ playlist.creatorUserName }}</strong>
    </h5>
    <div class="btn-row">
