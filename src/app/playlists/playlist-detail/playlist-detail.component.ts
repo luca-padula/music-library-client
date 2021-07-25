@@ -21,6 +21,7 @@ export class PlaylistDetailComponent implements OnInit {
    userOwnsPlaylist = false
 
    addAlbumToPlaylistAction = new Subject<Album>()
+   duplicatePlaylistAction = new Subject<Playlist>()
    successNotifier = new Subject<string>()
    errorNotifier = new Subject<ApiError>()
 
@@ -61,5 +62,9 @@ export class PlaylistDetailComponent implements OnInit {
             },
             (err: ApiError) => this.errorNotifier.next(err)
          )
+   }
+
+   openDuplicatePlaylist(): void {
+      this.duplicatePlaylistAction.next(this.playlist)
    }
 }

@@ -4,13 +4,20 @@
       *ngIf="userIsAuthenticated"
    ></app-add-album-to-playlist-menu>
 
+   <app-duplicate-playlist-menu
+      [openModalNotifier]="duplicatePlaylistAction.asObservable()"
+      *ngIf="userIsAuthenticated"
+   ></app-duplicate-playlist-menu>
+
    <h1 class="page-title">{{ playlist.name }}</h1>
    <h5>
       <span class="text-muted">{{ playlist.isPrivate ? "Private playlist" : "Playlist" }} by </span>
       <strong>{{ playlist.creatorUserName }}</strong>
    </h5>
    <div class="btn-row">
-      <button class="btn my-btn-primary" *ngIf="userIsAuthenticated">Duplicate playlist</button>
+      <button class="btn my-btn-primary" *ngIf="userIsAuthenticated" (click)="openDuplicatePlaylist()">
+         Duplicate playlist
+      </button>
       <button class="btn btn-secondary" *ngIf="userOwnsPlaylist" routerLink="edit">Edit playlist</button>
    </div>
 
