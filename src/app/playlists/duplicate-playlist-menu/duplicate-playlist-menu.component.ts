@@ -65,11 +65,9 @@ export class DuplicatePlaylistMenuComponent implements OnInit {
          .pipe(take(1))
          .subscribe(
             (success) => {
-               console.log(success.createdPlaylist)
                this.successNotifier.next("Successfully duplicated playlist")
             },
             (err: ApiError) => {
-               console.log(err)
                this.errorNotifier.next(err)
             }
          )
