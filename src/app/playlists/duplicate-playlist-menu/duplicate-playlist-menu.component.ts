@@ -46,17 +46,22 @@ export class DuplicatePlaylistMenuComponent implements OnInit {
       this.modalService.open(this.duplicatePlaylistModal)
    }
 
-   duplicatePlaylist(): void {
-      this.successNotifier.next("")
-      //extract to function
-      this.errorNotifier.next(emptyApiError)
+   private changePlaylistToApiFormat(): Partial<Playlist> {
       const { _id, __v, createdAt, updatedAt, ...fieldsToPost } =
          this.newPlaylist
       const albums = fieldsToPost.albums as Album[]
       const albumsAsStringArr = albums.map((album) => album._id)
       fieldsToPost.albums = albumsAsStringArr
+      return fieldsToPost
+   }
+
+   duplicatePlaylist(): void {
+      this.successNotifier.next("")
+      this.errorNotifier.next(emptyApiError)
+
+      const playlistToPost = this.changePlaylistToApiFormat()
       this.playlistService
-         .createPlaylist(fieldsToPost)
+         .createPlaylist(playlistToPost)
          .pipe(take(1))
          .subscribe(
             (success) => {
