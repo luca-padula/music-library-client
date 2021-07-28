@@ -4,6 +4,7 @@ import { Observable, Subject } from "rxjs"
 import { take, takeUntil } from "rxjs/operators"
 import { Album } from "src/app/albums/album"
 import { AuthService } from "src/app/auth/auth.service"
+import { ApiError, emptyApiError } from "src/app/shared/models/api-error"
 import { emptyPlaylist, Playlist } from "../playlist"
 import { PlaylistService } from "../playlist.service"
 
@@ -18,6 +19,8 @@ export class DuplicatePlaylistMenuComponent implements OnInit {
    @ViewChild("myModal", { static: true }) duplicatePlaylistModal: any
    @Input() openModalNotifier = new Observable<Playlist>()
    private token = this.authService.getDecodedToken()
+   successNotifier = new Subject<string>()
+   errorNotifier = new Subject<ApiError>()
    ngUnsubscribe = new Subject<any>()
 
    constructor(
@@ -44,6 +47,9 @@ export class DuplicatePlaylistMenuComponent implements OnInit {
    }
 
    duplicatePlaylist(): void {
+      this.successNotifier.next("")
+      //extract to function
+      this.errorNotifier.next(emptyApiError)
       const { _id, __v, createdAt, updatedAt, ...fieldsToPost } =
          this.newPlaylist
       const albums = fieldsToPost.albums as Album[]
@@ -53,8 +59,14 @@ export class DuplicatePlaylistMenuComponent implements OnInit {
          .createPlaylist(fieldsToPost)
          .pipe(take(1))
          .subscribe(
-            (success) => console.log(success.createdPlaylist),
-            (err) => console.log(err)
+            (success) => {
+               console.log(success.createdPlaylist)
+               this.successNotifier.next("Successfully duplicated playlist")
+            },
+            (err: ApiError) => {
+               console.log(err)
+               this.errorNotifier.next(err)
+            }
          )
    }
 
