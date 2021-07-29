@@ -1,3 +1,22 @@
+<div class="row data-option-row">
+   <div class="col-lg-6">
+      <label for="searchInput" class="control-label">Search for</label>
+      <input
+         type="search"
+         class="form-control"
+         id="searchInput"
+         #searchInput
+         placeholder="Enter album or artist name..."
+      />
+   </div>
+   <div class="col-lg-6">
+      <app-sort-option-select
+         [sortOptions]="sortOptions"
+         (sortChangeEvent)="handleSortChange($event)"
+      ></app-sort-option-select>
+   </div>
+</div>
+
 <div class="table-responsive albums-list">
    <!-- <h4>{{ playlistAlbums.length }} Albums</h4> -->
    <table class="table">
@@ -9,7 +28,7 @@
          <th scope="col" *ngIf="userIsAuthenticated"></th>
       </thead>
       <tbody>
-         <tr *ngFor="let album of albums$ | async; index as idx">
+         <tr *ngFor="let album of displayedAlbums$ | async; index as idx">
             <th scope="row" class="d-none d-lg-table-cell">{{ idx + 1 }}</th>
             <td>
                <h5 class="album-title">{{ album.name }}</h5>

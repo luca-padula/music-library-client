@@ -1,5 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core"
-import { BehaviorSubject, combineLatest, Observable } from "rxjs"
+import {
+   Component,
+   ElementRef,
+   EventEmitter,
+   Input,
+   OnInit,
+   Output,
+   ViewChild,
+} from "@angular/core"
+import { BehaviorSubject, combineLatest, fromEvent, Observable } from "rxjs"
+import { distinctUntilChanged, map, pluck, startWith } from "rxjs/operators"
 import { Album } from "src/app/albums/album"
 import { albumSortOptions } from "src/app/albums/album-sort-options"
 import { SortOption } from "src/app/sort-option-select/sort-option"
@@ -11,6 +20,8 @@ import { SortOption } from "src/app/sort-option-select/sort-option"
 })
 export class PlaylistAlbumListComponent implements OnInit {
    @Input() albums$ = new BehaviorSubject<Album[]>([])
+   @ViewChild("searchInput", { static: true })
+   searchInputEl!: ElementRef<HTMLInputElement>
    searchInput$ = new Observable<string>()
    sortOptions = albumSortOptions
    sortOptionSubject = new BehaviorSubject<SortOption>(this.sortOptions[0])
@@ -22,7 +33,55 @@ export class PlaylistAlbumListComponent implements OnInit {
    @Input() userOwnsPlaylist = false
    constructor() {}
 
+   // TODO: Extract this func, identical one in album list component, and filter factory func to util file
+   private buildAlbumCompareFunction(
+      sortOption: SortOption
+   ): (album1: Album, album2: Album) => number {
+      const sortField = sortOption.field as keyof Album
+      const descending = sortOption.descending
+      return (album1: Album, album2: Album) => {
+         if (album1[sortField] < album2[sortField]) {
+            return descending ? 1 : -1
+         }
+         if (album1[sortField] > album2[sortField]) {
+            return descending ? -1 : 1
+         }
+         return 0
+      }
+   }
+
    ngOnInit(): void {
-      //  this.displayedAlbums$ = combineLatest([this.albums$, this.searchInput$, this.sortOptionSubject])
+      this.searchInput$ = fromEvent(
+         this.searchInputEl.nativeElement,
+         "keyup"
+      ).pipe(
+         map((event) => event.target as HTMLInputElement),
+         pluck("value"),
+         distinctUntilChanged(),
+         startWith("")
+      )
+
+      this.displayedAlbums$ = combineLatest([
+         this.albums$,
+         this.searchInput$,
+         this.sortOptionSubject,
+      ]).pipe(
+         map(([albums, filter, sortOption]) => {
+            const compareFunction = this.buildAlbumCompareFunction(sortOption)
+            return albums
+               .filter(
+                  (album) =>
+                     album.name.toLowerCase().includes(filter.toLowerCase()) ||
+                     album.artistName
+                        .toLowerCase()
+                        .includes(filter.toLowerCase())
+               )
+               .sort(compareFunction)
+         })
+      )
+   }
+
+   handleSortChange(newSortOption: SortOption): void {
+      this.sortOptionSubject.next(newSortOption)
    }
 }
