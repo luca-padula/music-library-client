@@ -21,6 +21,8 @@
       <button class="btn btn-secondary" *ngIf="userOwnsPlaylist" routerLink="edit">Edit playlist</button>
    </div>
 
+   <input type="search" id="searchInput" class="form-control" (keyup)="onAlbumSearchKeyup($event)" />
+
    <app-action-feedback
       [successNotifier]="successNotifier.asObservable()"
       [errorNotifier]="errorNotifier.asObservable()"
@@ -37,7 +39,7 @@
             <th scope="col" *ngIf="userIsAuthenticated"></th>
          </thead>
          <tbody>
-            <tr *ngFor="let album of playlistAlbums; index as idx">
+            <tr *ngFor="let album of filteredAlbums; index as idx">
                <th scope="row" class="d-none d-lg-table-cell">{{ idx + 1 }}</th>
                <td>
                   <h5 class="album-title">{{ album.name }}</h5>

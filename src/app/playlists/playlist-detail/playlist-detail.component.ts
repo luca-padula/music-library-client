@@ -16,6 +16,7 @@ import { PlaylistService } from "../playlist.service"
 export class PlaylistDetailComponent implements OnInit {
    playlist = emptyPlaylist
    playlistAlbums: Album[] = []
+   filteredAlbums: Album[] = []
    private token = this.authService.getDecodedToken()
    userIsAuthenticated = this.authService.userIsAuthenticated()
    userOwnsPlaylist = false
@@ -34,19 +35,38 @@ export class PlaylistDetailComponent implements OnInit {
    ngOnInit(): void {
       this.playlist = this.route.snapshot.data.playlist as Playlist
       this.playlistAlbums = this.playlist.albums as Album[]
+      this.filteredAlbums = this.playlistAlbums
       if (this.userIsAuthenticated) {
          this.userOwnsPlaylist = this.playlist.creator === this.token._id
       }
    }
 
-   private updateLocalPlaylistAlbums(albumToRemove: Album): void {
-      const updatedAlbums = this.playlistAlbums
+   private deleteAlbumFromPlaylistArr(
+      albumToRemove: Album,
+      albumArr: Album[]
+   ): Album[] {
+      const updatedAlbums = albumArr
       const removedIdx = updatedAlbums.findIndex(
          (album) => album._id === albumToRemove._id
       )
+
       updatedAlbums.splice(removedIdx, 1)
+
+      return updatedAlbums
+   }
+
+   private updateLocalPlaylistAlbums(albumToRemove: Album): void {
+      const updatedAlbums = this.deleteAlbumFromPlaylistArr(
+         albumToRemove,
+         this.playlistAlbums
+      )
       this.playlist.albums = updatedAlbums
       this.playlistAlbums = updatedAlbums
+      console.log(this.filteredAlbums)
+      this.filteredAlbums = this.deleteAlbumFromPlaylistArr(
+         albumToRemove,
+         this.filteredAlbums
+      )
    }
 
    removeAlbumFromPlaylist(albumToRemove: Album): void {
@@ -66,5 +86,15 @@ export class PlaylistDetailComponent implements OnInit {
 
    openDuplicatePlaylist(): void {
       this.duplicatePlaylistAction.next(this.playlist)
+   }
+
+   onAlbumSearchKeyup(event: any): void {
+      const target = event.target as HTMLInputElement
+      const filter = target.value.toLowerCase()
+      this.filteredAlbums = this.playlistAlbums.filter(
+         (album) =>
+            album.name.toLowerCase().includes(filter) ||
+            album.artistName.toLowerCase().includes(filter)
+      )
    }
 }
