@@ -31,6 +31,6 @@
       [userIsAuthenticated]="userIsAuthenticated"
       [userOwnsPlaylist]="userOwnsPlaylist"
       (removeAlbumFromPlaylist)="handleRemoveAlbumFromPlaylist($event)"
-      (addAlbumToPlaylist)="addAlbumToPlaylistAction.next($event)"
+      (addAlbumToPlaylist)="handleAddAlbumToPlaylist($event)"
    ></app-playlist-album-list>
 </div>

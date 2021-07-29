@@ -15,8 +15,6 @@ import { PlaylistService } from "../playlist.service"
 })
 export class PlaylistDetailComponent implements OnInit {
    playlist = emptyPlaylist
-   playlistAlbums: Album[] = []
-   filteredAlbums: Album[] = []
    private token = this.authService.getDecodedToken()
    userIsAuthenticated = this.authService.userIsAuthenticated()
    userOwnsPlaylist = false
@@ -36,14 +34,20 @@ export class PlaylistDetailComponent implements OnInit {
 
    ngOnInit(): void {
       this.playlist = this.route.snapshot.data.playlist as Playlist
-      this.playlistAlbums = this.playlist.albums as Album[]
+      const playlistAlbums = this.playlist.albums as Album[]
+      this.playlistAlbumsSubject.next(playlistAlbums)
 
-      this.playlistAlbumsSubject.next(this.playlistAlbums)
-
-      this.filteredAlbums = this.playlistAlbums
       if (this.userIsAuthenticated) {
          this.userOwnsPlaylist = this.playlist.creator === this.token._id
       }
+   }
+
+   handleRemoveAlbumFromPlaylist(album: Album): void {
+      this.removeAlbumFromPlaylist(album)
+   }
+
+   handleAddAlbumToPlaylist(album: Album): void {
+      this.addAlbumToPlaylistAction.next(album)
    }
 
    private deleteAlbumFromPlaylistArr(
@@ -54,28 +58,17 @@ export class PlaylistDetailComponent implements OnInit {
       const removedIdx = updatedAlbums.findIndex(
          (album) => album._id === albumToRemove._id
       )
-
       updatedAlbums.splice(removedIdx, 1)
-
       return updatedAlbums
    }
 
    private updateLocalPlaylistAlbums(albumToRemove: Album): void {
       const updatedAlbums = this.deleteAlbumFromPlaylistArr(
          albumToRemove,
-         this.playlistAlbums
+         this.playlist.albums as Album[]
       )
       this.playlist.albums = updatedAlbums
-      this.playlistAlbums = updatedAlbums
-      console.log(this.filteredAlbums)
-      this.filteredAlbums = this.deleteAlbumFromPlaylistArr(
-         albumToRemove,
-         this.filteredAlbums
-      )
-   }
-
-   handleRemoveAlbumFromPlaylist(album: Album): void {
-      this.removeAlbumFromPlaylist(album)
+      this.playlistAlbumsSubject.next(updatedAlbums)
    }
 
    removeAlbumFromPlaylist(albumToRemove: Album): void {
