@@ -34,7 +34,8 @@ import { ArtistSelectComponent } from "./artists/artist-select/artist-select.com
 import { PlaylistDetailComponent } from "./playlists/playlist-detail/playlist-detail.component";
 import { EditPlaylistComponent } from './playlists/edit-playlist/edit-playlist.component';
 import { DeletePlaylistMenuComponent } from './playlists/delete-playlist-menu/delete-playlist-menu.component';
-import { DuplicatePlaylistMenuComponent } from './playlists/duplicate-playlist-menu/duplicate-playlist-menu.component'
+import { DuplicatePlaylistMenuComponent } from './playlists/duplicate-playlist-menu/duplicate-playlist-menu.component';
+import { PlaylistAlbumListComponent } from './playlists/playlist-album-list/playlist-album-list.component'
 
 @NgModule({
    declarations: [
@@ -62,6 +63,7 @@ import { DuplicatePlaylistMenuComponent } from './playlists/duplicate-playlist-m
       EditPlaylistComponent,
       DeletePlaylistMenuComponent,
       DuplicatePlaylistMenuComponent,
+      PlaylistAlbumListComponent,
    ],
    imports: [
       BrowserModule,

@@ -14,25 +14,3 @@
    margin-top: 0.5rem;
    margin-right: 1rem;
 }
-
-.albums-list {
-   margin-top: 2rem;
-}
-
-.remove-from-playlist {
-   color: red;
-}
-
-.album-title {
-   font-size: 1.1rem;
-}
-
-.album-artist {
-   font-size: 0.9rem;
-}
-
-@media (min-width: 992px) {
-   .album-artist {
-      font-size: 1rem;
-   }
-}

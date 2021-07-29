@@ -21,58 +21,16 @@
       <button class="btn btn-secondary" *ngIf="userOwnsPlaylist" routerLink="edit">Edit playlist</button>
    </div>
 
-   <input type="search" id="searchInput" class="form-control" (keyup)="onAlbumSearchKeyup($event)" />
-
    <app-action-feedback
       [successNotifier]="successNotifier.asObservable()"
       [errorNotifier]="errorNotifier.asObservable()"
    ></app-action-feedback>
 
-   <div class="table-responsive albums-list">
-      <h4>{{ playlistAlbums.length }} Albums</h4>
-      <table class="table">
-         <thead class="d-none d-lg-table-row">
-            <th scope="col" class="d-none d-lg-table-cell">#</th>
-            <th scope="col">Album</th>
-            <th scope="col"><i class="far fa-calendar-alt"></i></th>
-            <th scope="col"><i class="far fa-clock"></i></th>
-            <th scope="col" *ngIf="userIsAuthenticated"></th>
-         </thead>
-         <tbody>
-            <tr *ngFor="let album of filteredAlbums; index as idx">
-               <th scope="row" class="d-none d-lg-table-cell">{{ idx + 1 }}</th>
-               <td>
-                  <h5 class="album-title">{{ album.name }}</h5>
-                  <a [routerLink]="'/artist/' + album.artist">
-                     <h6 class="text-muted album-artist">
-                        {{ album.artistName }}
-                     </h6>
-                  </a>
-               </td>
-               <td class="d-none d-lg-table-cell text-muted">{{ album.releaseDate | date: "y" }}</td>
-               <td class="d-none d-lg-table-cell text-muted">{{ album.albumLength }}</td>
-               <td *ngIf="userIsAuthenticated">
-                  <div ngbDropdown container="body">
-                     <button class="btn my-btn-outline-primary btn-sm" id="actionsBtn" ngbDropdownToggle>
-                        Actions
-                     </button>
-                     <div ngbDropdownMenu aria-labelledby="actionsBtn">
-                        <button ngbDropdownItem (click)="addAlbumToPlaylistAction.next(album)">Add to playlist</button>
-                        <div class="dropdown-divider"></div>
-                        <ng-container *ngIf="userOwnsPlaylist">
-                           <button
-                              class="remove-from-playlist"
-                              ngbDropdownItem
-                              (click)="removeAlbumFromPlaylist(album)"
-                           >
-                              Remove from playlist
-                           </button>
-                        </ng-container>
-                     </div>
-                  </div>
-               </td>
-            </tr>
-         </tbody>
-      </table>
-   </div>
+   <app-playlist-album-list
+      [albums$]="playlistAlbumsSubject"
+      [userIsAuthenticated]="userIsAuthenticated"
+      [userOwnsPlaylist]="userOwnsPlaylist"
+      (removeAlbumFromPlaylist)="handleRemoveAlbumFromPlaylist($event)"
+      (addAlbumToPlaylist)="addAlbumToPlaylistAction.next($event)"
+   ></app-playlist-album-list>
 </div>

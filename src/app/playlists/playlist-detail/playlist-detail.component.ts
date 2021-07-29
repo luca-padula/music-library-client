@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core"
 import { ActivatedRoute } from "@angular/router"
-import { Subject } from "rxjs"
+import { BehaviorSubject, of, Subject } from "rxjs"
 import { take } from "rxjs/operators"
 import { Album } from "src/app/albums/album"
 import { AuthService } from "src/app/auth/auth.service"
@@ -26,6 +26,8 @@ export class PlaylistDetailComponent implements OnInit {
    successNotifier = new Subject<string>()
    errorNotifier = new Subject<ApiError>()
 
+   playlistAlbumsSubject = new BehaviorSubject<Album[]>([])
+
    constructor(
       private route: ActivatedRoute,
       private authService: AuthService,
@@ -35,6 +37,9 @@ export class PlaylistDetailComponent implements OnInit {
    ngOnInit(): void {
       this.playlist = this.route.snapshot.data.playlist as Playlist
       this.playlistAlbums = this.playlist.albums as Album[]
+
+      this.playlistAlbumsSubject.next(this.playlistAlbums)
+
       this.filteredAlbums = this.playlistAlbums
       if (this.userIsAuthenticated) {
          this.userOwnsPlaylist = this.playlist.creator === this.token._id
@@ -69,6 +74,10 @@ export class PlaylistDetailComponent implements OnInit {
       )
    }
 
+   handleRemoveAlbumFromPlaylist(album: Album): void {
+      this.removeAlbumFromPlaylist(album)
+   }
+
    removeAlbumFromPlaylist(albumToRemove: Album): void {
       this.playlistService
          .removeAlbumFromPlaylist(albumToRemove._id, this.playlist._id)
@@ -86,15 +95,5 @@ export class PlaylistDetailComponent implements OnInit {
 
    openDuplicatePlaylist(): void {
       this.duplicatePlaylistAction.next(this.playlist)
-   }
-
-   onAlbumSearchKeyup(event: any): void {
-      const target = event.target as HTMLInputElement
-      const filter = target.value.toLowerCase()
-      this.filteredAlbums = this.playlistAlbums.filter(
-         (album) =>
-            album.name.toLowerCase().includes(filter) ||
-            album.artistName.toLowerCase().includes(filter)
-      )
    }
 }
