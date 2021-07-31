@@ -11,6 +11,7 @@ import { BehaviorSubject, combineLatest, fromEvent, Observable } from "rxjs"
 import { distinctUntilChanged, map, pluck, startWith } from "rxjs/operators"
 import { Album } from "src/app/albums/album"
 import { albumSortOptions } from "src/app/albums/album-sort-options"
+import { buildAlbumCompareFunction } from "src/app/shared/utils/album-function-factory"
 import { SortOption } from "src/app/sort-option-select/sort-option"
 
 @Component({
@@ -33,23 +34,6 @@ export class PlaylistAlbumListComponent implements OnInit {
    @Input() userOwnsPlaylist = false
    constructor() {}
 
-   // TODO: Extract this func, identical one in album list component, and filter factory func to util file
-   private buildAlbumCompareFunction(
-      sortOption: SortOption
-   ): (album1: Album, album2: Album) => number {
-      const sortField = sortOption.field as keyof Album
-      const descending = sortOption.descending
-      return (album1: Album, album2: Album) => {
-         if (album1[sortField] < album2[sortField]) {
-            return descending ? 1 : -1
-         }
-         if (album1[sortField] > album2[sortField]) {
-            return descending ? -1 : 1
-         }
-         return 0
-      }
-   }
-
    ngOnInit(): void {
       this.searchInput$ = fromEvent(
          this.searchInputEl.nativeElement,
@@ -67,7 +51,7 @@ export class PlaylistAlbumListComponent implements OnInit {
          this.sortOptionSubject,
       ]).pipe(
          map(([albums, filter, sortOption]) => {
-            const compareFunction = this.buildAlbumCompareFunction(sortOption)
+            const compareFunction = buildAlbumCompareFunction(sortOption)
             return albums
                .filter(
                   (album) =>
