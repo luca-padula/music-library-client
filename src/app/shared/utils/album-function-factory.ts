@@ -7,10 +7,19 @@ function buildAlbumCompareFunction(
    const sortField = sortOption.field as keyof Album
    const descending = sortOption.descending
    return (album1: Album, album2: Album) => {
-      if (album1[sortField] < album2[sortField]) {
+      /* convert to lowercase for case insensitive sorting in case not all users enter first letter capital
+      for album/artist name, or else not having first letter case consistent breaks sorting */
+      let field1 = album1[sortField],
+         field2 = album2[sortField]
+      if (typeof field1 === "string" && typeof field2 === "string") {
+         field1 = field1.toLowerCase()
+         field2 = field2.toLowerCase()
+      }
+
+      if (field1 < field2) {
          return descending ? 1 : -1
       }
-      if (album1[sortField] > album2[sortField]) {
+      if (field1 > field2) {
          return descending ? -1 : 1
       }
       return 0
