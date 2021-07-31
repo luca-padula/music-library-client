@@ -13,6 +13,9 @@
    <h5>
       <span class="text-muted">{{ playlist.isPrivate ? "Private playlist" : "Playlist" }} by </span>
       <strong>{{ playlist.creatorUserName }}</strong>
+      <span class="text-muted num-albums">
+         &bull; {{ playlist.albums.length }} {{ playlist.albums.length === 1 ? "album" : "albums" }}
+      </span>
    </h5>
    <div class="btn-row">
       <button class="btn my-btn-primary" *ngIf="userIsAuthenticated" (click)="openDuplicatePlaylist()">

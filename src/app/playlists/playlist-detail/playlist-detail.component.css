@@ -2,6 +2,10 @@
    margin-bottom: 0.5rem;
 }
 
+.num-albums {
+   font-size: 1.1rem;
+}
+
 .btn-row {
    display: flex;
    align-items: center;
