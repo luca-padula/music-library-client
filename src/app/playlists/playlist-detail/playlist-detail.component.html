@@ -1,0 +1,39 @@
+<div class="container">
+   <app-add-album-to-playlist-menu
+      [notifier]="addAlbumToPlaylistAction.asObservable()"
+      *ngIf="userIsAuthenticated"
+   ></app-add-album-to-playlist-menu>
+
+   <app-duplicate-playlist-menu
+      [openModalNotifier]="duplicatePlaylistAction.asObservable()"
+      *ngIf="userIsAuthenticated"
+   ></app-duplicate-playlist-menu>
+
+   <h1 class="page-title">{{ playlist.name }}</h1>
+   <h5>
+      <span class="text-muted">{{ playlist.isPrivate ? "Private playlist" : "Playlist" }} by </span>
+      <strong>{{ playlist.creatorUserName }}</strong>
+      <span class="text-muted num-albums">
+         &bull; {{ playlist.albums.length }} {{ playlist.albums.length === 1 ? "album" : "albums" }}
+      </span>
+   </h5>
+   <div class="btn-row">
+      <button class="btn my-btn-primary" *ngIf="userIsAuthenticated" (click)="openDuplicatePlaylist()">
+         Duplicate playlist
+      </button>
+      <button class="btn btn-secondary" *ngIf="userOwnsPlaylist" routerLink="edit">Edit playlist</button>
+   </div>
+
+   <app-action-feedback
+      [successNotifier]="successNotifier.asObservable()"
+      [errorNotifier]="errorNotifier.asObservable()"
+   ></app-action-feedback>
+
+   <app-playlist-album-list
+      [albums$]="playlistAlbumsSubject"
+      [userIsAuthenticated]="userIsAuthenticated"
+      [userOwnsPlaylist]="userOwnsPlaylist"
+      (removeAlbumFromPlaylist)="handleRemoveAlbumFromPlaylist($event)"
+      (addAlbumToPlaylist)="handleAddAlbumToPlaylist($event)"
+   ></app-playlist-album-list>
+</div>

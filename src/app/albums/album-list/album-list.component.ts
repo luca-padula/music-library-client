@@ -17,6 +17,10 @@ import { Album } from "../album"
 import { SortOption } from "../../sort-option-select/sort-option"
 import { AuthService } from "src/app/auth/auth.service"
 import { albumSortOptions } from "../album-sort-options"
+import {
+   buildAlbumCompareFunction,
+   buildAlbumFilterFunction,
+} from "src/app/shared/utils/album-function-factory"
 
 @Component({
    selector: "app-album-list",
@@ -63,33 +67,11 @@ export class AlbumListComponent implements OnInit {
          this.sortOptionSubject,
       ]).pipe(
          map(([allAlbums, filter, sortOption]) => {
-            const filterFunction = this.buildAlbumFilterFunction(filter)
-            const compareFunction = this.buildAlbumCompareFunction(sortOption)
+            const filterFunction = buildAlbumFilterFunction(filter)
+            const compareFunction = buildAlbumCompareFunction(sortOption)
             return allAlbums.filter(filterFunction).sort(compareFunction)
          })
       )
-   }
-
-   private buildAlbumFilterFunction(filter: string): (album: Album) => boolean {
-      return (album: Album) =>
-         album.name.toLowerCase().includes(filter.toLowerCase()) ||
-         album.artistName.toLowerCase().includes(filter.toLowerCase())
-   }
-
-   private buildAlbumCompareFunction(
-      sortOption: SortOption
-   ): (album1: Album, album2: Album) => number {
-      const sortField = sortOption.field as keyof Album
-      const descending = sortOption.descending
-      return (album1: Album, album2: Album) => {
-         if (album1[sortField] < album2[sortField]) {
-            return descending ? 1 : -1
-         }
-         if (album1[sortField] > album2[sortField]) {
-            return descending ? -1 : 1
-         }
-         return 0
-      }
    }
 
    handleSortChange(newSortOption: SortOption): void {

@@ -1,0 +1,64 @@
+<div class="row data-option-row">
+   <div class="col-lg-6">
+      <label for="searchInput" class="control-label">Search for</label>
+      <input
+         type="search"
+         class="form-control"
+         id="searchInput"
+         #searchInput
+         placeholder="Enter album or artist name..."
+      />
+   </div>
+   <div class="col-lg-6">
+      <app-sort-option-select
+         [sortOptions]="sortOptions"
+         (sortChangeEvent)="handleSortChange($event)"
+      ></app-sort-option-select>
+   </div>
+</div>
+
+<div class="table-responsive albums-list">
+   <!-- <h4>{{ playlistAlbums.length }} Albums</h4> -->
+   <table class="table">
+      <thead class="d-none d-lg-table-row">
+         <th scope="col" class="d-none d-lg-table-cell">#</th>
+         <th scope="col">Album</th>
+         <th scope="col"><i class="far fa-calendar-alt"></i></th>
+         <th scope="col"><i class="far fa-clock"></i></th>
+         <th scope="col" *ngIf="userIsAuthenticated"></th>
+      </thead>
+      <tbody>
+         <tr *ngFor="let album of displayedAlbums$ | async; index as idx">
+            <th scope="row" class="d-none d-lg-table-cell">{{ idx + 1 }}</th>
+            <td>
+               <h5 class="album-title">{{ album.name }}</h5>
+               <a [routerLink]="'/artist/' + album.artist">
+                  <h6 class="text-muted album-artist">
+                     {{ album.artistName }}
+                  </h6>
+               </a>
+            </td>
+            <td class="d-none d-lg-table-cell text-muted">{{ album.releaseDate | date: "y" }}</td>
+            <td class="d-none d-lg-table-cell text-muted">{{ album.albumLength }}</td>
+            <td *ngIf="userIsAuthenticated">
+               <div ngbDropdown container="body">
+                  <button class="btn my-btn-outline-primary btn-sm" id="actionsBtn" ngbDropdownToggle>Actions</button>
+                  <div ngbDropdownMenu aria-labelledby="actionsBtn">
+                     <button ngbDropdownItem (click)="addAlbumToPlaylist.emit(album)">Add to playlist</button>
+                     <ng-container *ngIf="userOwnsPlaylist">
+                        <div class="dropdown-divider"></div>
+                        <button
+                           class="remove-from-playlist"
+                           ngbDropdownItem
+                           (click)="removeAlbumFromPlaylist.emit(album)"
+                        >
+                           Remove from playlist
+                        </button>
+                     </ng-container>
+                  </div>
+               </div>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+</div>

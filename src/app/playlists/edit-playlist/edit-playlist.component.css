@@ -1,0 +1,25 @@
+.edit-playlist-form {
+   margin-top: 4rem;
+}
+
+.form-check-input {
+   width: 1.5rem;
+   height: 1.5rem;
+}
+
+.form-check-label {
+   font-size: 1.25rem;
+   margin-left: 1.5rem;
+}
+
+.btn-row {
+   margin-top: 1.5rem;
+}
+
+.btn-row > button {
+   margin-right: 1rem;
+}
+
+.feedback-container {
+   margin-top: 3rem;
+}

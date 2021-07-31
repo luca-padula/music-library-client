@@ -21,6 +21,12 @@ export class PlaylistService {
       )
    }
 
+   getPlaylistById(playlistId: string): Observable<Playlist> {
+      return this.http.get<Playlist>(
+         `${environment.apiUrl}/playlists/${playlistId}`
+      )
+   }
+
    createPlaylist(newPlaylist: Partial<Playlist>): Observable<any> {
       return this.http.post(`${environment.apiUrl}/playlists`, newPlaylist)
    }
@@ -30,5 +36,28 @@ export class PlaylistService {
          `${environment.apiUrl}/playlists/${playlistId}/albums/${albumId}`,
          {}
       )
+   }
+
+   removeAlbumFromPlaylist(
+      albumId: string,
+      playlistId: string
+   ): Observable<any> {
+      return this.http.delete(
+         `${environment.apiUrl}/playlists/${playlistId}/albums/${albumId}`
+      )
+   }
+
+   updatePlaylist(
+      playlistId: string,
+      playlist: Partial<Playlist>
+   ): Observable<any> {
+      return this.http.patch(
+         `${environment.apiUrl}/playlists/${playlistId}`,
+         playlist
+      )
+   }
+
+   deletePlaylist(playlistId: string): Observable<any> {
+      return this.http.delete(`${environment.apiUrl}/playlists/${playlistId}`)
    }
 }

@@ -1,0 +1,20 @@
+.page-title {
+   margin-bottom: 0.5rem;
+}
+
+.num-albums {
+   font-size: 1.1rem;
+}
+
+.btn-row {
+   display: flex;
+   align-items: center;
+   flex-wrap: wrap;
+   margin-top: 2rem;
+   margin-bottom: 1.5rem;
+}
+
+.btn-row > button {
+   margin-top: 0.5rem;
+   margin-right: 1rem;
+}

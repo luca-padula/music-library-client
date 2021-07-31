@@ -6,7 +6,7 @@
 <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
    <form class="create-playlist-form" #form="ngForm" (ngSubmit)="onSubmit(form)">
       <div class="form-group row" [class.has-error]="name.invalid && (name.touched || name.dirty)">
-         <label for="playlistName" class="col-2 col-form-label">Name</label>
+         <label for="playlistName" class="col-2 col-form-label-lg">Name</label>
          <div class="col-10">
             <input
                type="text"

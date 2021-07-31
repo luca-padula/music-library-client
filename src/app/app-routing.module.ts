@@ -11,12 +11,16 @@ import { ArtistDetailComponent } from "./artists/artist-detail/artist-detail.com
 import { ArtistResolver } from "./artists/artist.resolver"
 import { PlaylistsPageComponent } from "./playlists/playlists-page/playlists-page.component"
 import { CreateAlbumComponent } from "./albums/create-album/create-album.component"
+import { PlaylistDetailComponent } from "./playlists/playlist-detail/playlist-detail.component"
+import { PlaylistResolver } from "./playlists/playlist.resolver"
+import { EditPlaylistComponent } from "./playlists/edit-playlist/edit-playlist.component"
+import { PlaylistOwnerGuard } from "./playlists/playlist-owner.guard"
 
 const routes: Routes = [
    { path: "home", component: HomeComponent },
    { path: "artists", component: ArtistListComponent },
    {
-      path: "artists/:id",
+      path: "artist/:id",
       component: ArtistDetailComponent,
       resolve: { artist: ArtistResolver },
    },
@@ -29,6 +33,17 @@ const routes: Routes = [
       canActivate: [AuthGuard],
    },
    { path: "playlists", component: PlaylistsPageComponent },
+   {
+      path: "playlist/:id",
+      component: PlaylistDetailComponent,
+      resolve: { playlist: PlaylistResolver },
+   },
+   {
+      path: "playlist/:id/edit",
+      component: EditPlaylistComponent,
+      resolve: { playlist: PlaylistResolver },
+      canActivate: [PlaylistOwnerGuard],
+   },
    { path: "", redirectTo: "/home", pathMatch: "full" },
    { path: "**", component: PageNotFoundComponent },
 ]

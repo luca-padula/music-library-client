@@ -15,18 +15,27 @@ import { ErrorInterceptor } from "./shared/interceptors/error.interceptor"
 import { AlbumListComponent } from "./albums/album-list/album-list.component"
 import { SortOptionSelectComponent } from "./sort-option-select/sort-option-select.component"
 import { AlbumDisplayComponent } from "./albums/album-display/album-display.component"
-import { NgbModalModule, NgbCollapseModule } from "@ng-bootstrap/ng-bootstrap"
+import {
+   NgbModalModule,
+   NgbCollapseModule,
+   NgbDropdownModule,
+} from "@ng-bootstrap/ng-bootstrap"
 import { AddAlbumToPlaylistMenuComponent } from "./playlists/add-album-to-playlist-menu/add-album-to-playlist-menu.component"
-import { CreatePlaylistCollapseComponent } from "./playlists/create-playlist-collapse/create-playlist-collapse.component";
-import { ActionFeedbackComponent } from './action-feedback/action-feedback.component';
-import { SignupComponent } from './auth/signup/signup.component';
-import { AlbumsPageComponent } from './albums/albums-page/albums-page.component';
-import { ArtistDetailComponent } from './artists/artist-detail/artist-detail.component';
-import { PlaylistsPageComponent } from './playlists/playlists-page/playlists-page.component';
-import { PlaylistDisplayComponent } from './playlists/playlist-display/playlist-display.component';
-import { BackToTopComponent } from './back-to-top/back-to-top.component';
-import { CreateAlbumComponent } from './albums/create-album/create-album.component';
-import { ArtistSelectComponent } from './artists/artist-select/artist-select.component'
+import { CreatePlaylistCollapseComponent } from "./playlists/create-playlist-collapse/create-playlist-collapse.component"
+import { ActionFeedbackComponent } from "./action-feedback/action-feedback.component"
+import { SignupComponent } from "./auth/signup/signup.component"
+import { AlbumsPageComponent } from "./albums/albums-page/albums-page.component"
+import { ArtistDetailComponent } from "./artists/artist-detail/artist-detail.component"
+import { PlaylistsPageComponent } from "./playlists/playlists-page/playlists-page.component"
+import { PlaylistDisplayComponent } from "./playlists/playlist-display/playlist-display.component"
+import { BackToTopComponent } from "./back-to-top/back-to-top.component"
+import { CreateAlbumComponent } from "./albums/create-album/create-album.component"
+import { ArtistSelectComponent } from "./artists/artist-select/artist-select.component"
+import { PlaylistDetailComponent } from "./playlists/playlist-detail/playlist-detail.component";
+import { EditPlaylistComponent } from './playlists/edit-playlist/edit-playlist.component';
+import { DeletePlaylistMenuComponent } from './playlists/delete-playlist-menu/delete-playlist-menu.component';
+import { DuplicatePlaylistMenuComponent } from './playlists/duplicate-playlist-menu/duplicate-playlist-menu.component';
+import { PlaylistAlbumListComponent } from './playlists/playlist-album-list/playlist-album-list.component'
 
 @NgModule({
    declarations: [
@@ -50,6 +59,11 @@ import { ArtistSelectComponent } from './artists/artist-select/artist-select.com
       BackToTopComponent,
       CreateAlbumComponent,
       ArtistSelectComponent,
+      PlaylistDetailComponent,
+      EditPlaylistComponent,
+      DeletePlaylistMenuComponent,
+      DuplicatePlaylistMenuComponent,
+      PlaylistAlbumListComponent,
    ],
    imports: [
       BrowserModule,
@@ -58,6 +72,7 @@ import { ArtistSelectComponent } from './artists/artist-select/artist-select.com
       FormsModule,
       NgbModalModule,
       NgbCollapseModule,
+      NgbDropdownModule,
    ],
    providers: [
       {

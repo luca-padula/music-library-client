@@ -21,6 +21,14 @@
 
 .album-title {
    margin-bottom: 1rem;
-   height: 4rem;
+   height: 4.25rem;
    overflow: hidden;
+}
+
+.artist-link-text {
+   height: 1.25rem;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   margin-bottom: 0.25rem;
 }

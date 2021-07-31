@@ -14,8 +14,11 @@
       <div class="col-md-6">
          <h4 class="user-playlists-title">Your playlists</h4>
          <ul class="list-group user-playlists-list">
-            <!-- TODO: Add link to playlist detail page -->
-            <li class="list-group-item user-playlists-list-item" *ngFor="let playlist of userPlaylists">
+            <li
+               class="list-group-item user-playlists-list-item"
+               *ngFor="let playlist of userPlaylists"
+               [routerLink]="'/playlist/' + playlist._id"
+            >
                <div>
                   <h6>{{ playlist.name }}</h6>
                   <small class="text-muted">

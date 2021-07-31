@@ -1,0 +1,33 @@
+.data-option-row {
+   margin-top: 2.5rem;
+}
+
+#searchInput {
+   margin-bottom: 0.75rem;
+}
+
+.albums-list {
+   margin-top: 1.5rem;
+}
+
+.remove-from-playlist {
+   color: red;
+}
+
+.album-title {
+   font-size: 1.1rem;
+}
+
+.album-artist {
+   font-size: 0.9rem;
+}
+
+@media (min-width: 992px) {
+   #searchInput {
+      margin-bottom: 0;
+   }
+
+   .album-artist {
+      font-size: 1rem;
+   }
+}
