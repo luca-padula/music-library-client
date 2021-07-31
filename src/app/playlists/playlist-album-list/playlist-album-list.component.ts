@@ -11,7 +11,10 @@ import { BehaviorSubject, combineLatest, fromEvent, Observable } from "rxjs"
 import { distinctUntilChanged, map, pluck, startWith } from "rxjs/operators"
 import { Album } from "src/app/albums/album"
 import { albumSortOptions } from "src/app/albums/album-sort-options"
-import { buildAlbumCompareFunction } from "src/app/shared/utils/album-function-factory"
+import {
+   buildAlbumCompareFunction,
+   buildAlbumFilterFunction,
+} from "src/app/shared/utils/album-function-factory"
 import { SortOption } from "src/app/sort-option-select/sort-option"
 
 @Component({
@@ -32,6 +35,7 @@ export class PlaylistAlbumListComponent implements OnInit {
 
    @Input() userIsAuthenticated = false
    @Input() userOwnsPlaylist = false
+
    constructor() {}
 
    ngOnInit(): void {
@@ -51,16 +55,9 @@ export class PlaylistAlbumListComponent implements OnInit {
          this.sortOptionSubject,
       ]).pipe(
          map(([albums, filter, sortOption]) => {
+            const filterFunction = buildAlbumFilterFunction(filter)
             const compareFunction = buildAlbumCompareFunction(sortOption)
-            return albums
-               .filter(
-                  (album) =>
-                     album.name.toLowerCase().includes(filter.toLowerCase()) ||
-                     album.artistName
-                        .toLowerCase()
-                        .includes(filter.toLowerCase())
-               )
-               .sort(compareFunction)
+            return albums.filter(filterFunction).sort(compareFunction)
          })
       )
    }

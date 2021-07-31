@@ -17,4 +17,10 @@ function buildAlbumCompareFunction(
    }
 }
 
-export { buildAlbumCompareFunction }
+function buildAlbumFilterFunction(filter: string): (album: Album) => boolean {
+   return (album: Album) =>
+      album.name.toLowerCase().includes(filter.toLowerCase()) ||
+      album.artistName.toLowerCase().includes(filter.toLowerCase())
+}
+
+export { buildAlbumCompareFunction, buildAlbumFilterFunction }

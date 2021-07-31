@@ -21,10 +21,10 @@ export class PlaylistDetailComponent implements OnInit {
 
    addAlbumToPlaylistAction = new Subject<Album>()
    duplicatePlaylistAction = new Subject<Playlist>()
+   playlistAlbumsSubject = new BehaviorSubject<Album[]>([])
+
    successNotifier = new Subject<string>()
    errorNotifier = new Subject<ApiError>()
-
-   playlistAlbumsSubject = new BehaviorSubject<Album[]>([])
 
    constructor(
       private route: ActivatedRoute,
