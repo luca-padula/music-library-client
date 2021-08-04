@@ -15,6 +15,7 @@ import { PlaylistDetailComponent } from "./playlists/playlist-detail/playlist-de
 import { PlaylistResolver } from "./playlists/playlist.resolver"
 import { EditPlaylistComponent } from "./playlists/edit-playlist/edit-playlist.component"
 import { PlaylistOwnerGuard } from "./playlists/playlist-owner.guard"
+import { LogoutComponent } from "./auth/logout/logout.component"
 
 const routes: Routes = [
    { path: "home", component: HomeComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
    },
    { path: "login", component: LoginComponent },
    { path: "signup", component: SignupComponent },
+   { path: "logout", component: LogoutComponent },
    { path: "albums", component: AlbumsPageComponent },
    {
       path: "create-album",

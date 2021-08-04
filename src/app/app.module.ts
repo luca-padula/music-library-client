@@ -35,7 +35,8 @@ import { PlaylistDetailComponent } from "./playlists/playlist-detail/playlist-de
 import { EditPlaylistComponent } from './playlists/edit-playlist/edit-playlist.component';
 import { DeletePlaylistMenuComponent } from './playlists/delete-playlist-menu/delete-playlist-menu.component';
 import { DuplicatePlaylistMenuComponent } from './playlists/duplicate-playlist-menu/duplicate-playlist-menu.component';
-import { PlaylistAlbumListComponent } from './playlists/playlist-album-list/playlist-album-list.component'
+import { PlaylistAlbumListComponent } from './playlists/playlist-album-list/playlist-album-list.component';
+import { LogoutComponent } from './auth/logout/logout.component'
 
 @NgModule({
    declarations: [
@@ -64,6 +65,7 @@ import { PlaylistAlbumListComponent } from './playlists/playlist-album-list/play
       DeletePlaylistMenuComponent,
       DuplicatePlaylistMenuComponent,
       PlaylistAlbumListComponent,
+      LogoutComponent,
    ],
    imports: [
       BrowserModule,
