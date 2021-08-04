@@ -3,7 +3,7 @@ main {
    margin-bottom: 5rem;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
    main {
       margin-left: 18rem;
    }

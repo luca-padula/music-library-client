@@ -19,7 +19,7 @@
    color: var(--color-primary);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
    .back-to-top {
       font-size: 1.5rem;
       right: 2rem;
