@@ -8,7 +8,7 @@
 }
 
 .showcase-row {
-   margin-top: 2rem;
+   margin-top: 3rem;
 }
 
 .icons {
@@ -25,5 +25,6 @@
    color: var(--color-primary);
 }
 
-@media (min-width: 992px) {
+.showcase-description > button {
+   margin-top: 1rem;
 }
