@@ -20,7 +20,8 @@
    margin-bottom: 1rem;
 }
 
-.icon-item > i {
+.icon-item > i,
+.icon-item > a > i {
    font-size: 5rem;
    color: var(--color-primary);
    margin-bottom: 0.5rem;
@@ -30,6 +31,16 @@
    margin-top: 1.5rem;
 }
 
+.last-paragraph {
+   margin-bottom: 1rem;
+}
+
 .showcase-description button {
    margin-top: 1rem;
+}
+
+@media (min-width: 992px) {
+   .last-paragraph {
+      margin-top: 0;
+   }
 }
