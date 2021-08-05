@@ -9,23 +9,15 @@
 
 .showcase-row {
    margin-top: 2rem;
-   display: flex;
-   flex-direction: column;
 }
 
 .icons {
-   display: flex;
-   flex-direction: column;
-}
-
-.icon-row {
-   margin-bottom: 1rem;
-   display: flex;
-   justify-content: center;
+   padding: 0 5rem;
 }
 
 .icon-item {
-   margin: 0 2rem;
+   text-align: center;
+   margin-bottom: 1rem;
 }
 
 .icon-item > i {
@@ -33,16 +25,5 @@
    color: var(--color-primary);
 }
 
-.icon-name {
-   text-align: center;
-}
-
 @media (min-width: 992px) {
-   .showcase-row {
-      flex-direction: row;
-   }
-
-   .showcase-row > * {
-      width: 50%;
-   }
 }
