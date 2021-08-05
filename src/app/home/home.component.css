@@ -11,7 +11,7 @@
    margin-top: 3rem;
 }
 
-.icons {
+.icon-col {
    padding: 0 5rem;
 }
 
@@ -23,6 +23,11 @@
 .icon-item > i {
    font-size: 5rem;
    color: var(--color-primary);
+   margin-bottom: 0.5rem;
+}
+
+.showcase-description {
+   margin-top: 1.5rem;
 }
 
 .showcase-description > button {
