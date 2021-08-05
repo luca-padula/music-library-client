@@ -1,0 +1,48 @@
+.divider {
+   margin: 2rem 0;
+}
+
+.section-title {
+   text-align: center;
+   font-weight: bold;
+}
+
+.showcase-row {
+   margin-top: 2rem;
+   display: flex;
+   flex-direction: column;
+}
+
+.icons {
+   display: flex;
+   flex-direction: column;
+}
+
+.icon-row {
+   margin-bottom: 1rem;
+   display: flex;
+   justify-content: center;
+}
+
+.icon-item {
+   margin: 0 2rem;
+}
+
+.icon-item > i {
+   font-size: 5rem;
+   color: var(--color-primary);
+}
+
+.icon-name {
+   text-align: center;
+}
+
+@media (min-width: 992px) {
+   .showcase-row {
+      flex-direction: row;
+   }
+
+   .showcase-row > * {
+      width: 50%;
+   }
+}
