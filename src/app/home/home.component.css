@@ -1,0 +1,46 @@
+.divider {
+   margin: 2rem 0;
+}
+
+.section-title {
+   text-align: center;
+   font-weight: bold;
+}
+
+.showcase-row {
+   margin-top: 3rem;
+}
+
+.icon-col {
+   padding: 0 5rem;
+}
+
+.icon-item {
+   text-align: center;
+   margin-bottom: 1rem;
+}
+
+.icon-item > i,
+.icon-item > a > i {
+   font-size: 5rem;
+   color: var(--color-primary);
+   margin-bottom: 0.5rem;
+}
+
+.showcase-description {
+   margin-top: 1.5rem;
+}
+
+.last-paragraph {
+   margin-bottom: 1rem;
+}
+
+.showcase-description button {
+   margin-top: 1rem;
+}
+
+@media (min-width: 992px) {
+   .last-paragraph {
+      margin-top: 0;
+   }
+}

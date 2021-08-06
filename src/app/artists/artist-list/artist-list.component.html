@@ -14,6 +14,7 @@
          [(ngModel)]="searchInput"
          placeholder="search for an artist..."
          (keyup)="onArtistSearchKeyup($event)"
+         maxlength="70"
       />
       <div *ngIf="userIsAuthenticated" class="input-group-append">
          <button class="btn my-btn-primary" [disabled]="!searchInput.trim()" (click)="addArtist()">Add Artist</button>
